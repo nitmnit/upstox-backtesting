@@ -1,5 +1,8 @@
+import glob
+import json
 import os
 import time
+from collections import OrderedDict
 
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
@@ -89,8 +92,49 @@ class DataDownloader(object):
             self.fail(msg="{} {} not found.".format(selector_type, selector_value))
 
 
-with open(os.path.join('data', 'equity_symbols.csv')) as csv_reader:
-    dict_reader = csv.DictReader(csv_reader)
-    data_downloader = DataDownloader()
-    for line in dict_reader:
-        data_downloader.get_data_file(symbol=line['SYMBOL'], time_period='365 Days')
+NIFTY50 = ['ADANIPORTS', 'ASIANPAINT', 'AXISBANK', 'BAJAJ-AUTO', 'BAJFINANCE', 'BAJAJFINSV', 'BPCL', 'BHARTIARTL',
+           'INFRATEL', 'CIPLA', 'COALINDIA', 'DRREDDY', 'EICHERMOT', 'GAIL', 'GRASIM', 'HCLTECH', 'HDFCBANK',
+           'HEROMOTOCO', 'HINDALCO', 'HINDPETRO', 'HINDUNILVR', 'HDFC', 'ITC', 'ICICIBANK', 'IBULHSGFIN', 'IOC',
+           'INDUSINDBK', 'INFY', 'KOTAKBANK', 'LT', 'LUPIN', 'M&M', 'MARUTI', 'NTPC', 'ONGC', 'POWERGRID', 'RELIANCE',
+           'SBIN', 'SUNPHARMA', 'TCS', 'TATAMOTORS', 'TATASTEEL', 'TECHM', 'TITAN', 'UPL', 'ULTRACEMCO', 'VEDL',
+           'WIPRO', 'YESBANK', 'ZEEL', ]
+
+# data_downloader = DataDownloader()
+# for symbol in NIFTY50:
+#     data_downloader.get_data_file(symbol=symbol, time_period='365 Days')
+
+DIRECTORY = os.path.dirname(os.path.abspath(__file__))
+DOWNLOADS = os.path.join(DIRECTORY, 'downloads')
+data_files = sorted(glob.glob(DOWNLOADS.replace('\\', '/') + '/' + '*.csv'))
+
+date_wise_change = OrderedDict()
+for file in data_files:
+    with open(file.replace('\\', '/')) as csv_reader:
+        dict_reader = csv.DictReader(csv_reader)
+        for line in dict_reader:
+            if line['Date'] not in date_wise_change.keys():
+                date_wise_change[line['Date']] = OrderedDict()
+            date_wise_change[line['Date']][line['Symbol']] = (float(line['Open Price']) - float(
+                line['Close Price'])) / float(line['Open Price'])
+
+print(date_wise_change)
+print('\n')
+print('\n')
+whole_minimum = []
+for key, value in date_wise_change.iteritems():
+    sorted_data = sorted(value.items(), key=lambda x:x[1])
+    whole_minimum.append({key: sorted_data})
+    # minimum = {'Change': None, 'Symbol': None, 'Date': None}
+    # for symbol_name, change in value.iteritems():
+    #     if not minimum['Change'] or minimum['Change'] > change:
+    #         minimum['Change'] = change
+    #         minimum['Symbol'] = symbol_name
+    #         minimum['Date'] = key
+    # whole_minimum.append(minimum)
+
+print(json.dumps(whole_minimum))
+# with open(os.path.join('data', 'equity_symbols.csv')) as csv_reader:
+#     dict_reader = csv.DictReader(csv_reader)
+#     data_downloader = DataDownloader()
+#     for line in dict_reader:
+#         data_downloader.get_data_file(symbol=line['SYMBOL'], time_period='365 Days')
