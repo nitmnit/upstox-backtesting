@@ -150,6 +150,7 @@ class Algorithm(object):
     DIRECTORY = os.path.dirname(os.path.abspath(__file__))
     DOWNLOADS = os.path.join(DIRECTORY, 'downloads')
     data_files = sorted(glob.glob(DOWNLOADS.replace('\\', '/') + '/' + '*.csv'))
+    api_key = 'R5F8JJNH1V4REZ4P'
 
     def __init__(self, count_symbols=5, success_percent=1, opening_duration=15, stop_loss=0.7):
         self.count_symbols = count_symbols
@@ -196,7 +197,8 @@ class Algorithm(object):
                         continue
                     return float(line['Close Price'])
 
-    def filter_by_opening_increase(self, top_losers, date, target_percent=1, opening_duration=15):
+    def filter_by_opening_increase(self, top_losers, date, target_percent=1, opening_duration=15,
+                                   increase_required=0.5, stop_loss=-0.5):
         # return symbols who reached the target within first t minutes
         # Find file
         # Read the file and see the max price in first 15 minutes
@@ -213,7 +215,9 @@ class Algorithm(object):
                 start_time = None
                 for line in text_reader:
                     tups = line.split(',')
-                    row_time = datetime.time(hour=tups[2].split(':')[0], minute=tups[2].split(':')[1])
+                    last_close = self.get_last_close_price(symbol=tups[0],
+                                                           last_day_date=date - datetime.timedelta(days=-1))
+                    row_time = datetime.time(hour=int(tups[2].split(':')[0]), minute=int(tups[2].split(':')[1]))
                     row_price = float(tups[4])
                     if not start_time:
                         start_time = row_time
@@ -223,9 +227,10 @@ class Algorithm(object):
                         max_price = row_price
                     if max_price < row_price:
                         max_price = row_price
-                    if max_price - self.get_last_close_price(symbol=line['Symbol'], last_day_date=)
-                        if line['Date'] != date.strftime('%d-%b-%Y'):
-                            continue
+                    if (max_price - last_close) / last_close <= stop_loss:
+                        print('We got miss.')
+                    if (max_price - last_close) / last_close >= increase_required:
+                        print('We got it.')
                     if line['Date'] not in date_wise_change.keys():
                         date_wise_change[line['Date']] = OrderedDict()
                     date_wise_change[line['Date']][line['Symbol']] = (float(line['Close Price']) - float(
@@ -253,6 +258,6 @@ success_rate = algo.get_top_losers(date=date_required)
 success_symbols = [tup[0] for tup in success_rate]
 level1_success = algo.filter_by_opening_increase(top_losers=success_symbols,
                                                  date=date_required + datetime.timedelta(days=1), target_percent=1,
-                                                 opening_duration=15)
+                                                 opening_duration=15, increase_required=0.5, stop_loss=0.5)
 # success_rate = algo.calculate_success_rate(date=datetime.date(2017, 10, 1))
 print(success_rate)

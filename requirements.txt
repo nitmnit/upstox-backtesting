@@ -1,2 +1,10 @@
-requests
 selenium
+requests
+beautifulsoup
+numpy
+scipy
+pandas
+lxml
+nsepy
+matplotlib
+kiteconnect
