@@ -8,3 +8,4 @@ lxml
 nsepy
 matplotlib
 kiteconnect
+psycopg2

@@ -252,12 +252,12 @@ class Algorithm(object):
         return (len(level1_symbol) - len(success_symbol)) * 100 / len(level1_symbol)
 
 
-algo = Algorithm()
-date_required = datetime.date(2017, 10, 3)
-success_rate = algo.get_top_losers(date=date_required)
-success_symbols = [tup[0] for tup in success_rate]
-level1_success = algo.filter_by_opening_increase(top_losers=success_symbols,
-                                                 date=date_required + datetime.timedelta(days=1), target_percent=1,
-                                                 opening_duration=15, increase_required=0.5, stop_loss=0.5)
-# success_rate = algo.calculate_success_rate(date=datetime.date(2017, 10, 1))
-print(success_rate)
+# algo = Algorithm()
+# date_required = datetime.date(2017, 10, 3)
+# success_rate = algo.get_top_losers(date=date_required)
+# success_symbols = [tup[0] for tup in success_rate]
+# level1_success = algo.filter_by_opening_increase(top_losers=success_symbols,
+#                                                  date=date_required + datetime.timedelta(days=1), target_percent=1,
+#                                                  opening_duration=15, increase_required=0.5, stop_loss=0.5)
+# # success_rate = algo.calculate_success_rate(date=datetime.date(2017, 10, 1))
+# print(success_rate)
