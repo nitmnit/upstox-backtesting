@@ -1,9 +1,13 @@
 import logging
 import types
+from logging.handlers import RotatingFileHandler
+
 from boto.ses import SESConnection
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.utils import COMMASPACE
+
+import settings
 
 
 class SESHandler(logging.Handler):
@@ -84,3 +88,22 @@ class SESHandler(logging.Handler):
             '[%(asctime)s] %(levelname)s in %(module)s: %(message)s'
         ))
         return mail_handler
+
+
+log_format = '[%(asctime)s] (levelname)s in %(module)s [%(pathname)s:%(lineno)d] - %(message)s'
+formatter = logging.Formatter(log_format, '%m-%d %H:%M:%S')
+handler = RotatingFileHandler('stock_service.log', maxBytes=5000000, backupCount=100)
+handler.setLevel(logging.DEBUG)
+handler.setFormatter(formatter)
+logger = logging.getLogger('stocks')
+logger.addHandler(handler)
+
+if settings.EMAIL_SETTINGS['IS_ENABLED']:
+    from logger import SESHandler
+
+    mail_handler = SESHandler(aws_key=settings.AWS_ACCESS_KEY_ID, aws_secret=settings.AWS_SECRET_ACCESS_KEY,
+                              fromaddr='"{}" <{}>'.format(settings.EMAIL_SETTINGS['USER'][0],
+                                                          settings.EMAIL_SETTINGS['USER'][1]),
+                              toaddrs=settings.MANAGERS,
+                              subject='Intercom Application Error {}'.format(settings.ENVIRONMENT)).get_mail_handler()
+    logger.addHandler(mail_handler)

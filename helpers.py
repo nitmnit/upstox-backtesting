@@ -54,6 +54,13 @@ class ZerodhaConnector(object):
         'PASSWORD': 'smartcity',
         'HOST': 'localhost',
     }
+    NIFTY50 = ['ADANIPORTS', 'ASIANPAINT', 'AXISBANK', 'BAJAJ-AUTO', 'BAJFINANCE', 'BAJAJFINSV', 'BPCL', 'BHARTIARTL',
+               'INFRATEL', 'CIPLA', 'COALINDIA', 'DRREDDY', 'EICHERMOT', 'GAIL', 'GRASIM', 'HCLTECH', 'HDFCBANK',
+               'HEROMOTOCO', 'HINDALCO', 'HINDPETRO', 'HINDUNILVR', 'HDFC', 'ITC', 'ICICIBANK', 'IBULHSGFIN', 'IOC',
+               'INDUSINDBK', 'INFY', 'KOTAKBANK', 'LT', 'LUPIN', 'M&M', 'MARUTI', 'NTPC', 'ONGC', 'POWERGRID',
+               'RELIANCE', 'SBIN', 'SUNPHARMA', 'TCS', 'TATAMOTORS', 'TATASTEEL', 'TECHM', 'TITAN', 'UPL', 'ULTRACEMCO',
+               'VEDL', 'WIPRO', 'YESBANK', 'ZEEL', ]
+
     conn = psycopg2.connect(host="localhost", database=DATABASE['NAME'], user=DATABASE['USERNAME'],
                             password=DATABASE['PASSWORD'])
 
@@ -116,9 +123,15 @@ class ZerodhaConnector(object):
         return resp.json()
 
     def get_daily_data(self, instrument, from_date, to_date):
-        resp = requests.get(self.BASE_URL + self.HISTORY + instrument + '/minute?from=' +
+        resp = requests.get(self.BASE_URL + self.HISTORY + instrument + '/day?from=' +
                             from_date.strftime('%Y-%m-%d+%X') + '&to=' + to_date.strftime('%Y-%m-%d+%X'),
                             headers=self.get_headers())
+        return resp.json()
+
+    def get_data(self, instrument, from_date, to_date, interval):
+        url = '{}{}{}/{}?from={}&to={}'.format(self.BASE_URL, self.HISTORY, instrument, interval,
+                                               from_date.strftime('%Y-%m-%d+%X'), to_date.strftime('%Y-%m-%d+%X'))
+        resp = requests.get(url, headers=self.get_headers())
         return resp.json()
 
     def get_instrument_from_symbol(self, symbol):
@@ -135,8 +148,8 @@ class ZerodhaConnector(object):
                                 password=self.DATABASE['PASSWORD'])
         cur = conn.cursor()
         instruments = self.kite_connect.instruments(exchange='NSE')
-        self.create_table()
         for instrument in instruments:
+            self.create_table()
             cur.execute('INSERT INTO instrument (symbol, instrument, instrument_type, tick_size, name, exchange) '
                         'VALUES(\'{}\',{},\'{}\',{},\'{}\',\'{}\')'.format(instrument['tradingsymbol'],
                                                                            instrument['instrument_token'],
@@ -164,8 +177,110 @@ class ZerodhaConnector(object):
         conn.commit()
 
 
-x = ZerodhaConnector()
-instrument_id = x.get_instrument_from_symbol(symbol='SBIN')
-y = x.get_intraday_data(instrument=instrument_id, date=datetime.date(year=2018, month=6, day=22))
-print(y)
-# x.push_instruments_to_database()
+class Algorithm(object):
+    NIFTY50 = ['ADANIPORTS', 'ASIANPAINT', 'AXISBANK', 'BAJAJ-AUTO', 'BAJFINANCE', 'BAJAJFINSV', 'BPCL', 'BHARTIARTL',
+               'INFRATEL', 'CIPLA', 'COALINDIA', 'DRREDDY', 'EICHERMOT', 'GAIL', 'GRASIM', 'HCLTECH', 'HDFCBANK',
+               'HEROMOTOCO', 'HINDALCO', 'HINDPETRO', 'HINDUNILVR', 'HDFC', 'ITC', 'ICICIBANK', 'IBULHSGFIN', 'IOC',
+               'INDUSINDBK', 'INFY', 'KOTAKBANK', 'LT', 'LUPIN', 'M&M', 'MARUTI', 'NTPC', 'ONGC', 'POWERGRID',
+               'RELIANCE', 'SBIN', 'SUNPHARMA', 'TCS', 'TATAMOTORS', 'TATASTEEL', 'TECHM', 'TITAN', 'UPL', 'ULTRACEMCO',
+               'VEDL', 'WIPRO', 'YESBANK', 'ZEEL', ]
+
+    def __init__(self, opening_increase=.1, opening_decrease=-.1, stop_loss=-.2):
+        self.opening_increase = opening_increase
+        self.opening_decrease = opening_decrease
+        self.stop_loss = stop_loss
+
+    def buy_symbol(self):
+        pass
+
+    def sell_symbol(self):
+        pass
+
+    def filter1(self, date_time=datetime.datetime.now(), exclude=None):
+        zerodha = ZerodhaConnector()
+        if exclude:
+            [self.NIFTY50.remove(symbol) for symbol in exclude]
+
+        positive_symbols = []
+        negative_symbols = []
+        for symbol in self.NIFTY50:
+            positive_success = False
+            negative_success = False
+            instrument_id = zerodha.get_instrument_from_symbol(symbol=symbol)
+            result = zerodha.get_data(instrument=instrument_id, from_date=date_time - datetime.timedelta(minutes=15),
+                                      to_date=date_time, interval='minute')
+            if result['status'] != 'success':
+                raise Exception('API failed : {}'.format(result))
+            initial_open = None
+            for candle in result['data']['candles']:
+                if not initial_open:
+                    initial_open = candle[1]
+                if ((candle[4] - initial_open) * 100 / initial_open) >= self.opening_increase:
+                    positive_success = True
+                    confidence = (abs((result['data']['candles'].pop())[4] - initial_open) / initial_open)
+                    break
+                if ((candle[4] - initial_open) * 100 / initial_open) <= self.opening_decrease:
+                    negative_success = True
+                    confidence = abs(((result['data']['candles'].pop())[4] - initial_open) / initial_open)
+                    break
+            if positive_success:
+                positive_symbols.append({'symbol': symbol, 'confidence': (1 / confidence) if confidence != 0 else 0})
+            if negative_success:
+                negative_symbols.append({'symbol': symbol, 'confidence': (1 / confidence) if confidence != 0 else 0})
+        return {'positive': positive_symbols, 'negative': negative_symbols}
+
+    def start(self):
+        pass
+
+
+class AccountManager(object):
+    amount = 50000
+
+    def __init__(self, algorithm):
+        self.algorithm = algorithm
+
+    def get_current_amount_available(self):
+        return self.amount
+
+    def start(self, from_date_time=datetime.datetime.now()):
+        symbols = None
+        while not symbols:
+            symbols = self.algorithm.filter1(from_date_time)
+            from_date_time = from_date_time + datetime.timedelta(minutes=1)
+
+
+# x = AccountManager(algorithm=Algorithm(opening_increase=.1, stop_loss=-.5))
+# x.start(from_date_time=datetime.datetime(year=2017, month=6, day=25, hour=9, minute=15, second=0))
+
+# x = Algorithm()
+# y = x.filter1(date_time=datetime.datetime.now() - datetime.timedelta(days=2, hours=5))
+# print(y)
+# Response structure candle: [timestamp, open, high, low, close, volume]
+# instrument_id = x.get_instrument_from_symbol(symbol='SBIN')
+# y = x.get_intraday_data(instrument=instrument_id, date=datetime.date(year=2018, month=6, day=22))
+# print(y)
+# # x.push_instruments_to_database()
+
+
+def create_transactions_table():
+    DATABASE = {
+        'NAME': 'stocks',
+        'USERNAME': 'smartcity',
+        'PASSWORD': 'smartcity',
+        'HOST': 'localhost',
+    }
+    conn = psycopg2.connect(host="localhost", database=DATABASE['NAME'], user=DATABASE['USERNAME'],
+                            password=DATABASE['PASSWORD'])
+    cur = conn.cursor()
+    cur.execute('DROP TABLE IF EXISTS transactions')
+    conn.commit()
+    cur.execute('CREATE TABLE transactions ('
+                'id SERIAL PRIMARY KEY NOT NULL,'
+                'symbol VARCHAR(60) NOT NULL,'
+                'instrument INTEGER NOT NULL,'
+                'instrument_type VARCHAR(60) NOT NULL,'
+                'tick_size DOUBLE PRECISION,'
+                'name VARCHAR(200) NOT NULL,'
+                'exchange VARCHAR(60) NOT NULL'
+                ')')
+    conn.commit()
