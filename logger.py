@@ -1,109 +1,59 @@
-import logging
-import types
-from logging.handlers import RotatingFileHandler
-
-from boto.ses import SESConnection
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-from email.utils import COMMASPACE
-
+import string, logging, logging.handlers
 import settings
 
+MAILHOST = settings.EMAIL_SETTINGS['HOST']
+FROM = settings.EMAIL_SETTINGS['USER'][1]
+TO = settings.MANAGERS
+MAIL_PORT = settings.EMAIL_SETTINGS['PORT']
+if settings.DEBUG:
+    SUBJECT = 'Freaky Bananas Testing'
+else:
+    SUBJECT = 'Freaky Bananas'
 
-class SESHandler(logging.Handler):
-    """
-    A handler class which sends an email using Amazon SES.
-    """
 
-    def __init__(self, aws_key, aws_secret, fromaddr, toaddrs, subject):
-        """
-        Initialize the handler.
-
-        Initialize the instance with the AWS account key and secret, from and
-        to addresses and subject line of the email.
-        """
-        logging.Handler.__init__(self)
-        self.aws_key = aws_key
-        self.aws_secret = aws_secret
-        self.fromaddr = fromaddr
-        if isinstance(toaddrs, basestring):
-            toaddrs = [toaddrs]
-        self.toaddrs = toaddrs
-        self.subject = subject
-
-    def getSubject(self, record):
-        """
-        Determine the subject for the email.
-
-        If you want to specify a subject line which is record-dependent,
-        override this method.
-        """
-        return self.subject
-
+class TlsSMTPHandler(logging.handlers.SMTPHandler):
     def emit(self, record):
         """
         Emit a record.
 
         Format the record and send it to the specified addressees.
         """
-        client = SESConnection(self.aws_key, self.aws_secret)
-
-        message = MIMEMultipart('alternative')
-        message.set_charset('UTF-8')
-
-        message['Subject'] = self._encode_str(self.getSubject(record))
-        message['From'] = self._encode_str(self.fromaddr)
-        message['To'] = self._convert_to_strings(self.toaddrs)
-
-        body = self.format(record)
-        body = "{}".format(body)
-
-        message.attach(MIMEText(self._encode_str(body), 'plain'))
-
-        return client.send_raw_email(message.as_string(), self.fromaddr, destinations=self.toaddrs)
-
-    def _convert_to_strings(self, list_of_strs):
-        if isinstance(list_of_strs, (list, tuple)):
-            result = COMMASPACE.join(list_of_strs)
-        else:
-            result = list_of_strs
-        return self._encode_str(result)
-
-    def _encode_str(self, s):
-        if isinstance(s, types.UnicodeType):
-            return s.encode('utf8')
-        return s
-
-    def get_mail_handler(self):
-        mail_handler = SESHandler(
-            aws_key=self.aws_key,
-            aws_secret=self.aws_secret,
-            fromaddr=self.fromaddr,
-            toaddrs=self.toaddrs,
-            subject=self.subject,
-        )
-
-        mail_handler.setLevel(logging.ERROR)
-        mail_handler.setFormatter(logging.Formatter(
-            '[%(asctime)s] %(levelname)s in %(module)s: %(message)s'
-        ))
-        return mail_handler
+        try:
+            import smtplib
+            import string  # for tls add this line
+            try:
+                from email.utils import formatdate
+            except ImportError:
+                formatdate = self.date_time
+            port = self.mailport
+            if not port:
+                port = smtplib.SMTP_PORT
+            smtp = smtplib.SMTP(self.mailhost, port)
+            msg = self.format(record)
+            msg = "From: %s\r\nTo: %s\r\nSubject: %s\r\nDate: %s\r\n\r\n%s" % (
+                self.fromaddr,
+                string.join(self.toaddrs, ","),
+                self.getSubject(record),
+                formatdate(), msg)
+            if self.username:
+                smtp.ehlo()  # for tls add this line
+                smtp.starttls()  # for tls add this line
+                smtp.ehlo()  # for tls add this line
+                smtp.login(self.username, self.password)
+            smtp.sendmail(self.fromaddr, self.toaddrs, msg)
+            smtp.quit()
+        except (KeyboardInterrupt, SystemExit):
+            raise
+        except:
+            self.handleError(record)
 
 
-log_format = '[%(asctime)s] (levelname)s in %(module)s [%(pathname)s:%(lineno)d] - %(message)s'
-formatter = logging.Formatter(log_format, '%m-%d %H:%M:%S')
-handler = RotatingFileHandler('stock_service.log', maxBytes=5000000, backupCount=100)
-handler.setLevel(logging.DEBUG)
-handler.setFormatter(formatter)
-logger = logging.getLogger('stocks')
-logger.addHandler(handler)
+logger = logging.getLogger()
 
-if settings.EMAIL_SETTINGS['IS_ENABLED']:
-    from logger import SESHandler
+gm = TlsSMTPHandler((settings.EMAIL_SETTINGS['HOST'], settings.EMAIL_SETTINGS['PORT']),
+                    settings.EMAIL_SETTINGS['USER'][1], settings.MANAGERS, SUBJECT,
+                    (settings.EMAIL_SETTINGS['USER'][1], settings.EMAIL_SETTINGS['PASSWORD']))
 
-    mail_handler = SESHandler(aws_key=settings.AWS_ACCESS_KEY_ID, aws_secret=settings.AWS_SECRET_ACCESS_KEY,
-                              fromaddr='"{}" <{}>'.format(settings.EMAIL_SETTINGS['USER'][0],
-                                                          settings.EMAIL_SETTINGS['USER'][1]),
-                              toaddrs=settings.MANAGERS,
-                              subject='Intercom Application Error {}'.format(settings.ENVIRONMENT)).get_mail_handler()
-    logger.addHandler(mail_handler)
+gm.setLevel(logging.ERROR)
+
+logger.addHandler(gm)
