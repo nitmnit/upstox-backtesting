@@ -2,7 +2,7 @@ import json
 import logging
 import time
 import urlparse
-import datetime
+from datetime import datetime, timedelta
 from logging.handlers import RotatingFileHandler
 
 import psycopg2
@@ -121,7 +121,7 @@ class ZerodhaConnector(object):
     def get_intraday_data(self, instrument, date):
         resp = requests.get(self.BASE_URL + self.HISTORY + str(instrument) + '/minute?from=' +
                             date.strftime('%Y-%m-%d+%X') + '&to=' +
-                            (date + datetime.timedelta(hours=24)).strftime('%Y-%m-%d+%X'), headers=self.get_headers())
+                            (date + timedelta(hours=24)).strftime('%Y-%m-%d+%X'), headers=self.get_headers())
         return resp.json()
 
     def get_daily_data(self, instrument, from_date, to_date):
@@ -198,7 +198,7 @@ class Algorithm(object):
     def sell_symbol(self):
         pass
 
-    def filter1(self, date_time=datetime.datetime.now(), exclude=None):
+    def filter1(self, date_time=datetime.now(), exclude=None):
         zerodha = ZerodhaConnector()
         if exclude:
             [self.NIFTY50.remove(symbol) for symbol in exclude]
@@ -209,7 +209,7 @@ class Algorithm(object):
             positive_success = False
             negative_success = False
             instrument_id = zerodha.get_instrument_from_symbol(symbol=symbol)
-            result = zerodha.get_data(instrument=instrument_id, from_date=date_time - datetime.timedelta(minutes=15),
+            result = zerodha.get_data(instrument=instrument_id, from_date=date_time - timedelta(minutes=15),
                                       to_date=date_time, interval='minute')
             if result['status'] != 'success':
                 raise Exception('API failed : {}'.format(result))
@@ -244,18 +244,18 @@ class AccountManager(object):
     def get_current_amount_available(self):
         return self.amount
 
-    def start(self, from_date_time=datetime.datetime.now()):
+    def start(self, from_date_time=datetime.now()):
         symbols = None
         while not symbols:
             symbols = self.algorithm.filter1(from_date_time)
-            from_date_time = from_date_time + datetime.timedelta(minutes=1)
+            from_date_time = from_date_time + timedelta(minutes=1)
 
 
 # x = AccountManager(algorithm=Algorithm(opening_increase=.1, stop_loss=-.5))
-# x.start(from_date_time=datetime.datetime(year=2017, month=6, day=25, hour=9, minute=15, second=0))
+# x.start(from_date_time=datetime(year=2017, month=6, day=25, hour=9, minute=15, second=0))
 
 # x = Algorithm()
-# y = x.filter1(date_time=datetime.datetime.now() - datetime.timedelta(days=2, hours=5))
+# y = x.filter1(date_time=datetime.now() - timedelta(days=2, hours=5))
 # print(y)
 # Response structure candle: [timestamp, open, high, low, close, volume]
 # instrument_id = x.get_instrument_from_symbol(symbol='SBIN')
@@ -308,3 +308,11 @@ class DbCon(object):
         cur.execute('DELETE FROM tokens;')
         cur.execute('INSERT INTO tokens (access_token) VALUES (%s);', [token])
         self.con.commit()
+
+
+def get_date():
+    if settings.DEBUG:
+        if datetime.today().strftime("%a") not in ['Sat', 'Sun']:
+            return datetime.today().date()
+        else:
+            return (datetime.today() - timedelta(days=2)).date()

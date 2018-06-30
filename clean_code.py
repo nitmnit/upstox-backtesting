@@ -1,8 +1,9 @@
+import math
 from abc import abstractmethod
 from threading import Thread
 import time
 import urlparse
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, datetime as ddatetime, time as ttime
 
 import psycopg2
 from kiteconnect import KiteConnect, KiteTicker
@@ -12,13 +13,50 @@ from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.chrome.options import Options
 
 import settings
-from helpers import DbCon
+from helpers import DbCon, get_date
+
+import logging.config
+
+logger = logging.getLogger(__name__)
+
+logging.config.dictConfig({
+    'version': 1,
+    'disable_existing_loggers': False,  # this fixes the problem
+    'formatters': {
+        'standard': {
+            'format': '[%(asctime)s] %(levelname)s in %(module)s [%(pathname)s:%(lineno)d] - %(message)s'
+        },
+    },
+    'handlers': {
+        'default': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'standard',
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': 'freaky_bananas.log',
+            'maxBytes': 1024 * 1024 * 100,
+            'backupCount': 100,
+            'formatter': 'standard',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['default', 'file'],
+            'level': 'INFO',
+            'propagate': True
+        }
+    }
+})
 
 total_amount = 100000
 
 
 class SeleniumConnector(object):
-    def __init__(self, is_headless=True, ):
+    def __init__(self, is_headless=False, ):
+        logger.info('Selenium Connect Started')
         chrome_options = Options()
         if is_headless:
             chrome_options.add_argument("--headless")
@@ -31,6 +69,7 @@ class SeleniumConnector(object):
         self.driver = webdriver.Chrome(executable_path='./chromedriver',
                                        desired_capabilities=DesiredCapabilities.CHROME, chrome_options=chrome_options)
         self.wait_time = 3
+        logger.info('Selenium Connect Ended')
 
 
 class ThreadFactory(object):
@@ -73,20 +112,21 @@ class Stock(object):
 
 class KiteCon(object):
     def __init__(self, exchanges):
+        logger.info('KiteCon started.')
         self.exchanges = exchanges
 
     def buy(self, instrument_id, price, quantity, order_type, stop_loss=None):
         return 'price'
 
     def buy_at_market_price(self, instrument_id, amount, order_type, stop_loss=None):
-        print('Bought the stock')
+        logger.info('Bought the stock.')
         return 'price'
 
     def sell(self, instrument_id, price, quantity, order_type, stop_loss=None):
         return 'price'
 
     def sell_at_market_price(self, instrument_id, amount, order_type, stop_loss=None):
-        print('Sold the stock')
+        logger.info('Sold the stock.')
         return 'price'
 
     def orders(self):
@@ -128,72 +168,76 @@ class KiteHistory(object):
     def get_access_token(self):
         db_con = DbCon()
         access_token = db_con.get_token_if_exists()
+        logger.info('Got access token from database. {}'.format(access_token))
         if access_token and self.test_access_token(token=access_token):
             return access_token
         access_token = self.create_new_access_token()
+        db_con.set_token(token=access_token)
         return access_token
 
     def create_new_access_token(self):
+        logger.info('Creating new access token.')
         request_token = self.get_request_token()
         data = self.con.generate_session(request_token, api_secret=settings.KITE['API_SECRET'])
         if 'access_token' in data:
+            logger.info('Created new Access token. {}'.format(data['access_token']))
             return data['access_token']
         else:
             raise Exception('Token not found.')
 
-    def get_date(self):
-        if settings.DEBUG:
-            if datetime.today().strftime("%A") not in ['Sat', 'Sun']:
-                return datetime.today().date()
-            else:
-                return (datetime.today() - timedelta(days=2)).date()
-
     def test_access_token(self, token):
         try:
             self.con.set_access_token(access_token=token)
-            self.get_nifty50_sorted_by_change(date=self.get_date())
+            out = self.con.holdings()
+            logger.info('Access token validation succeeded. {}'.format(token))
             return True
         except TokenException:
+            logger.info('Access token validation failed. {}'.format(token))
             return False
 
     def get_quote(self, instrument_id):
-        return self.con.quote(instrument_id)
+        quote = self.con.quote(instrument_id)
+        logger.info('Getting quote. {}'.format(quote))
+        return quote
 
-    def get_open_price(self, instrument, date=None):
-        if not settings.DEBUG:
-            date = datetime.today().date()
+    def get_open_price(self, instrument, date):
         data = self.con.historical_data(instrument_token=instrument, from_date=date,
                                         to_date=date + timedelta(days=1),
                                         interval='day')
-        return data['open']
+        logger.info('Get open price. {}'.format(data[0]['open']))
+        return data[0]['open']
 
-    def get_minute_candles(self, instrument_id, from_date, to_date):
-        pass
-
-    def get_daily_candles(self, instrument_id, from_date, to_date):
-        return self.con.historical_data(instrument_token=instrument_id, from_date=from_date,
-                                        to_date=to_date,
-                                        interval='minute')
+    def get_minutes_candles(self, instrument_id, from_date, to_date):
+        daily = self.con.historical_data(instrument_token=instrument_id, from_date=from_date, to_date=to_date,
+                                         interval='minute')
+        return daily
 
     def get_top_gainers(self, date, number=5):
         data = self.get_nifty50_sorted_by_change(date=date)
+        logger.info('Got top gainers candle. date - {}\n data: {}'.format(date, data))
         if len(data) >= number:
             return data[-number:].reverse()
 
     def get_nifty50_sorted_by_change(self, date):
+        if date.strftime('%a') in ['Sat', 'Sun']:
+            raise Exception("Invalid date input.")
+        logger.info('Get nifty50 changes Nifty 50 data: date {}'.format(date))
         total_data = []
         for symbol, instrument in settings.NIFTY50.items():
             data = self.con.historical_data(instrument_token=instrument, from_date=date,
-                                            to_date=date + timedelta(days=2),
+                                            to_date=date + timedelta(days=1),
                                             interval='day')
             candle = Candle(data=data[0])
             total_data.append((self.get_stock(instrument=instrument), symbol,
                                100.0 * (candle.close - candle.open) / candle.open), )
-        return sorted(total_data, key=lambda x: x[2])
+        data = sorted(total_data, key=lambda x: x[2])
+        logger.info('Nifty 50 sorted changes :  data- {}\n data: {}'.format(date, data))
+        return data
 
     def get_top_losers(self, date, number=5):
         data = self.get_nifty50_sorted_by_change(date=date)
         if len(data) >= number:
+            logger.info('Top losers :  data- {}\n data: {}'.format(date, data[:number]))
             return data[:number]
 
     def get_nifty50_stocks(self):
@@ -201,6 +245,7 @@ class KiteHistory(object):
         for symbol, instrument in settings.NIFTY50.items():
             stock = self.get_stock(instrument=instrument)
             stocks.append(stock)
+        logger.info('Top nifty 50 stocks: data: {}'.format(stocks))
         return stocks
 
     def get_stock(self, instrument):
@@ -230,7 +275,8 @@ class KiteHistory(object):
         return answer
 
     def get_request_token(self):
-        con = SeleniumConnector(is_headless=False)
+        logger.info('Getting request token.')
+        con = SeleniumConnector()
         con.driver.get(self.con.login_url())
         time.sleep(3)
         username_input = con.driver.find_element_by_css_selector('input[type="text"]')
@@ -254,6 +300,7 @@ class KiteHistory(object):
         parsed = urlparse.urlparse(con.driver.current_url)
         request_token = urlparse.parse_qs(parsed.query)['request_token'][0]
         con.driver.close()
+        logger.info('Got request token. {}'.format(request_token))
         return request_token
 
 
@@ -261,13 +308,17 @@ class Transaction(object):
     """
     This class holds one transaction to be made for profit, suggested by the algorithm
     Args
-        type: buy/sale
+        type: buy/sell
         stock: Stock instance
         thread_interval: interval for thread in seconds
     """
-    thread_interval = 30
+    thread_interval = .1
+    change_range = 0.1
 
     def __init__(self, type, stock, trigger_change, amount, target_change, stop_loss_percent, date_time=None):
+        logger.info('Starting transaction \ntype: {} \nstock: {} \ntrigger_change: {} \namout: {} \ntarget_change: {} '
+                    '\n stop_loss_percent: {} \n'.format(type, stock, trigger_change, amount, target_change,
+                                                         stop_loss_percent))
         self.type = type
         self.stock = stock
         self.trigger_change = trigger_change
@@ -275,57 +326,128 @@ class Transaction(object):
         self.stop_loss_percent = stop_loss_percent
         self.stock_history = KiteHistory(exchanges='NSE')
         self.stock_app = KiteCon(exchanges='NSE')
-        self.transaction_price = None
-        self.transaction_close_price = None
+        self.transaction_price = None  # Price at square off
+        self.transaction_close_price = None  # Price at the end of the day
         self.trigger_success = None
-        self.trigger_price = None
+        self.trigger_price = None  # Price at trigger
         self.close_success = None
         self.amount = amount
-        if not settings.DEBUG:
-            self.open_price = self.stock_history.get_open_price(date=date_time.date())
-        else:
-            self.open_price = self.stock_history.get_open_price()
+        self.price_result = None
+        self.date_time = date_time
+        self.open_price = self.stock_history.get_open_price(instrument=self.stock.instrument, date=date_time.date())
+        self.time_counter = 0
         self.thread_factory = ThreadFactory(runner=self.wait_for_trigger, interval=self.thread_interval)
         self.thread_factory.start()
 
     def wait_for_trigger(self):
         assert bool(self.trigger_change)
-        quote = self.stock_history.get_quote(self.stock.instrument)
+        if settings.DEBUG:
+            time_simulated = self.date_time + timedelta(seconds=self.time_counter)
+            if not self.validate_date_time(time_simulated):
+                logger.info('Failed to trigger the price.')
+                self.close_transaction()
+                return
+            quote = self.stock_history.get_minutes_candles(self.stock.instrument, from_date=time_simulated,
+                                                           to_date=time_simulated + timedelta(seconds=60 * 2))
+            self.time_counter += 60 * 1
+            price = quote[0]['close']
+        else:
+            quote = self.stock_history.get_quote(self.stock.instrument)
+            price = quote.price
         if self.type == 'buy':
-            if quote.price >= (self.open_price * (100 + self.trigger_change)):
+            if price >= (self.open_price * (1 + self.trigger_change / 100)):
+                logger.warning('Buy trigger successful. Stock: {} '
+                               '\nOpen Price: {} \nBought at: {}'.format(self.stock, self.open_price, price))
                 self.trigger_success = True
-        elif self.type == 'sale':
-            if quote.price <= (self.open_price * (100 - self.target_change)):
+        elif self.type == 'sell':
+            if price <= (self.open_price * (1 - self.target_change / 100)):
+                logger.warning('Sell trigger successful. Stock: {} '
+                               '\nOpen Price: {} \nSold at: {}'.format(self.stock, self.open_price, price))
                 self.trigger_success = True
         if self.trigger_success is not None and self.trigger_success:
-            self.trigger_price = self.stock_app.sell_at_market_price(instrument_id=self.stock.instrument,
-                                                                     quantity=self.quantity,
-                                                                     order_type='market', stop_loss=None)
+            self.trigger_price = price
+            if self.type == 'buy':
+                self.trigger_price = self.stock_app.buy_at_market_price(instrument_id=self.stock.instrument,
+                                                                        amount=self.amount, order_type='market',
+                                                                        stop_loss=None)
+            elif self.type == 'sell':
+                self.trigger_price = self.stock_app.sell_at_market_price(instrument_id=self.stock.instrument,
+                                                                         amount=self.amount, order_type='market',
+                                                                         stop_loss=None)
+            else:
+                raise NotImplemented
+            self.trigger_price = price  # Remove this in production
             self.thread_factory.runner = self.wait_for_square_off
+            self.time_counter = 0
         return True
 
+    def validate_date_time(self, date_time):
+        if ttime(hour=9, minute=15, second=0) <= date_time.time() <= ttime(hour=15, minute=29, second=0):
+            return True
+        return False
+
     def wait_for_square_off(self):
-        assert bool(self.transaction_price)
-        quote = self.stock_history.get_quote(self.stock.instrument)
+        assert bool(self.trigger_price)
+        if settings.DEBUG:
+            time_simulated = self.date_time + timedelta(seconds=self.time_counter)
+            if not self.validate_date_time(time_simulated):
+                logger.info('Failed to square off the price.')
+                self.close_transaction()
+            quote = self.stock_history.get_minutes_candles(self.stock.instrument, from_date=time_simulated,
+                                                           to_date=time_simulated + timedelta(seconds=60 * 2))
+            self.time_counter += 60 * 1
+        else:
+            quote = self.stock_history.get_quote(self.stock.instrument)
+        if settings.DEBUG:
+            price = quote[0]['close']
+        else:
+            price = quote.price
         if self.type == 'buy':
-            if quote.price >= (self.trigger_price * (100 + self.target_change)):
+            if price >= (self.trigger_price * (1 + self.trigger_change / 100)):
                 self.close_success = True
-            elif quote.price < (self.trigger_price * (100 - self.stop_loss_percent)):
+                logger.warning('Sell square off successful. Stock: {} '
+                               '\nOpen Price: {} \nSold at: {}'.format(self.stock, self.open_price, price))
+            elif price < (self.trigger_price * (1 - self.stop_loss_percent / 100)):
                 self.close_success = False
-        elif self.type == 'sale':
-            if quote.price <= (self.trigger_price * (100 - self.target_change)):
+                logger.warning('Sell square off failed. Stock: {} '
+                               '\nOpen Price: {} \nSold at: {}'.format(self.stock, self.open_price, price))
+        elif self.type == 'sell':
+            if price <= (self.trigger_price * (1 - self.trigger_change / 100)):
                 self.close_success = True
-            elif quote.price > (self.trigger_price * (100 + self.stop_loss_percent)):
+                logger.warning('Buy square off successful. Stock: {} '
+                               '\nOpen Price: {} \nBought at: {}'.format(self.stock, self.open_price, price))
+            elif price > (self.trigger_price * (1 + self.stop_loss_percent / 100)):
                 self.close_success = False
+                logger.warning('Buy square off failed. Stock: {} '
+                               '\nOpen Price: {} \nBought at: {}'.format(self.stock, self.open_price, price))
         if self.close_success is not None:
-            self.transaction_price = self.stock_app.sell_at_market_price(instrument_id=self.stock.instrument,
-                                                                         quantity=self.quantity,
-                                                                         order_type='market', stop_loss=None)
+            if self.type == 'buy':
+                self.transaction_price = self.stock_app.sell_at_market_price(instrument_id=self.stock.instrument,
+                                                                             amount=self.amount, order_type='market',
+                                                                             stop_loss=None)
+            elif self.type == 'sell':
+                self.transaction_price = self.stock_app.buy_at_market_price(instrument_id=self.stock.instrument,
+                                                                            amount=self.amount, order_type='market',
+                                                                            stop_loss=None)
+            else:
+                raise NotImplemented
+            self.transaction_price = price
+            self.transaction_close_price = price
             self.close_transaction()
+            return False
         return True
 
     def close_transaction(self):
-        assert self.close_success is not None
+        logger.error('Closing transaction. {}'.format(self.stock))
+        if self.trigger_success:
+            quantity = math.floor(self.amount / self.trigger_price)
+            price_percentage = (self.trigger_price - self.transaction_close_price) * quantity * 14.0
+            if self.close_success:
+                self.price_result = abs(price_percentage)
+            else:
+                self.price_result = -abs(price_percentage)
+        else:
+            self.price_result = 0
         self.thread_factory.stopper = True
 
 
@@ -354,33 +476,58 @@ class OpenDoors(Algorithm):
             'time_slot': time_slot,
         }
         self.date = date
+        if not date:
+            self.date = datetime.now()
         self.stock_history = KiteHistory(exchanges='NSE')
+        self.transactions = []
         super(OpenDoors, self).__init__(settings=settings)
 
     def start_algorithm(self):
-        if settings.DEBUG:
-            date = self.date
-        else:
-            date = datetime.now().date() - timedelta(days=1)
-        stocks = self.stock_history.get_nifty50_sorted_by_change(date=date)
-        gainers = stocks[-5:]
+        logger.warning('Starting algorithm. {}')
+        logger.info('date. {}'.format(self.date))
+        stocks = self.stock_history.get_nifty50_sorted_by_change(date=self.date)
+        gainers = stocks[-1:]
         gainers.reverse()
-        losers = stocks[:5]
-        transactions = []
+        losers = []
+        # losers = stocks[:5]
         for stock in (gainers + losers):
             trans = Transaction(type='buy', stock=stock[0], trigger_change=.1, amount=10000, target_change=.5,
                                 stop_loss_percent=.3,
-                                date_time=datetime.today() - timedelta(days=3))
-            transactions.append(trans)
-            trans = Transaction(type='sell', stock=stock[0], trigger_change=.1, amount=10000, target_change=.5,
+                                date_time=self.date)
+            self.transactions.append(trans)
+            trans = Transaction(type='sell', stock=stock[0], trigger_change=.1, amount=10000.0, target_change=.5,
                                 stop_loss_percent=.3,
-                                date_time=datetime.today() - timedelta(days=3))
-            transactions.append(trans)
-        print(transactions)
+                                date_time=self.date)
+            self.transactions.append(trans)
+        logger.warning('Created {} transactions.'.format(len(self.transactions)))
+        self.stop_algorithm()
 
-    def create_trigger(self, Stock):
-        pass
+    def stop_algorithm(self):
+        logger.info('Into Stop Algorithm.')
+        stoppers = [False]
+        previous_stopper = stoppers
+        while not all(stoppers):
+            if stoppers != previous_stopper:
+                logger.info('Stopper: {}'.format(stoppers))
+                previous_stopper = stoppers
+            stoppers = []
+            for index in range(len(self.transactions)):
+                stoppers.append(self.transactions[index].thread_factory.stopper)
+            time.sleep(10)
+        self.total_profit = 0
+        for trans in self.transactions:
+            self.total_profit += trans.price_result
+        logger.info('Final profit: {}'.format(self.total_profit))
 
 
-x = OpenDoors(date=datetime.today().date())
-x.start_algorithm()
+start_date = ddatetime(year=2018, month=6, day=25, hour=9, minute=18, second=0)
+end_date = ddatetime(year=2018, month=6, day=25, hour=9, minute=18, second=0)
+current_date = start_date
+master_profit = 0
+while start_date <= current_date <= end_date:
+    x = OpenDoors(date=current_date)
+    x.start_algorithm()
+    master_profit += x.total_profit
+    current_date = current_date + timedelta(days=1)
+
+logger.info('Master Profit: {}'.format(master_profit))

@@ -48,12 +48,24 @@ class TlsSMTPHandler(logging.handlers.SMTPHandler):
             self.handleError(record)
 
 
-logger = logging.getLogger()
+# gm = TlsSMTPHandler((settings.EMAIL_SETTINGS['HOST'], settings.EMAIL_SETTINGS['PORT']),
+#                     settings.EMAIL_SETTINGS['USER'][1], settings.MANAGERS, SUBJECT,
+#                     (settings.EMAIL_SETTINGS['USER'][1], settings.EMAIL_SETTINGS['PASSWORD']))
+#
+# gm.setLevel(logging.ERROR)
+#
+# logger.addHandler(gm)
 
-gm = TlsSMTPHandler((settings.EMAIL_SETTINGS['HOST'], settings.EMAIL_SETTINGS['PORT']),
-                    settings.EMAIL_SETTINGS['USER'][1], settings.MANAGERS, SUBJECT,
-                    (settings.EMAIL_SETTINGS['USER'][1], settings.EMAIL_SETTINGS['PASSWORD']))
 
-gm.setLevel(logging.ERROR)
+log_format = '[%(asctime)s] %(levelname)s in %(module)s [%(pathname)s:%(lineno)d] - %(message)s'
 
-logger.addHandler(gm)
+
+# def get_logger():
+#     logging.basicConfig(level=logging.DEBUG, format=log_format)
+#     formatter = logging.Formatter(log_format, '%m-%d %H:%M:%S')
+#     handler = logging.RotatingFileHandler('freaky_bananas.log', maxBytes=10000000, backupCount=10)
+#     handler.setLevel(logging.DEBUG)
+#     handler.setFormatter(formatter)
+#     logger = logging.getLogger('freakybananas')
+#     logger.addHandler(handler)
+#     return logger
