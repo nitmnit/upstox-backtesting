@@ -6,11 +6,13 @@ from datetime import datetime, timedelta
 
 import psycopg2
 from kiteconnect import KiteConnect, KiteTicker
+from kiteconnect.exceptions import TokenException
 from selenium import webdriver
 from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.chrome.options import Options
 
 import settings
+from helpers import DbCon
 
 total_amount = 100000
 
@@ -22,11 +24,11 @@ class SeleniumConnector(object):
             chrome_options.add_argument("--headless")
         chrome_options.add_argument('window-size=1920,1080')
         # chrome_options.add_argument("download.default_directory=C:/Users/Administrator/PycharmProjects/Stock/downloads")
-        prefs = {'download.default_directory': 'C:/Users/Administrator/PycharmProjects/Stock/downloads'}
-        chrome_options.add_experimental_option('prefs', prefs)
+        # prefs = {'download.default_directory': 'C:/Users/Administrator/PycharmProjects/Stock/downloads'}
+        # chrome_options.add_experimental_option('prefs', prefs)
         desired_capabilities = DesiredCapabilities.CHROME
         desired_capabilities['loggingPrefs'] = {"browser": "SEVERE"}
-        self.driver = webdriver.Chrome(executable_path='/home/nitin/Desktop/stocks/chromedriver',
+        self.driver = webdriver.Chrome(executable_path='./chromedriver',
                                        desired_capabilities=DesiredCapabilities.CHROME, chrome_options=chrome_options)
         self.wait_time = 3
 
@@ -65,21 +67,26 @@ class Stock(object):
         self.tick_size = tick_size
         self.exchange = exchange
 
+    def __repr__(self):
+        return '{}-{}-{}'.format(self.symbol, self.instrument, self.exchange)
 
-class KiteCConnect(object):
+
+class KiteCon(object):
     def __init__(self, exchanges):
         self.exchanges = exchanges
 
     def buy(self, instrument_id, price, quantity, order_type, stop_loss=None):
         return 'price'
 
-    def buy_at_market_price(self, instrument_id, quantity, order_type, stop_loss=None):
+    def buy_at_market_price(self, instrument_id, amount, order_type, stop_loss=None):
+        print('Bought the stock')
         return 'price'
 
     def sell(self, instrument_id, price, quantity, order_type, stop_loss=None):
         return 'price'
 
-    def sell_at_market_price(self, instrument_id, quantity, order_type, stop_loss=None):
+    def sell_at_market_price(self, instrument_id, amount, order_type, stop_loss=None):
+        print('Sold the stock')
         return 'price'
 
     def orders(self):
@@ -115,11 +122,39 @@ class KiteHistory(object):
     def __init__(self, exchanges):
         self.exchanges = exchanges
         self.con = KiteConnect(api_key=settings.KITE['API_KEY'])
+        access_token = self.get_access_token()
+        self.con.set_access_token(access_token)
+
+    def get_access_token(self):
+        db_con = DbCon()
+        access_token = db_con.get_token_if_exists()
+        if access_token and self.test_access_token(token=access_token):
+            return access_token
+        access_token = self.create_new_access_token()
+        return access_token
+
+    def create_new_access_token(self):
         request_token = self.get_request_token()
         data = self.con.generate_session(request_token, api_secret=settings.KITE['API_SECRET'])
-        # access_token = data["access_token"]
-        self.con.set_access_token(data["access_token"])
-        # self.ticker = KiteTicker(api_key=settings.KITE['API_KEY'], access_token=access_token)
+        if 'access_token' in data:
+            return data['access_token']
+        else:
+            raise Exception('Token not found.')
+
+    def get_date(self):
+        if settings.DEBUG:
+            if datetime.today().strftime("%A") not in ['Sat', 'Sun']:
+                return datetime.today().date()
+            else:
+                return (datetime.today() - timedelta(days=2)).date()
+
+    def test_access_token(self, token):
+        try:
+            self.con.set_access_token(access_token=token)
+            self.get_nifty50_sorted_by_change(date=self.get_date())
+            return True
+        except TokenException:
+            return False
 
     def get_quote(self, instrument_id):
         return self.con.quote(instrument_id)
@@ -152,7 +187,8 @@ class KiteHistory(object):
                                             to_date=date + timedelta(days=2),
                                             interval='day')
             candle = Candle(data=data[0])
-            total_data.append((instrument, symbol, 100.0 * (candle.close - candle.open) / candle.open), )
+            total_data.append((self.get_stock(instrument=instrument), symbol,
+                               100.0 * (candle.close - candle.open) / candle.open), )
         return sorted(total_data, key=lambda x: x[2])
 
     def get_top_losers(self, date, number=5):
@@ -161,14 +197,21 @@ class KiteHistory(object):
             return data[:number]
 
     def get_nifty50_stocks(self):
+        stocks = []
         for symbol, instrument in settings.NIFTY50.items():
-            conn = psycopg2.connect(host=settings.DATABASE['HOST'], database=settings.DATABASE['NAME'],
-                                    user=settings.DATABASE['USERNAME'], password=settings.DATABASE['PASSWORD'])
-            cur = conn.cursor()
-            result = cur.execute('SELECT * FROM instrument WHERE instrument=%', [instrument])
-            data = result.fetchone()[0]
-            print(data)
-            # Stock(id=data[0], name, symbol, instrument, instrument_type, tick_size, exchange)
+            stock = self.get_stock(instrument=instrument)
+            stocks.append(stock)
+        return stocks
+
+    def get_stock(self, instrument):
+        conn = psycopg2.connect(host=settings.DATABASE['HOST'], database=settings.DATABASE['NAME'],
+                                user=settings.DATABASE['USERNAME'], password=settings.DATABASE['PASSWORD'])
+        cur = conn.cursor()
+        cur.execute("SELECT * FROM instrument WHERE instrument = {};".format(instrument))
+        data = cur.fetchone()
+        stock = Stock(id=data[0], name=data[5], symbol=data[1], instrument=data[2], instrument_type=data[3],
+                      tick_size=data[4], exchange=data[6])
+        return stock
 
     @staticmethod
     def get_answer(question):
@@ -224,34 +267,24 @@ class Transaction(object):
     """
     thread_interval = 30
 
-    def __init__(self, type, stock, trigger_change, quantity, target_change, stop_loss_percent, date_time=None):
+    def __init__(self, type, stock, trigger_change, amount, target_change, stop_loss_percent, date_time=None):
         self.type = type
         self.stock = stock
         self.trigger_change = trigger_change
         self.target_change = target_change
         self.stop_loss_percent = stop_loss_percent
         self.stock_history = KiteHistory(exchanges='NSE')
-        self.stock_app = KiteConnect(exchanges='NSE')
+        self.stock_app = KiteCon(exchanges='NSE')
         self.transaction_price = None
         self.transaction_close_price = None
         self.trigger_success = None
         self.trigger_price = None
         self.close_success = None
+        self.amount = amount
         if not settings.DEBUG:
             self.open_price = self.stock_history.get_open_price(date=date_time.date())
         else:
             self.open_price = self.stock_history.get_open_price()
-        if type == 'buy':
-            self.transaction_price = self.stock_app.buy_at_market_price(instrument_id=stock.instrument,
-                                                                        quantity=quantity, order_type='market',
-                                                                        stop_loss=stop_loss_percent)
-        elif type == 'sale':
-            self.transaction_price = self.stock_app.sell_at_market_price(instrument_id=stock.instrument,
-                                                                         quantity=quantity, order_type='market',
-                                                                         stop_loss=stop_loss_percent)
-        else:
-            raise NotImplemented
-        assert bool(self.transaction_price)
         self.thread_factory = ThreadFactory(runner=self.wait_for_trigger, interval=self.thread_interval)
         self.thread_factory.start()
 
@@ -296,50 +329,6 @@ class Transaction(object):
         self.thread_factory.stopper = True
 
 
-class StockTracker(object):
-    """
-    This class will track for a particular stock price goal and will call a success callback when successfully done,
-    else call failure callback.
-    Args:
-        target: targetting price/volume
-        type: type of the target: increase, decrease, change
-        target_type_value: what's the change being targetted
-        success: callback called when success, must take all kwargs
-        failure: callback called when failure, must take all kwargs
-    """
-    TYPE_CHOICES = ['change']
-    TARGET_CHOICES = ['price', 'volume']
-    CHECK_INTERVAL = 30  # In seconds
-
-    def __init__(self, target, type, target_type_value, start_from, end_at, success, failure):
-        if type not in self.TYPE_CHOICES:
-            raise Exception('Type choice for stock tracker not valid.')
-        if target not in self.TARGET_CHOICES:
-            raise Exception('Target not a valid choice.')
-        self.target = target
-        self.type = type
-        self.success = success
-        self.failure = failure
-        self.target_type_value = target_type_value
-        self.start_from = start_from
-        self.end_at = end_at
-        self.thread_factory = ThreadFactory(runner=self.start_tracking, interval=self.CHECK_INTERVAL)
-        self.thread_factory.start()
-
-    def start_tracking(self):
-        if self.start_from <= datetime.now() <= self.end_at:
-            if self.validate():
-                self.success()
-                self.thread_factory.stopper = True
-            return True
-        self.failure()
-        self.thread_factory.stopper = True
-        return True
-
-    def validate(self):
-        return False
-
-
 class Algorithm(object):
     def __init__(self, settings):
         self.settings = settings
@@ -364,6 +353,7 @@ class OpenDoors(Algorithm):
             'decrease_stop_loss': decrease_stop_loss,
             'time_slot': time_slot,
         }
+        self.date = date
         self.stock_history = KiteHistory(exchanges='NSE')
         super(OpenDoors, self).__init__(settings=settings)
 
@@ -378,14 +368,19 @@ class OpenDoors(Algorithm):
         losers = stocks[:5]
         transactions = []
         for stock in (gainers + losers):
-            trans = Transaction()
-            # Buy the stock when it reaches the condition and then sell at target
-        # Start tracking gainers for the target decrease from opening
-        # Start tracking losers for the target increase from opening
+            trans = Transaction(type='buy', stock=stock[0], trigger_change=.1, amount=10000, target_change=.5,
+                                stop_loss_percent=.3,
+                                date_time=datetime.today() - timedelta(days=3))
+            transactions.append(trans)
+            trans = Transaction(type='sell', stock=stock[0], trigger_change=.1, amount=10000, target_change=.5,
+                                stop_loss_percent=.3,
+                                date_time=datetime.today() - timedelta(days=3))
+            transactions.append(trans)
+        print(transactions)
 
     def create_trigger(self, Stock):
         pass
 
 
-x = KiteHistory(exchanges='NSE')
-x.get_nifty50_stocks()
+x = OpenDoors(date=datetime.today().date())
+x.start_algorithm()
