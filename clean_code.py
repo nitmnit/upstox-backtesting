@@ -312,7 +312,7 @@ class Transaction(object):
         stock: Stock instance
         thread_interval: interval for thread in seconds
     """
-    thread_interval = .1
+    thread_interval = .3
     change_range = 0.1
 
     def __init__(self, type, stock, trigger_change, amount, target_change, stop_loss_percent, date_time=None):
@@ -355,15 +355,25 @@ class Transaction(object):
             quote = self.stock_history.get_quote(self.stock.instrument)
             price = quote.price
         if self.type == 'buy':
-            if price >= (self.open_price * (1 + self.trigger_change / 100)):
+            target_range = (self.open_price * (1 + self.trigger_change / 100),
+                            self.open_price * (1 + (self.trigger_change + self.change_range) / 100))
+            print('buy trigger')
+            print(target_range)
+            print(price)
+            if target_range[0] <= price <= target_range[1]:
                 logger.warning('Buy trigger successful. Stock: {} '
                                '\nOpen Price: {} \nBought at: {}'.format(self.stock, self.open_price, price))
                 self.trigger_success = True
         elif self.type == 'sell':
-            if price <= (self.open_price * (1 - self.target_change / 100)):
+            target_range = (self.open_price * (1 - (self.trigger_change + self.change_range) / 100),
+                            self.open_price * (1 - self.trigger_change / 100))
+            if target_range[0] <= price <= target_range[1]:
                 logger.warning('Sell trigger successful. Stock: {} '
                                '\nOpen Price: {} \nSold at: {}'.format(self.stock, self.open_price, price))
                 self.trigger_success = True
+            print('sell trigger')
+            print(target_range)
+            print(price)
         if self.trigger_success is not None and self.trigger_success:
             self.trigger_price = price
             if self.type == 'buy':
@@ -403,7 +413,9 @@ class Transaction(object):
         else:
             price = quote.price
         if self.type == 'buy':
-            if price >= (self.trigger_price * (1 + self.trigger_change / 100)):
+            target_range = (self.open_price * (1 - (self.trigger_change + self.change_range) / 100),
+                            self.open_price * (1 - self.trigger_change / 100))
+            if target_range[0] <= price <= target_range[1]:
                 self.close_success = True
                 logger.warning('Sell square off successful. Stock: {} '
                                '\nOpen Price: {} \nSold at: {}'.format(self.stock, self.open_price, price))
@@ -412,7 +424,9 @@ class Transaction(object):
                 logger.warning('Sell square off failed. Stock: {} '
                                '\nOpen Price: {} \nSold at: {}'.format(self.stock, self.open_price, price))
         elif self.type == 'sell':
-            if price <= (self.trigger_price * (1 - self.trigger_change / 100)):
+            target_range = (self.open_price * (1 + self.trigger_change / 100),
+                            self.open_price * (1 + (self.trigger_change + self.change_range) / 100))
+            if target_range[0] <= price <= target_range[1]:
                 self.close_success = True
                 logger.warning('Buy square off successful. Stock: {} '
                                '\nOpen Price: {} \nBought at: {}'.format(self.stock, self.open_price, price))
@@ -492,11 +506,11 @@ class OpenDoors(Algorithm):
         # losers = stocks[:5]
         for stock in (gainers + losers):
             trans = Transaction(type='buy', stock=stock[0], trigger_change=.1, amount=10000, target_change=.5,
-                                stop_loss_percent=.3,
+                                stop_loss_percent=100,
                                 date_time=self.date)
             self.transactions.append(trans)
             trans = Transaction(type='sell', stock=stock[0], trigger_change=.1, amount=10000.0, target_change=.5,
-                                stop_loss_percent=.3,
+                                stop_loss_percent=100,
                                 date_time=self.date)
             self.transactions.append(trans)
         logger.warning('Created {} transactions.'.format(len(self.transactions)))
@@ -520,8 +534,8 @@ class OpenDoors(Algorithm):
         logger.info('Final profit: {}'.format(self.total_profit))
 
 
-start_date = ddatetime(year=2018, month=6, day=25, hour=9, minute=18, second=0)
-end_date = ddatetime(year=2018, month=6, day=25, hour=9, minute=18, second=0)
+start_date = ddatetime(year=2018, month=6, day=27, hour=9, minute=18, second=0)
+end_date = ddatetime(year=2018, month=6, day=27, hour=9, minute=18, second=0)
 current_date = start_date
 master_profit = 0
 while start_date <= current_date <= end_date:
