@@ -1,3 +1,5 @@
+import hashlib
+import json
 import math
 from abc import abstractmethod
 from threading import Thread
@@ -12,14 +14,14 @@ from requests import ReadTimeout
 from selenium import webdriver
 from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.chrome.options import Options
-
+import redis
 import settings
-from helpers import DbCon, get_date
+from helpers import DbCon, get_date, wait_response
 
 import logging.config
 
 logger = logging.getLogger(__name__)
-
+r = redis.StrictRedis(host='localhost', port=6379)
 logging.config.dictConfig({
     'version': 1,
     'disable_existing_loggers': False,  # this fixes the problem
@@ -113,7 +115,6 @@ class Stock(object):
 
 class KiteCon(object):
     def __init__(self, exchanges):
-        logger.info('KiteCon started.')
         self.exchanges = exchanges
 
     def buy(self, instrument_id, price, quantity, order_type, stop_loss=None):
@@ -169,7 +170,6 @@ class KiteHistory(object):
     def get_access_token(self):
         db_con = DbCon()
         access_token = db_con.get_token_if_exists()
-        logger.info('Got access token from database. {}'.format(access_token))
         if access_token and self.test_access_token(token=access_token):
             return access_token
         access_token = self.create_new_access_token()
@@ -189,44 +189,69 @@ class KiteHistory(object):
     def test_access_token(self, token):
         try:
             self.con.set_access_token(access_token=token)
-            out = self.con.holdings()
-            logger.info('Access token validation succeeded. {}'.format(token))
+            self.con.holdings()
             return True
         except TokenException:
             logger.info('Access token validation failed. {}'.format(token))
             return False
 
+    @wait_response
     def get_quote(self, instrument_id):
         quote = self.con.quote(instrument_id)
         logger.info('Getting quote. {}'.format(quote))
         return quote
 
+    @wait_response
     def get_open_price(self, instrument, date):
-        data = self.con.historical_data(instrument_token=instrument, from_date=date,
-                                        to_date=date + timedelta(days=1),
-                                        interval='day')
+        if settings.REDIS['IS_ENABLED']:
+            data = r.hget('get_open_price', self.get_key(instrument, date))
+            if not data:
+                data = self.con.historical_data(instrument_token=instrument, from_date=date,
+                                                to_date=date + timedelta(days=1),
+                                                interval='day')
+                for dl in data:
+                    del dl['date']
+                r.hset('get_open_price', self.get_key(instrument, date), json.dumps(data))
+            else:
+                data = json.loads(data)
         logger.info('Get open price. {}'.format(data[0]['open']))
         return data[0]['open']
 
-    def get_minutes_candles(self, instrument_id, from_date, to_date):
-        try:
-            daily = self.con.historical_data(instrument_token=instrument_id, from_date=from_date, to_date=to_date,
-                                             interval='minute')
-        except (ReadTimeout, NetworkException) as e:
-            logger.error('Error: {}'.format(e))
-            return self.get_minutes_candles(instrument_id, from_date, to_date)
-        return daily
+    def get_key(self, *args):
+        hash_object = hashlib.md5(';'.join([str(x) for x in args]))
+        return hash_object.hexdigest()
 
+    @wait_response
+    def get_minutes_candles(self, instrument_id, from_date, to_date):
+        if settings.REDIS['IS_ENABLED']:
+            data = r.hget('get_minutes_candles', self.get_key(instrument_id, from_date, to_date))
+            if not data:
+                data = self.con.historical_data(instrument_token=instrument_id, from_date=from_date, to_date=to_date,
+                                                interval='minute')
+                for dl in data:
+                    del dl['date']
+                r.hset('get_minutes_candles', self.get_key(instrument_id, from_date, to_date), json.dumps(data))
+            else:
+                data = json.loads(data)
+        return data
+
+    @wait_response
     def get_top_gainers(self, date, number=5):
-        data = self.get_nifty50_sorted_by_change(date=date)
-        logger.info('Got top gainers candle. date - {}\n data: {}'.format(date, data))
+        if settings.REDIS['IS_ENABLED']:
+            data = r.hget('get_top_gainers', self.get_key(date, number))
+            if not data:
+                data = self.get_nifty50_sorted_by_change(date=date)
+                r.hset('get_top_gainers', self.get_key(date, number), json.dumps(data))
+            else:
+                data = json.loads(data)
         if len(data) >= number:
             return data[-number:].reverse()
+        return data
 
+    @wait_response
     def get_nifty50_sorted_by_change(self, date):
         if date.strftime('%a') in ['Sat', 'Sun']:
             raise Exception("Invalid date input.")
-        logger.info('Get nifty50 changes Nifty 50 data: date {}'.format(date))
         total_data = []
         for symbol, instrument in settings.NIFTY50.items():
             data = self.con.historical_data(instrument_token=instrument, from_date=date,
@@ -236,15 +261,22 @@ class KiteHistory(object):
             total_data.append((self.get_stock(instrument=instrument), symbol,
                                100.0 * (candle.close - candle.open) / candle.open), )
         data = sorted(total_data, key=lambda x: x[2])
-        logger.info('Nifty 50 sorted changes :  data- {}\n data: {}'.format(date, data))
         return data
 
+    @wait_response
     def get_top_losers(self, date, number=5):
-        data = self.get_nifty50_sorted_by_change(date=date)
+        if settings.REDIS['IS_ENABLED']:
+            data = r.hget('get_top_losers', self.get_key(date, number))
+            if not data:
+                data = self.get_nifty50_sorted_by_change(date=date)
+                r.hset('get_top_losers', self.get_key(date, number), json.dumps(data))
+            else:
+                data = json.loads(data)
         if len(data) >= number:
             logger.info('Top losers :  data- {}\n data: {}'.format(date, data[:number]))
             return data[:number]
 
+    @wait_response
     def get_nifty50_stocks(self):
         stocks = []
         for symbol, instrument in settings.NIFTY50.items():
@@ -253,6 +285,7 @@ class KiteHistory(object):
         logger.info('Top nifty 50 stocks: data: {}'.format(stocks))
         return stocks
 
+    @wait_response
     def get_stock(self, instrument):
         conn = psycopg2.connect(host=settings.DATABASE['HOST'], database=settings.DATABASE['NAME'],
                                 user=settings.DATABASE['USERNAME'], password=settings.DATABASE['PASSWORD'])
@@ -317,13 +350,14 @@ class Transaction(object):
         stock: Stock instance
         thread_interval: interval for thread in seconds
     """
-    thread_interval = .05
+    thread_interval = .6
     change_range = 1
 
     def __init__(self, type, stock, trigger_change, amount, target_change, stop_loss_percent, date_time=None):
-        logger.info('Starting transaction \ntype: {} \nstock: {} \ntrigger_change: {} \namout: {} \ntarget_change: {} '
-                    '\n stop_loss_percent: {} \n'.format(type, stock, trigger_change, amount, target_change,
-                                                         stop_loss_percent))
+        logger.info(
+            '\nTransaction Date: {}\ntype: {} \nstock: {} \ntrigger_change: {} \nmount: {} \ntarget_change: {} '
+            '\nstop_loss_percent: {} \n'.format(date_time, type, stock, trigger_change, amount, target_change,
+                                                stop_loss_percent))
         self.type = type
         self.stock = stock
         self.trigger_change = trigger_change
@@ -349,14 +383,14 @@ class Transaction(object):
         if settings.DEBUG:
             time_simulated = self.date_time + timedelta(seconds=self.time_counter)
             if not self.validate_date_time(time_simulated):
-                logger.info('Failed to trigger the price.')
+                logger.info('\nFailed to trigger the price.')
                 self.close_transaction()
                 return
             quote = self.stock_history.get_minutes_candles(self.stock.instrument, from_date=time_simulated,
                                                            to_date=time_simulated + timedelta(seconds=60 * 2))
             self.time_counter += 60 * 1
             if not quote:
-                logger.error('Quote not found: {}'.format(quote))
+                logger.error('\nQuote not found: {}'.format(quote))
                 self.close_transaction()
                 return True
             price = quote[0]['close']
@@ -367,14 +401,14 @@ class Transaction(object):
             target_range = (self.open_price * (1 + self.trigger_change / 100),
                             self.open_price * (1 + (self.trigger_change + self.change_range) / 100))
             if target_range[0] <= price <= target_range[1]:
-                logger.warning('Buy trigger successful. Stock: {} '
+                logger.warning('\nBuy trigger successful. Stock: {} '
                                '\nOpen Price: {} \nBought at: {}'.format(self.stock, self.open_price, price))
                 self.trigger_success = True
         elif self.type == 'sell':
             target_range = (self.open_price * (1 - (self.trigger_change + self.change_range) / 100),
                             self.open_price * (1 - self.trigger_change / 100))
             if target_range[0] <= price <= target_range[1]:
-                logger.warning('Sell trigger successful. Stock: {} '
+                logger.warning('\nSell trigger successful. Stock: {} '
                                '\nOpen Price: {} \nSold at: {}'.format(self.stock, self.open_price, price))
                 self.trigger_success = True
         if self.trigger_success is not None and self.trigger_success:
@@ -404,7 +438,7 @@ class Transaction(object):
         if settings.DEBUG:
             time_simulated = self.date_time + timedelta(seconds=self.time_counter)
             if not self.validate_date_time(time_simulated):
-                logger.info('Failed to square off the price.')
+                logger.info('\nFailed to square off the price.')
                 self.close_transaction()
             quote = self.stock_history.get_minutes_candles(self.stock.instrument, from_date=time_simulated,
                                                            to_date=time_simulated + timedelta(seconds=60 * 2))
@@ -412,7 +446,7 @@ class Transaction(object):
         else:
             quote = self.stock_history.get_quote(self.stock.instrument)
         if not quote:
-            logger.error('Quote not found: {}'.format(quote))
+            logger.error('\nQuote not found: {}'.format(quote))
             self.close_transaction()
             return True
         if settings.DEBUG:
@@ -424,22 +458,22 @@ class Transaction(object):
                             self.open_price * (1 - self.trigger_change / 100))
             if target_range[0] <= price <= target_range[1]:
                 self.close_success = True
-                logger.warning('Sell square off successful. Stock: {} '
+                logger.warning('\nSell square off successful. Stock: {} '
                                '\nOpen Price: {} \nSold at: {}'.format(self.stock, self.open_price, price))
             elif price < (self.trigger_price * (1 - self.stop_loss_percent / 100)):
                 self.close_success = False
-                logger.warning('Sell square off failed. Stock: {} '
+                logger.warning('\nSell square off failed. Stock: {} '
                                '\nOpen Price: {} \nSold at: {}'.format(self.stock, self.open_price, price))
         elif self.type == 'sell':
             target_range = (self.open_price * (1 + self.trigger_change / 100),
                             self.open_price * (1 + (self.trigger_change + self.change_range) / 100))
             if target_range[0] <= price <= target_range[1]:
                 self.close_success = True
-                logger.warning('Buy square off successful. Stock: {} '
+                logger.warning('\nBuy square off successful. Stock: {} '
                                '\nOpen Price: {} \nBought at: {}'.format(self.stock, self.open_price, price))
             elif price > (self.trigger_price * (1 + self.stop_loss_percent / 100)):
                 self.close_success = False
-                logger.warning('Buy square off failed. Stock: {} '
+                logger.warning('\nBuy square off failed. Stock: {} '
                                '\nOpen Price: {} \nBought at: {}'.format(self.stock, self.open_price, price))
         if self.close_success is not None:
             if self.type == 'buy':
@@ -487,8 +521,8 @@ class Algorithm(object):
 
 
 class OpenDoors(Algorithm):
-    def __init__(self, opening_increase=.1, opening_decrease=.1, target_increase=.5, target_decrease=.5,
-                 increase_stop_loss=.3, decrease_stop_loss=.3, time_slot=timedelta(minutes=15), date=None):
+    def __init__(self, opening_increase=.1, opening_decrease=.1, target_increase=1.0, target_decrease=1.0,
+                 increase_stop_loss=.1, decrease_stop_loss=.1, time_slot=timedelta(minutes=15), date=None):
         settings = {
             'opening_increase': opening_increase,
             'opening_decrease': opening_decrease,
@@ -499,6 +533,8 @@ class OpenDoors(Algorithm):
             'time_slot': time_slot,
         }
         self.date = date
+        self.increase_stop_loss = increase_stop_loss
+        self.decrease_stop_loss = decrease_stop_loss
         if not date:
             self.date = datetime.now()
         self.stock_history = KiteHistory(exchanges='NSE')
@@ -506,37 +542,36 @@ class OpenDoors(Algorithm):
         super(OpenDoors, self).__init__(settings=settings)
 
     def start_algorithm(self):
-        logger.warning('Starting algorithm. {}')
+        logger.warning('Starting algorithm.')
         logger.info('date. {}'.format(self.date))
         stocks = self.stock_history.get_nifty50_sorted_by_change(date=self.date)
         gainers = stocks[-1:]
         gainers.reverse()
-        losers = []
-        # losers = stocks[:5]
+        losers = stocks[:1]
         for stock in (gainers + losers):
             trans = Transaction(type='buy', stock=stock[0], trigger_change=.1, amount=10000, target_change=.5,
-                                stop_loss_percent=100,
+                                stop_loss_percent=self.increase_stop_loss,
                                 date_time=self.date)
             self.transactions.append(trans)
             trans = Transaction(type='sell', stock=stock[0], trigger_change=.1, amount=10000.0, target_change=.5,
-                                stop_loss_percent=100,
+                                stop_loss_percent=self.decrease_stop_loss,
                                 date_time=self.date)
             self.transactions.append(trans)
-        logger.warning('Created {} transactions.'.format(len(self.transactions)))
+        logger.info('Created {} transactions.'.format(len(self.transactions)))
         self.stop_algorithm()
 
     def stop_algorithm(self):
-        logger.info('Into Stop Algorithm.')
+        logger.info('Stop Algorithm.')
         stoppers = [False]
         previous_stopper = stoppers
         while not all(stoppers):
-            if stoppers != previous_stopper:
-                logger.info('Stopper: {}'.format(stoppers))
-                previous_stopper = stoppers
             stoppers = []
             for index in range(len(self.transactions)):
                 stoppers.append(self.transactions[index].thread_factory.stopper)
             time.sleep(10)
+            if stoppers != previous_stopper:
+                logger.info('Stopper: {}'.format(stoppers))
+                previous_stopper = stoppers
         self.total_profit = 0
         for trans in self.transactions:
             self.total_profit += trans.price_result
@@ -544,7 +579,7 @@ class OpenDoors(Algorithm):
 
 
 start_date = ddatetime(year=2018, month=1, day=1, hour=9, minute=15, second=0)
-end_date = ddatetime(year=2018, month=6, day=27, hour=9, minute=15, second=0)
+end_date = ddatetime(year=2018, month=6, day=1, hour=9, minute=15, second=0)
 current_date = start_date
 master_profit = 0
 while start_date <= current_date <= end_date:

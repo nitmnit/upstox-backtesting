@@ -8,6 +8,8 @@ from logging.handlers import RotatingFileHandler
 import psycopg2
 import requests
 from kiteconnect import KiteConnect, KiteTicker
+from kiteconnect.exceptions import NetworkException
+from requests import ReadTimeout
 from selenium import webdriver
 from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.chrome.options import Options
@@ -316,3 +318,15 @@ def get_date():
             return datetime.today().date()
         else:
             return (datetime.today() - timedelta(days=2)).date()
+
+
+def wait_response(func):
+    def wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except (ReadTimeout, NetworkException) as e:
+            logger.error('Got error: {}'.format(e))
+            time.sleep(1)
+            return func(*args, **kwargs)
+
+    return wrapper

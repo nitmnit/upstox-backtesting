@@ -82,3 +82,7 @@ NIFTY50 = {'UPL': '2889473',
            'BAJFINANCE': '81153',
            'IOC': '415745',
            }
+
+REDIS = {
+    'IS_ENABLED': True
+}

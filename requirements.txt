@@ -10,3 +10,4 @@ matplotlib
 kiteconnect
 psycopg2
 boto
+redis
