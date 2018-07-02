@@ -342,7 +342,28 @@ class KiteHistory(object):
         return request_token
 
 
-class Transaction(object):
+class IExpectation(object):
+    def __init__(self, configuration):
+        self.c = configuration
+
+    @abstractmethod
+    def on_start(self):
+        pass
+
+    @abstractmethod
+    def on_end(self):
+        pass
+
+    @abstractmethod
+    def wait_for_trigger(self):
+        pass
+
+    @abstractmethod
+    def wait_for_square_off(self):
+        pass
+
+
+class Expectation(object):
     """
     This class holds one transaction to be made for profit, suggested by the algorithm
     Args
@@ -354,10 +375,9 @@ class Transaction(object):
     change_range = 1
 
     def __init__(self, type, stock, trigger_change, amount, target_change, stop_loss_percent, date_time=None):
-        logger.info(
-            '\nTransaction Date: {}\ntype: {} \nstock: {} \ntrigger_change: {} \nmount: {} \ntarget_change: {} '
-            '\nstop_loss_percent: {} \n'.format(date_time, type, stock, trigger_change, amount, target_change,
-                                                stop_loss_percent))
+        logger.info('\nExpectation Date: {}\ntype: {} \nstock: {} \ntrigger_change: {} \nmount: {} '
+                    '\ntarget_change: {} \nstop_loss_percent: {} \n'.format(date_time, type, stock, trigger_change,
+                                                                            amount, target_change, stop_loss_percent))
         self.type = type
         self.stock = stock
         self.trigger_change = trigger_change
@@ -549,11 +569,11 @@ class OpenDoors(Algorithm):
         gainers.reverse()
         losers = stocks[:1]
         for stock in (gainers + losers):
-            trans = Transaction(type='buy', stock=stock[0], trigger_change=.1, amount=10000, target_change=.5,
+            trans = Expectation(type='buy', stock=stock[0], trigger_change=.1, amount=10000, target_change=.5,
                                 stop_loss_percent=self.increase_stop_loss,
                                 date_time=self.date)
             self.transactions.append(trans)
-            trans = Transaction(type='sell', stock=stock[0], trigger_change=.1, amount=10000.0, target_change=.5,
+            trans = Expectation(type='sell', stock=stock[0], trigger_change=.1, amount=10000.0, target_change=.5,
                                 stop_loss_percent=self.decrease_stop_loss,
                                 date_time=self.date)
             self.transactions.append(trans)
