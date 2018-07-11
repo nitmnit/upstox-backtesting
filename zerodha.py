@@ -2,7 +2,7 @@ import hashlib
 import json
 import time
 import urlparse
-from datetime import timedelta
+from datetime import timedelta, datetime
 
 import psycopg2
 from kiteconnect import KiteConnect
@@ -109,10 +109,12 @@ class KiteHistory(object):
                                                 to_date=date + timedelta(days=1),
                                                 interval='day')
                 for dl in data:
-                    del dl['date']
+                    dl['date'] = dl['date'].strftime('%m/%d/%Y %I:%M:%S %p')
                 r.hset('get_open_price', self.get_key(instrument, date), json.dumps(data))
             else:
                 data = json.loads(data)
+            for dl in data:
+                dl['date'] = datetime.strptime(dl['date'], '%m/%d/%Y %I:%M:%S %p')
         return data[0]['open']
 
     @wait_response
@@ -124,10 +126,12 @@ class KiteHistory(object):
                                                 to_date=date + timedelta(days=1),
                                                 interval='day')
                 for dl in data:
-                    del dl['date']
+                    dl['date'] = dl['date'].strftime('%m/%d/%Y %I:%M:%S %p')
                 r.hset('get_close_price', self.get_key(instrument, date), json.dumps(data))
             else:
                 data = json.loads(data)
+            for dl in data:
+                dl['date'] = datetime.strptime(dl['date'], '%m/%d/%Y %I:%M:%S %p')
         return data[0]['close']
 
     def get_key(self, *args):
@@ -142,10 +146,12 @@ class KiteHistory(object):
                 data = self.con.historical_data(instrument_token=instrument, from_date=from_date, to_date=to_date,
                                                 interval='minute')
                 for dl in data:
-                    del dl['date']
+                    dl['date'] = dl['date'].strftime('%m/%d/%Y %I:%M:%S %p')
                 r.hset('get_minutes_candles', self.get_key(instrument, from_date, to_date), json.dumps(data))
             else:
                 data = json.loads(data)
+            for dl in data:
+                dl['date'] = datetime.strptime(dl['date'], '%m/%d/%Y %I:%M:%S %p')
         return data
 
     @wait_response

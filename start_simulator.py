@@ -40,28 +40,35 @@ logging.config.dictConfig({
 })
 
 start_date = ddatetime(year=2018, month=1, day=1, hour=9, minute=15, second=0)
-end_date = ddatetime(year=2018, month=1, day=10, hour=9, minute=15, second=0)
-current_date = start_date
-master_profit = 0
-success_rate = 0
-master_result = {'success': 0, 'failures': 0}
-while start_date <= current_date <= end_date:
-    try:
-        x = OpenDoorsSimulator(date=current_date, logger=logger)
-        results = x.run_analysys()
-        master_result['success'] = master_result['success'] + results['success']
-        master_result['failures'] = master_result['failures'] + results['failures']
-        logger.info('\nDate: {}, Result: {}, Master Result: {}'.format(current_date, results, master_result))
-        if master_result['success'] + master_result['failures'] != 0:
-            success_rate = master_result['success'] * 100 / (master_result['success'] + master_result['failures'])
-        logger.info('\nSuccess Rate: {}'.format(success_rate))
-    except Exception as e:
-        logger.info('Exception Date: {}'.format(current_date))
-        logger.info('Exception: {}'.format(e))
-        raise e
-    finally:
-        current_date = current_date + timedelta(days=1)
-        while current_date.strftime('%a') in ['Sat', 'Sun']:
-            current_date = current_date + timedelta(days=1)
+end_date = ddatetime(year=2018, month=7, day=10, hour=9, minute=15, second=0)
+x = OpenDoorsSimulator(from_date=start_date, to_date=end_date, logger=logger)
+x.run()
 
-logger.info('\nFrom Date: {}\nToDate: {}\Result: {}'.format(start_date, end_date, results))
+# current_date = start_date
+# master_profit = 0
+# success_rate = 0
+# master_result = {'success': 0, 'failures': 0, 'square_offs': 0}
+# x = OpenDoorsSimulator(from_date=current_date, to_date=end_date, logger=logger)
+# x.set_csv_header(['symbol', 'date', 'previous_close', 'open', 'type', 'target_price', 'stop_loss_price', 'result', ])
+# while start_date <= current_date <= end_date:
+#     try:
+#         x = OpenDoorsSimulator(from_date=current_date, logger=logger,
+#                                configuration={'change': .45, 'stop_loss': 2.4, 'max_change': .55})
+#         results = x.run_analysys()
+#         master_result['success'] = master_result['success'] + results['success']
+#         master_result['failures'] = master_result['failures'] + results['failures']
+#         master_result['square_offs'] = master_result['square_offs'] + results['square_offs']
+#         logger.info('\nDate: {}, Result: {}, Master Result: {}'.format(current_date, results, master_result))
+#         if (master_result['success'] + master_result['failures'] + master_result['square_offs']) != 0:
+#             success_rate = master_result['success'] * 100 / (master_result['success'] + master_result['failures']
+#                                                              + master_result['square_offs'])
+#         logger.info('\nSuccess Rate: {}'.format(success_rate))
+#     except Exception as e:
+#         logger.info('Exception Date: {}'.format(current_date))
+#         logger.info('Exception: {}'.format(e))
+#     finally:
+#         current_date = current_date + timedelta(days=1)
+#         while current_date.strftime('%a') in ['Sat', 'Sun']:
+#             current_date = current_date + timedelta(days=1)
+#
+# logger.info('\nFrom Date: {}\nToDate: {}\Result: {}'.format(start_date, end_date, results))
