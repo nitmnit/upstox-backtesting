@@ -40,7 +40,7 @@ logging.config.dictConfig({
 })
 
 start_date = ddatetime(year=2018, month=1, day=1, hour=9, minute=15, second=0)
-end_date = ddatetime(year=2018, month=7, day=10, hour=9, minute=15, second=0)
+end_date = ddatetime(year=2018, month=1, day=10, hour=9, minute=15, second=0)
 current_date = start_date
 master_profit = 0
 success_rate = 0
@@ -58,6 +58,7 @@ while start_date <= current_date <= end_date:
     except Exception as e:
         logger.info('Exception Date: {}'.format(current_date))
         logger.info('Exception: {}'.format(e))
+        raise e
     finally:
         current_date = current_date + timedelta(days=1)
         while current_date.strftime('%a') in ['Sat', 'Sun']:

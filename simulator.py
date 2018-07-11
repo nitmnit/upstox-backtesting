@@ -1,3 +1,4 @@
+import csv
 from datetime import timedelta
 
 from helpers import get_previous_open_date
@@ -47,6 +48,7 @@ class OpenDoorsSimulator(object):
         filtered_stocks = self.filter_stocks()
         result = {'success': 0, 'failures': 0}
         for stock_details in filtered_stocks:
+            success = False
             minute_candles = self.stock_history.get_minutes_candles(instrument=stock_details['stock'].instrument,
                                                                     from_date=self.date,
                                                                     to_date=self.date + timedelta(days=1))
@@ -62,12 +64,24 @@ class OpenDoorsSimulator(object):
                     break
                 if stock_details['type'] == 'gainer' and candle['close'] >= target_price:
                     result['success'] = result['success'] + 1
+                    success = True
                     break
                 if stock_details['type'] == 'loser' and candle['close'] >= stop_price:
                     result['failures'] = result['failures'] + 1
                     break
                 if stock_details['type'] == 'loser' and candle['close'] <= target_price:
                     result['success'] = result['success'] + 1
+                    success = True
                     break
             result['failures'] = result['failures'] + 1
+            self.write_row(data={'symbol': stock_details['stock'].symbol, 'date': str(self.date.date()),
+                                 'previous_close': stock_details['prev_close'],
+                                 'open': stock_details['open'], 'type': stock_details['type'],
+                                 'target_price': target_price, 'stop_loss_price': stop_price,
+                                 'result': 'success' if success else 'failure'})
         return result
+
+    def write_row(self, data):
+        with open('report.csv', 'a') as report_file:
+            csv_writer = csv.DictWriter(report_file)
+            csv_writer.write(data)
