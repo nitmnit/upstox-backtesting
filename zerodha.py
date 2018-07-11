@@ -113,23 +113,37 @@ class KiteHistory(object):
                 r.hset('get_open_price', self.get_key(instrument, date), json.dumps(data))
             else:
                 data = json.loads(data)
-        self.logger.info('Get open price. {}'.format(data[0]['open']))
         return data[0]['open']
+
+    @wait_response
+    def get_close_price(self, instrument, date):
+        if settings.REDIS['IS_ENABLED']:
+            data = r.hget('get_close_price', self.get_key(instrument, date))
+            if not data:
+                data = self.con.historical_data(instrument_token=instrument, from_date=date,
+                                                to_date=date + timedelta(days=1),
+                                                interval='day')
+                for dl in data:
+                    del dl['date']
+                r.hset('get_close_price', self.get_key(instrument, date), json.dumps(data))
+            else:
+                data = json.loads(data)
+        return data[0]['close']
 
     def get_key(self, *args):
         hash_object = hashlib.md5(';'.join([str(x) for x in args]))
         return hash_object.hexdigest()
 
     @wait_response
-    def get_minutes_candles(self, instrument_id, from_date, to_date):
+    def get_minutes_candles(self, instrument, from_date, to_date):
         if settings.REDIS['IS_ENABLED']:
-            data = r.hget('get_minutes_candles', self.get_key(instrument_id, from_date, to_date))
+            data = r.hget('get_minutes_candles', self.get_key(instrument, from_date, to_date))
             if not data:
-                data = self.con.historical_data(instrument_token=instrument_id, from_date=from_date, to_date=to_date,
+                data = self.con.historical_data(instrument_token=instrument, from_date=from_date, to_date=to_date,
                                                 interval='minute')
                 for dl in data:
                     del dl['date']
-                r.hset('get_minutes_candles', self.get_key(instrument_id, from_date, to_date), json.dumps(data))
+                r.hset('get_minutes_candles', self.get_key(instrument, from_date, to_date), json.dumps(data))
             else:
                 data = json.loads(data)
         return data
@@ -181,7 +195,6 @@ class KiteHistory(object):
         for symbol, instrument in settings.NIFTY50.items():
             stock = self.get_stock(instrument=instrument)
             stocks.append(stock)
-        self.logger.info('Top nifty 50 stocks: data: {}'.format(stocks))
         return stocks
 
     @wait_response

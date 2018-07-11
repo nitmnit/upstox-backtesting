@@ -15,6 +15,15 @@ def get_date():
             return (datetime.today() - timedelta(days=2)).date()
 
 
+def get_previous_open_date(date):
+    date = date - timedelta(days=1)
+    if date.strftime("%a") == 'Sat':
+        date = date - timedelta(days=1)
+    elif date.strftime("%a") == 'Sun':
+        date = date - timedelta(days=2)
+    return date
+
+
 def wait_response(func):
     def wrapper(*args, **kwargs):
         try:

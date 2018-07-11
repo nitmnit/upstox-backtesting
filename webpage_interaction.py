@@ -4,7 +4,7 @@ from selenium.webdriver.chrome.options import Options
 
 
 class SeleniumConnector(object):
-    def __init__(self, logger, is_headless=False):
+    def __init__(self, logger, is_headless=True):
         self.logger = logger
         self.logger.info('Selenium Connect Started')
         chrome_options = Options()
