@@ -15,7 +15,7 @@ class OpenDoorsSimulator(object):
                                 'amount': 200000,
                                 'max_change': .42,
                                 'start_trading': time(hour=9, minute=20),
-                                'target_change': .3}):
+                                'target_change': .1}):
         self.logger = logger
         self.from_date = from_date
         self.current_date = from_date
