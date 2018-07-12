@@ -10,12 +10,12 @@ from zerodha import KiteHistory
 
 class OpenDoorsSimulator(object):
     def __init__(self, logger, from_date, to_date,
-                 configuration={'change': .32,
-                                'stop_loss': .6,
-                                'amount': 200000,
-                                'max_change': .42,
+                 configuration={'change': .2,
+                                'stop_loss': .4,
+                                'amount': 1000000,
+                                'max_change': .6,
                                 'start_trading': time(hour=9, minute=20),
-                                'target_change': .1}):
+                                'target_change': .2}):
         self.logger = logger
         self.from_date = from_date
         self.current_date = from_date
