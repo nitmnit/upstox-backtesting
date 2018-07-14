@@ -75,8 +75,8 @@ class Expectation(object):
         self.trigger_change = trigger_change
         self.target_change = target_change
         self.stop_loss_percent = stop_loss_percent
-        self.stock_history = KiteHistory(exchange='NSE')
-        self.stock_app = KiteCon(exchang='NSE')
+        self.stock_history = KiteHistory(exchange='NSE', logger=self.logger)
+        self.stock_app = KiteCon(exchange='NSE', logger=self.logger)
         self.transaction_price = None  # Price at square off
         self.transaction_close_price = None  # Price at the end of the day
         self.trigger_success = None

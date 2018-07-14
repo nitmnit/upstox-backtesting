@@ -34,13 +34,11 @@ class OpenDoors(Algorithm):
         gainers.reverse()
         losers = stocks[:1]
         for stock in (gainers + losers):
-            trans = Expectation(type='buy', stock=stock[0], trigger_change=.1, amount=10000, target_change=.5,
-                                stop_loss_percent=self.increase_stop_loss,
-                                date_time=self.date)
+            trans = Expectation(logger=self.logger, type='buy', stock=stock[0], trigger_change=.1, amount=10000,
+                                target_change=.5, stop_loss_percent=self.increase_stop_loss, date_time=self.date)
             self.transactions.append(trans)
-            trans = Expectation(type='sell', stock=stock[0], trigger_change=.1, amount=10000.0, target_change=.5,
-                                stop_loss_percent=self.decrease_stop_loss,
-                                date_time=self.date)
+            trans = Expectation(logger=self.logger, type='sell', stock=stock[0], trigger_change=.1, amount=10000.0,
+                                target_change=.5, stop_loss_percent=self.decrease_stop_loss, date_time=self.date)
             self.transactions.append(trans)
             self.logger.info('Created {} transactions.'.format(len(self.transactions)))
         self.stop_algorithm()

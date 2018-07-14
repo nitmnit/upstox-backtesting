@@ -15,7 +15,7 @@ class OpenDoorsSimulator(object):
                                 'amount': 1000000,
                                 'max_change': .6,
                                 'start_trading': time(hour=9, minute=20),
-                                'target_change': .2}):
+                                'target_change': .4}):
         self.logger = logger
         self.from_date = from_date
         self.current_date = from_date
@@ -149,7 +149,10 @@ class OpenDoorsSimulator(object):
                 result['failures'] = result['failures'] + 1
             else:
                 raise Exception('Unreachable condition reached.')
-            profit = closing_price * quantity - trigger_price * quantity
+            if stock_details['type'] == 'gainer':
+                profit = closing_price * quantity - trigger_price * quantity
+            else:
+                profit = trigger_price * quantity - closing_price * quantity
             result['total_profit'] = result['total_profit'] + profit
             self.write_row(
                 data=OrderedDict({'symbol': stock_details['stock'].symbol, 'date': str(self.current_date.date()),
