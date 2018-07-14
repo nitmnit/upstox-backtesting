@@ -11,9 +11,9 @@ from zerodha import KiteHistory
 class OpenDoorsSimulator(object):
     def __init__(self, logger, from_date, to_date,
                  configuration={'change': .2,
-                                'stop_loss': .4,
+                                'stop_loss': .6,
                                 'amount': 1000000,
-                                'max_change': .6,
+                                'max_change': .5,
                                 'start_trading': time(hour=9, minute=20),
                                 'target_change': .4}):
         self.logger = logger
