@@ -39,8 +39,8 @@ logging.config.dictConfig({
     }
 })
 
-start_date = ddatetime(year=2018, month=7, day=17, hour=9, minute=15, second=0)
-end_date = ddatetime(year=2018, month=7, day=17, hour=9, minute=15, second=0)
+# start_date = ddatetime(year=2018, month=7, day=17, hour=9, minute=15, second=0)
+# end_date = ddatetime(year=2018, month=7, day=17, hour=9, minute=15, second=0)
 # current_date = start_date
 # master_profit = 0
 # while start_date <= current_date <= end_date:
@@ -48,5 +48,5 @@ end_date = ddatetime(year=2018, month=7, day=17, hour=9, minute=15, second=0)
 #     x.run()
 #     logger.info("Voila! Done.")
 
-x = OpenDoor(logger=logger, from_date=start_date, to_date=end_date)
-x.get_nifty50_previous_day_close()
+x = OpenDoor(logger=logger, )
+x.run()

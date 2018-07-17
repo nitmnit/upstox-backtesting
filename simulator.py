@@ -12,7 +12,7 @@ from zerodha import KiteHistory
 class OpenDoorsSimulator(object):
     def __init__(self, logger, from_date, to_date,
                  configuration={'change': .2,
-                                'stop_loss': .6,
+                                'stop_loss': .4,
                                 'amount': 200000,
                                 'max_change': .5,
                                 'start_trading': time(hour=9, minute=20),
@@ -25,7 +25,8 @@ class OpenDoorsSimulator(object):
         self.success_rate = 0
         self.master_profit = 0
         self.stock_history = KiteHistory(exchange='NSE', logger=self.logger)
-        self.file_name = os.path.join('data', 'report_' + str(self.from_date) + '_' + str(self.to_date) + '.csv')
+        self.file_name = os.path.join('data', 'report_' + self.from_date.strftime('%d-%b-%Y') + '_'
+                                      + self.to_date.strftime('%d-%b-%Y') + '.csv')
         self.master_result = {'success': 0, 'failures': 0, 'square_offs': 0, 'total_profit': 0}
         self.fields = ['symbol', 'date', 'previous_close', 'open', 'type', 'trigger_price', 'target_price',
                        'investment', 'return', 'profit', 'stop_loss_price', 'high', 'low', 'result', ]
@@ -74,8 +75,8 @@ class OpenDoorsSimulator(object):
         nifty50_stocks = self.stock_history.get_nifty50_stocks()
         nifty50_open = {}
         for stock in nifty50_stocks:
-            nifty50_open[stock.symbol] = self.stock_history.get_open_price(instrument=stock.instrument,
-                                                                           date=self.current_date)
+            nifty50_open[stock.symbol] = self.stock_history.get_daily_open_price(instrument=stock.instrument,
+                                                                                 date=self.current_date)
         return nifty50_open
 
     def filter_stocks(self):
@@ -104,49 +105,46 @@ class OpenDoorsSimulator(object):
             high = 0
             low = 10000000
             trigger_price = None
-            closing_price = None
+            square_off_price = None
             quantity = math.floor(self.c['amount'] / stock_details['open'])
+            stop_price = None
+            target_price = None
             for candle in minute_candles:
                 if candle['date'].time() < self.c['start_trading']:
                     continue
-
                 if trigger_price is None and stock_details['type'] == 'gainer':
                     trigger_price = candle['low']
                 elif trigger_price is None and stock_details['type'] == 'loser':
                     trigger_price = candle['high']
 
                 if candle['date'].time() >= time(hour=15, minute=20):
-                    closing_price = candle['close']
+                    square_off_price = candle['close']
                     break
                 if candle['high'] > high:
                     high = candle['high']
                 if candle['low'] < low:
                     low = candle['low']
-                if stock_details['type'] == 'gainer':
+                if stop_price is None and target_price is None and stock_details['type'] == 'gainer':
                     stop_price = trigger_price * (1 - self.c['stop_loss'] / 100)
                     target_price = trigger_price * (1 + self.c['target_change'] / 100)
-                else:
+                elif stop_price is None and target_price is None and stock_details['type'] == 'loser':
                     stop_price = trigger_price * (1 + self.c['stop_loss'] / 100)
                     target_price = trigger_price * (1 - self.c['target_change'] / 100)
                 if stock_details['type'] == 'gainer' and (candle['low'] <= stop_price):
                     success = False
-                    closing_price = candle['low']
-                    closing_price = stop_price
+                    square_off_price = stop_price
                     break
                 if stock_details['type'] == 'gainer' and candle['high'] >= target_price:
                     success = True
-                    closing_price = candle['high']
-                    closing_price = target_price
+                    square_off_price = target_price
                     break
                 if stock_details['type'] == 'loser' and candle['high'] >= stop_price:
                     success = False
-                    closing_price = candle['high']
-                    closing_price = stop_price
+                    square_off_price = stop_price
                     break
                 if stock_details['type'] == 'loser' and candle['low'] <= target_price:
                     success = True
-                    closing_price = candle['low']
-                    closing_price = target_price
+                    square_off_price = target_price
                     break
             if success is None:
                 result['square_offs'] = result['square_offs'] + 1
@@ -157,9 +155,9 @@ class OpenDoorsSimulator(object):
             else:
                 raise Exception('Unreachable condition reached.')
             if stock_details['type'] == 'gainer':
-                profit = closing_price * quantity - trigger_price * quantity
+                profit = square_off_price * quantity - trigger_price * quantity
             else:
-                profit = trigger_price * quantity - closing_price * quantity
+                profit = trigger_price * quantity - square_off_price * quantity
             result['total_profit'] = result['total_profit'] + profit
             self.write_row(
                 data=OrderedDict({'symbol': stock_details['stock'].symbol, 'date': str(self.current_date.date()),
@@ -168,7 +166,7 @@ class OpenDoorsSimulator(object):
                                   'trigger_price': trigger_price,
                                   'target_price': target_price, 'stop_loss_price': stop_price, 'high': high, 'low': low,
                                   'investment': stock_details['open'] * quantity,
-                                  'return': closing_price * quantity,
+                                  'return': square_off_price * quantity,
                                   'profit': profit,
                                   'result': 'square_offs' if success is None else 'success'
                                   if success else 'failure'}))

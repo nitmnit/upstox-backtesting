@@ -116,11 +116,13 @@ class KiteHistory(object):
                                         order_type=self.con.ORDER_TYPE_LIMIT,
                                         disclosed_quantity=quantity / 10 + 1,
                                         squareoff=square_off,
-                                        stoploss=stop_loss, price=price)
+                                        stoploss=stop_loss,
+                                        price=price,
+                                        validity=self.con.VALIDITY_DAY)
         self.logger.info('Order Place: {}'.format(order_id))
         return order_id
 
-    def get_open_price(self, instrument, date):
+    def get_daily_open_price(self, instrument, date):
         start_date = datetime(year=date.year, month=date.month, day=date.day, hour=9, minute=15, second=0)
         end_date = datetime(year=date.year, month=date.month, day=date.day, hour=15, minute=30, second=0)
         data = self.get_minutes_candles(instrument=instrument, from_date=start_date, to_date=end_date)
@@ -132,7 +134,8 @@ class KiteHistory(object):
         data = self.get_minutes_candles(instrument=instrument, from_date=start_date, to_date=end_date)
         return data[-1]['close']
 
-    def get_key(self, *args):
+    @staticmethod
+    def get_key(*args):
         hash_object = hashlib.md5(';'.join([str(x) for x in args]))
         return hash_object.hexdigest()
 
@@ -152,43 +155,24 @@ class KiteHistory(object):
                 dl['date'] = datetime.strptime(dl['date'], '%m/%d/%Y %I:%M:%S %p')
         return data
 
-    @wait_response
     def get_top_gainers(self, date, number=5):
-        if settings.REDIS['IS_ENABLED']:
-            data = r.hget('get_top_gainers', self.get_key(date, number))
-            if not data:
-                data = self.get_nifty50_sorted_by_change(date=date)
-                r.hset('get_top_gainers', self.get_key(date, number), json.dumps(data))
-            else:
-                data = json.loads(data)
+        data = self.get_nifty50_sorted_by_change(date=date)
         if len(data) >= number:
             return data[-number:].reverse()
         return data
 
-    @wait_response
     def get_nifty50_sorted_by_change(self, date):
-        if date.strftime('%a') in ['Sat', 'Sun']:
-            raise Exception("Invalid date input.")
-        total_data = []
+        stocks_change_list = []
         for symbol, instrument in settings.NIFTY50.items():
-            data = self.con.historical_data(instrument_token=instrument, from_date=date,
-                                            to_date=date + timedelta(days=1),
-                                            interval='day')
-            candle = Candle(data=data[0])
-            total_data.append((self.get_stock(instrument=instrument), symbol,
-                               100.0 * (candle.close - candle.open) / candle.open), )
-        data = sorted(total_data, key=lambda x: x[2])
+            open_price = self.get_daily_open_price(instrument=instrument, date=date)
+            close_price = self.get_daily_close_price(instrument=instrument, date=date)
+            stocks_change_list.append((self.get_stock(instrument=instrument), symbol,
+                                       100.0 * (close_price - open_price) / open_price), )
+        data = sorted(stocks_change_list, key=lambda x: x[2])
         return data
 
-    @wait_response
     def get_top_losers(self, date, number=5):
-        if settings.REDIS['IS_ENABLED']:
-            data = r.hget('get_top_losers', self.get_key(date, number))
-            if not data:
-                data = self.get_nifty50_sorted_by_change(date=date)
-                r.hset('get_top_losers', self.get_key(date, number), json.dumps(data))
-            else:
-                data = json.loads(data)
+        data = self.get_nifty50_sorted_by_change(date=date)
         if len(data) >= number:
             self.logger.info('Top losers :  data- {}\n data: {}'.format(date, data[:number]))
             return data[:number]

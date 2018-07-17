@@ -1,4 +1,5 @@
-from datetime import timedelta, datetime as ddatetime
+import numpy as np
+from datetime import timedelta, datetime as ddatetime, time
 import logging.config
 
 import redis
@@ -39,19 +40,42 @@ logging.config.dictConfig({
     }
 })
 
+start_date = ddatetime(year=2018, month=7, day=16, hour=9, minute=15, second=0)
 start_date = ddatetime(year=2018, month=1, day=1, hour=9, minute=15, second=0)
-end_date = ddatetime(year=2018, month=3, day=1, hour=9, minute=15, second=0)
-
+end_date = ddatetime(year=2018, month=1, day=31, hour=9, minute=15, second=0)
+# end_date = ddatetime.now()
+# Target change has to be .5
 change = ()
 configuration = {'change': .2,
-                 'stop_loss': .6,
+                 'stop_loss': .8,
                  'amount': 200000,
                  'max_change': .5,
-                 'start_trading': time(hour=9, minute=20),
-                 'target_change': .4}
+                 'start_trading': time(hour=9, minute=15),
+                 'target_change': .5}
 
-x = OpenDoorsSimulator(from_date=start_date, to_date=end_date, logger=logger)
-x.run()
+change_range = [.2, .5]
+stop_loss_range = [.2, 1.1]
+target_change_range = [.2, .7]
+for current_change in np.arange(change_range[0], change_range[1], .1):
+    for current_stop_loss in np.arange(stop_loss_range[0], stop_loss_range[1], .1):
+        for current_target_change in np.arange(target_change_range[0], target_change_range[1], .1):
+            configuration = {'change': current_change,
+                             'stop_loss': current_stop_loss,
+                             'amount': 200000,
+                             'max_change': .5,
+                             'start_trading': time(hour=9, minute=15),
+                             'target_change': current_target_change}
+            logger.info('Configuration: {}'.format(configuration))
+            print('Configuration: {}'.format(configuration))
+            x = OpenDoorsSimulator(from_date=start_date, to_date=end_date, logger=logger, configuration=configuration)
+            x.run()
+            if current_target_change + .1 < target_change_range[1]:
+                current_target_change += .1
+            print('Done!')
+        if current_stop_loss + .1 < stop_loss_range[1]:
+            current_stop_loss += .1
+    if current_change + .1 < change_range[1]:
+        current_change += .1
 
 # current_date = start_date
 # master_profit = 0

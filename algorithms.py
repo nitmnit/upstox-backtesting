@@ -85,7 +85,7 @@ class Expectation(object):
         self.amount = amount
         self.price_result = None
         self.date_time = date_time
-        self.open_price = self.stock_history.get_open_price(instrument=self.stock.instrument, date=date_time.date())
+        self.open_price = self.stock_history.get_daily_open_price(instrument=self.stock.instrument, date=date_time.date())
         self.time_counter = 0
         self.thread_factory = ThreadFactory(runner=self.wait_for_trigger, interval=self.thread_interval)
         self.thread_factory.start()
