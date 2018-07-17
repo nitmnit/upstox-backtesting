@@ -21,7 +21,8 @@ def get_previous_open_date(date):
         date = date - timedelta(days=1)
     elif date.strftime("%a") == 'Sun':
         date = date - timedelta(days=2)
-    return date
+    test = date.date()
+    return date.date()
 
 
 def wait_response(func):

@@ -2,7 +2,7 @@ import hashlib
 import json
 import time
 import urlparse
-from datetime import timedelta, datetime
+from datetime import timedelta, datetime, date as ddate
 
 import psycopg2
 from kiteconnect import KiteConnect
@@ -107,7 +107,6 @@ class KiteHistory(object):
             transaction_type = self.con.TRANSACTION_TYPE_BUY
         else:
             transaction_type = self.con.TRANSACTION_TYPE_SELL
-        print(quantity)
         order_id = self.con.place_order(variety=self.con.VARIETY_BO,
                                         exchange=self.con.EXCHANGE_NSE,
                                         tradingsymbol=symbol,
@@ -121,39 +120,17 @@ class KiteHistory(object):
         self.logger.info('Order Place: {}'.format(order_id))
         return order_id
 
-    @wait_response
     def get_open_price(self, instrument, date):
-        if settings.REDIS['IS_ENABLED']:
-            data = r.hget('get_open_price', self.get_key(instrument, date))
-            if not data:
-                data = self.con.historical_data(instrument_token=instrument, from_date=date,
-                                                to_date=date + timedelta(days=1),
-                                                interval='day')
-                for dl in data:
-                    dl['date'] = dl['date'].strftime('%m/%d/%Y %I:%M:%S %p')
-                r.hset('get_open_price', self.get_key(instrument, date), json.dumps(data))
-            else:
-                data = json.loads(data)
-            for dl in data:
-                dl['date'] = datetime.strptime(dl['date'], '%m/%d/%Y %I:%M:%S %p')
+        start_date = datetime(year=date.year, month=date.month, day=date.day, hour=9, minute=15, second=0)
+        end_date = datetime(year=date.year, month=date.month, day=date.day, hour=15, minute=30, second=0)
+        data = self.get_minutes_candles(instrument=instrument, from_date=start_date, to_date=end_date)
         return data[0]['open']
 
-    @wait_response
-    def get_close_price(self, instrument, date):
-        if settings.REDIS['IS_ENABLED']:
-            data = r.hget('get_close_price', self.get_key(instrument, date))
-            if not data:
-                data = self.con.historical_data(instrument_token=instrument, from_date=date,
-                                                to_date=date + timedelta(days=1),
-                                                interval='day')
-                for dl in data:
-                    dl['date'] = dl['date'].strftime('%m/%d/%Y %I:%M:%S %p')
-                r.hset('get_close_price', self.get_key(instrument, date), json.dumps(data))
-            else:
-                data = json.loads(data)
-            for dl in data:
-                dl['date'] = datetime.strptime(dl['date'], '%m/%d/%Y %I:%M:%S %p')
-        return data[0]['close']
+    def get_daily_close_price(self, instrument, date):
+        start_date = datetime(year=date.year, month=date.month, day=date.day, hour=9, minute=15, second=0)
+        end_date = datetime(year=date.year, month=date.month, day=date.day, hour=15, minute=30, second=0)
+        data = self.get_minutes_candles(instrument=instrument, from_date=start_date, to_date=end_date)
+        return data[-1]['close']
 
     def get_key(self, *args):
         hash_object = hashlib.md5(';'.join([str(x) for x in args]))

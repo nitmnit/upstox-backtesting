@@ -66,8 +66,8 @@ class OpenDoorsSimulator(object):
         nifty50_stocks = self.stock_history.get_nifty50_stocks()
         nifty50_close = {}
         for stock in nifty50_stocks:
-            nifty50_close[stock.symbol] = self.stock_history.get_close_price(instrument=stock.instrument,
-                                                                             date=previous_day)
+            nifty50_close[stock.symbol] = self.stock_history.get_daily_close_price(instrument=stock.instrument,
+                                                                                   date=previous_day)
         return nifty50_close
 
     def get_nifty50_open(self):
