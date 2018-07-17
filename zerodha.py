@@ -18,7 +18,7 @@ from webpage_interaction import SeleniumConnector
 
 r = redis.StrictRedis(host='localhost', port=6379)
 
-
+# https://kite.trade/forum/discussion/1994/a-curated-list-of-things-related-to-kite-connect-api
 class KiteCon(object):
     def __init__(self, exchange, logger):
         self.logger = logger
@@ -273,3 +273,101 @@ class KiteHistory(object):
         con.driver.close()
         self.logger.info('Got request token. {}'.format(request_token))
         return request_token
+
+    def get_margin(self, co_lower, co_upper, stop_loss, price, quantity, type):
+        # Bracket and cover order Margins calculation:-
+        # Equity:-
+        co_lower = co_lower/100
+        co_upper = co_upper/100
+        trigger = price - (co_upper * price)
+        if stoploss < trigger:
+            stoploss = trigger
+        else:
+            trigger = stoploss
+        x = 0
+        if transaction_type == 'buy':
+            x = (price - trigger) * quantity
+        else:
+            x = (trigger - price) * quantity
+        y = co_lower * price * quantity
+        margin = x > y ? x : y
+        margin = margin + (margin * 0.2)
+        return margin
+        #NFO
+        if options:
+            # For NIFTY and BANKNIFTY 
+            if 'NIFTY' in tradingsymbol and transaction_type == 'buy':
+                margin = price * quantity * 0.70
+            else:
+                margin = (strike_price + price) * quantity * 0.25
+        #Futures        
+        else:
+            co_lower =  co_lower/100
+            co_upper = co_upper/100
+
+        trigger = price - (co_upper * price)
+
+        if stoploss < trigger:
+            stoploss = trigger
+        else:
+            trigger = stoploss
+
+        x = 0
+
+        if transaction_type == 'buy':
+            x = (price - trigger) * quantity
+        else:
+            x = (trigger - price) * quantity
+
+        y = co_lower * price * quantity
+
+        margin = x > y ? x : y
+        margin = (margin * 0.20) + margin
+
+        #MCX
+
+        co_lower = 0.01
+        co_upper = 0.019
+
+        trigger = price - (co_upper * price)
+
+        if stoploss < trigger: 
+            stoploss = trigger
+        else:
+            trigger = stoploss
+
+        x = 0
+
+        if transaction_type == 'buy':
+            x = (price - trigger) * quantity
+        else:
+            x = (trigger - price) * quantity
+
+        y = co_lower * price * quantity
+
+        margin = x > y ? x : y
+        margin = margin + (margin * 0.4)
+
+        #CDS
+
+        co_lower = co_lower/100
+        co_upper = co_upper/100
+
+        trigger = price - (co_upper * price)
+
+        if stoploss < trigger:
+            stoploss = trigger
+        else:
+            trigger = stoploss
+
+        x = 0
+
+        if transaction_type == 'buy':
+            x = (price - trigger) * quantity
+        else:   
+            x = (trigger - price) * quantity
+
+        y = co_lower * price * quantity
+
+        margin = x > y ? x : y
+        margin = margin + (margin * 0.2)

@@ -10,9 +10,9 @@ from zerodha import KiteHistory
 class OpenDoor(object):
     def __init__(self, logger, from_date, to_date,
                  configuration={'change': .2,
-                                'stop_loss': .6,
-                                'amount': 200000,
-                                'max_change': .5,
+                                'stop_loss': .4,
+                                'amount': 20000,
+                                'max_change': .34,
                                 'start_trading': time(hour=9, minute=20),
                                 'target_change': .4}):
         self.logger = logger
@@ -42,31 +42,13 @@ class OpenDoor(object):
         while self.from_date <= self.current_date <= self.to_date:
             try:
                 results = self.run_analysys()
-                self.master_result['success'] = self.master_result['success'] + results['success']
-                self.master_result['failures'] = self.master_result['failures'] + results['failures']
-                self.master_result['square_offs'] = self.master_result['square_offs'] + results['square_offs']
-                self.master_result['total_profit'] = self.master_result['total_profit'] + results['total_profit']
-                self.logger.info('\nDate: {}\nResult: {}\nMaster Result: {}'.format(self.current_date, results,
-                                                                                    self.master_result))
-                if (self.master_result['success'] + self.master_result['failures'] + self.master_result[
-                    'square_offs']) != 0:
-                    self.success_rate = self.master_result['success'] * 100 / (
-                            self.master_result['success'] + self.master_result['failures']
-                            + self.master_result['square_offs'])
-                self.logger.info('\nSuccess Rate: {}'.format(self.success_rate))
             except Exception as e:
                 self.logger.info('Exception Date: {}'.format(self.current_date))
                 self.logger.info('Exception: {}'.format(e))
-                # if settings.DEBUG:
-                #     raise e
             finally:
                 self.current_date = self.current_date + datetime.timedelta(days=1)
                 while self.current_date.strftime('%a') in ['Sat', 'Sun']:
                     self.current_date = self.current_date + timedelta(days=1)
-        self.logger.info('\nFrom Date: {}\nTo Date: {}\Result: {}'.format(self.from_date, self.to_date,
-                                                                          self.master_result))
-        self.logger.info('\nFrom Date: {}\nTo Date: {}\Result: {}'.format(self.from_date, self.to_date,
-                                                                          self.master_result))
 
     def get_nifty50_previous_day_close(self):
         previous_day = get_previous_open_date(date=self.current_date)
@@ -108,6 +90,7 @@ class OpenDoor(object):
             if quote['success']:
                 pass
             self.logger.info('Quote Stock{}: Day: {} Quote: {}'.format(stock_details, self.current_date, quote))
+            if quote.data
             trigger_price = None
             closing_price = None
             quantity = math.floor(self.c['amount'] / stock_details['open'])
@@ -138,3 +121,5 @@ class OpenDoor(object):
         with open(self.file_name, 'w') as report_file:
             csv_writer = csv.DictWriter(report_file, fieldnames=self.fields)
             csv_writer.writeheader()
+
+
