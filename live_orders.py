@@ -66,10 +66,10 @@ class OpenDoor(object):
         return shortlist
 
     def run(self):
-        filtered_stocks = self.filter_stocks()
-        self.logger.info(filtered_stocks)
         while datetime.datetime.now().time() < self.c['start_trading']:
             time.sleep(1)
+        filtered_stocks = self.filter_stocks()
+        self.logger.info(filtered_stocks)
         success = False
         done = []
         while not success:
