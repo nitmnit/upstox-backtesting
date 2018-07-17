@@ -44,7 +44,7 @@ end_date = ddatetime(year=2018, month=6, day=1, hour=9, minute=15, second=0)
 current_date = start_date
 master_profit = 0
 while start_date <= current_date <= end_date:
-    x = OpenDoors(date=current_date, logger=logger)
+    x = OpenDoor(date=current_date, logger=logger)
     x.start_algorithm()
     master_profit += x.total_profit
     current_date = current_date + timedelta(days=1)

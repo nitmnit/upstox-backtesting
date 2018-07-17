@@ -40,7 +40,16 @@ logging.config.dictConfig({
 })
 
 start_date = ddatetime(year=2018, month=1, day=1, hour=9, minute=15, second=0)
-end_date = ddatetime(year=2018, month=7, day=10, hour=9, minute=15, second=0)
+end_date = ddatetime(year=2018, month=3, day=1, hour=9, minute=15, second=0)
+
+change = ()
+configuration = {'change': .2,
+                 'stop_loss': .6,
+                 'amount': 200000,
+                 'max_change': .5,
+                 'start_trading': time(hour=9, minute=20),
+                 'target_change': .4}
+
 x = OpenDoorsSimulator(from_date=start_date, to_date=end_date, logger=logger)
 x.run()
 

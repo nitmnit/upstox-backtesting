@@ -101,6 +101,21 @@ class KiteHistory(object):
         return quote
 
     @wait_response
+    def place_bracket_order_at_market_price(self, symbol, transaction_type, quantity, square_off, stop_loss):
+        order_id = self.con.place_order(variety=self.con.VARIETY_BO,
+                                        exchange=self.con.EXCHANGE_NSE,
+                                        tradingsymbol=symbol,
+                                        transaction_type=transaction_type,
+                                        quantity=quantity,
+                                        product=self.con.PRODUCT_MIS,
+                                        order_type=self.con.ORDER_TYPE_MARKET,
+                                        disclosed_quantity=quantity / 10 + 1,
+                                        squareoff=square_off,
+                                        stoploss=stop_loss, )
+        self.logger.info('Order Place: {}'.format(order_id))
+        return order_id
+
+    @wait_response
     def get_open_price(self, instrument, date):
         if settings.REDIS['IS_ENABLED']:
             data = r.hget('get_open_price', self.get_key(instrument, date))
