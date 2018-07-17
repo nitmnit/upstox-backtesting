@@ -25,9 +25,9 @@ KITE = {
 
 DATABASE = {
     'HOST': 'localhost',
-    'NAME': 'stock',
-    'USERNAME': 'stock',
-    'PASSWORD': 'stock',
+    'NAME': 'stocks',
+    'USERNAME': 'smartcity',
+    'PASSWORD': 'smartcity',
     'HOST': 'localhost',
 }
 
