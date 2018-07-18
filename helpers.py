@@ -33,8 +33,8 @@ def wait_response(func):
                 kwargs['logger'].error('Got error: {}'.format(e))
             else:
                 print('Got error: {}'.format(e))
-            time.sleep(1)
-            return func(*args, **kwargs)
+            time.sleep(.3)
+            return wrapper(*args, **kwargs)
 
     return wrapper
 

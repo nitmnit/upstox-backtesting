@@ -4,20 +4,32 @@ import math
 import os
 import time
 
+import redis
+
+r = redis.StrictRedis(host='localhost', port=6379)
+
 from helpers import get_previous_open_date
 from zerodha import KiteHistory
 
 
 class OpenDoor(object):
+    FILTER_STATUS_PN = 'pending'
+    FILTER_STATUS_FL = 'failure'
+    FILTER_STATUS_SC = 'success'
+    EXP_TYPE_GN = 'gainer'
+    EXP_TYPE_LS = 'loser'
+
     def __init__(self, logger,
                  configuration={'change': .2,
-                                'stop_loss': .7,
-                                'amount': 20000,
-                                'max_change': .5,
-                                'start_trading': datetime.time(hour=9, minute=15),
-                                'target_change': .5}):
+                                'stop_loss': 1.0,
+                                'amount': 20000.00,
+                                'max_change': .54,
+                                'start_trading': datetime.time(hour=9, minute=13),
+                                'end_trading': datetime.time(hour=9, minute=20),
+                                'target_change': .6}):
         self.logger = logger
         self.today_date = datetime.datetime.now().date()
+        self.today_date = (datetime.datetime.now() - datetime.timedelta(days=2)).date()
         self.c = configuration
         self.success_rate = 0
         self.master_profit = 0
@@ -26,69 +38,117 @@ class OpenDoor(object):
         self.fields = ['symbol', 'date', 'previous_close', 'open', 'type', 'trigger_price', 'target_price',
                        'investment', 'return', 'profit', 'stop_loss_price', 'high', 'low', 'result', ]
         self.nifty50 = self.stock_history.get_nifty50_stocks()
+        self.nifty50_close = {}
+        self.nifty50_open = {}
+        self.filtered_stocks = {}
+        self.set_nifty50_previous_day_close()
         self.write_file_row('price,target_price,stop_loss,trans_type,quantity,profit,order_id')
 
-    def get_nifty50_previous_day_close(self):
-        previous_day = get_previous_open_date(date=self.today_date)
-        nifty50_close = {}
+    def set_nifty50_previous_day_close(self):
+        if len(self.nifty50_close) == len(self.nifty50):
+            return
         for stock in self.nifty50:
-            try:
-                nifty50_close[stock.symbol] = self.stock_history.get_daily_close_price(instrument=stock.instrument,
-                                                                                       date=previous_day)
-            except IndexError:
-                continue
-        return nifty50_close
+            self.get_stock_previous_close(stock)
 
-    def get_nifty50_open(self):
-        nifty50_open = {}
+    def set_nifty50_open(self):
+        if len(self.nifty50_close) == len(self.nifty50):
+            return
         for stock in self.nifty50:
-            nifty50_open[stock.symbol] = self.stock_history.get_daily_open_price(instrument=stock.instrument,
-                                                                                 date=self.today_date)
-        return nifty50_open
+            self.get_stock_open(stock)
 
     def filter_stocks(self):
         self.logger.info('Start filter')
-        nifty50_close = self.get_nifty50_previous_day_close()
-        nifty50_open = self.get_nifty50_open()
+        self.set_nifty50_open()
         shortlist = []
         for stock in self.nifty50:
-            if stock.symbol not in nifty50_open or stock.symbol not in nifty50_close:
+            if stock.symbol not in self.nifty50_open or stock.symbol not in self.nifty50_close:
                 continue
-            change = (nifty50_open[stock.symbol] - nifty50_close[stock.symbol]) / nifty50_close[stock.symbol]
+            change = (self.nifty50_open[stock.symbol] - self.nifty50_close[stock.symbol]) / self.nifty50_close[
+                stock.symbol]
             if self.c['change'] / 100 <= change <= self.c['max_change'] / 100:
-                shortlist.append({'stock': stock, 'type': 'gainer', 'open': nifty50_open[stock.symbol],
-                                  'prev_close': nifty50_close[stock.symbol]})
+                shortlist.append({'stock': stock, 'type': self.EXP_TYPE_GN, 'open': self.nifty50_open[stock.symbol],
+                                  'prev_close': self.nifty50_close[stock.symbol]})
             elif -self.c['max_change'] / 100 <= change <= -self.c['change'] / 100:
-                shortlist.append({'stock': stock, 'type': 'loser', 'open': nifty50_open[stock.symbol],
-                                  'prev_close': nifty50_close[stock.symbol]})
+                shortlist.append({'stock': stock, 'type': self.EXP_TYPE_LS, 'open': self.nifty50_open[stock.symbol],
+                                  'prev_close': self.nifty50_close[stock.symbol]})
         self.logger.info('End filter')
         return shortlist
 
+    def get_stock_open(self, stock):
+        try:
+            if stock.symbol not in self.nifty50_open:
+                self.nifty50_open[stock.symbol] = self.stock_history.get_daily_open_price(instrument=stock.instrument,
+                                                                                          date=self.today_date)
+        except IndexError:
+            return
+        return self.nifty50_open[stock.symbol]
+
+    def get_stock_previous_close(self, stock):
+        try:
+            if stock.symbol not in self.nifty50_close:
+                previous_day = get_previous_open_date(date=self.today_date)
+                self.nifty50_close[stock.symbol] = self.stock_history.get_daily_close_price(instrument=stock.instrument,
+                                                                                            date=previous_day)
+        except IndexError:
+            return
+        return self.nifty50_close[stock.symbol]
+
+    def filter_one_stock(self, stock):
+        if stock.symbol in self.filtered_stocks:
+            return self.filtered_stocks[stock.symbol]
+        self.get_stock_open(stock)
+        self.get_stock_previous_close(stock)
+        if (stock.symbol not in self.nifty50_open) or (stock.symbol not in self.nifty50_close):
+            return self.FILTER_STATUS_PN, None
+        change = (self.nifty50_open[stock.symbol] - self.nifty50_close[stock.symbol]) / self.nifty50_close[stock.symbol]
+        if (self.c['change'] / 100.00) <= change <= (self.c['max_change'] / 100.00):
+            transaction_type = self.EXP_TYPE_GN
+        elif (-self.c['max_change'] / 100.00) <= change <= (-self.c['change'] / 100.00):
+            transaction_type = self.EXP_TYPE_LS
+        else:
+            self.filtered_stocks[stock.symbol] = (self.FILTER_STATUS_FL, None,)
+            return self.filtered_stocks[stock.symbol]
+        self.filtered_stocks[stock.symbol] = (self.FILTER_STATUS_SC, {'stock': stock, 'type': transaction_type,
+                                                                      'open': self.nifty50_open[stock.symbol],
+                                                                      'prev_close': self.nifty50_close[stock.symbol]},)
+        return self.filtered_stocks[stock.symbol]
+
     def run(self):
-        while datetime.datetime.now().time() < self.c['start_trading']:
-            time.sleep(1)
-        filtered_stocks = self.filter_stocks()
-        self.logger.info(filtered_stocks)
-        success = False
+        in_queue = []
         done = []
-        while not success:
-            for stock_details in filtered_stocks:
-                if stock_details['stock'].instrument in done:
+        counter = 1
+        while True:
+            while datetime.datetime.now().time() < self.c['start_trading']:
+                time.sleep(1)
+            self.logger.info('Trying for the {}th time.'.format(counter))
+            if datetime.datetime.now().time() > self.c['end_trading']:
+                self.logger.error('End time reached. Shutting Down the script.')
+                break
+            for stock in self.nifty50:
+                filter_status = self.filter_one_stock(stock)
+                if filter_status[0] in [self.FILTER_STATUS_PN, self.FILTER_STATUS_FL]:
                     continue
+                stock_details = filter_status[1]
+                if r.get('stock_orders_{}'.format(stock.instrument)):
+                    continue
+                if stock.instrument not in in_queue:
+                    in_queue.append(stock.instrument)
                 quote = self.stock_history.get_quote(stock_details['stock'].instrument)
                 if not quote:
-                    break
+                    continue
                 self.logger.info('Quote Stock{}: Day: {} Quote: {}'.format(stock_details, self.today_date, quote))
-                if stock_details['type'] == 'gainer':
+                if stock_details['type'] == self.EXP_TYPE_GN:
                     price = round(quote[str(stock_details['stock'].instrument)]['depth']['sell'][0]['price'], 2)
                 else:
                     price = round(quote[str(stock_details['stock'].instrument)]['depth']['buy'][0]['price'], 2)
-                target_price = round((self.c['target_change'] / 100) * price, 2)
-                stop_loss = round((self.c['stop_loss'] / 100) * price, 2)
+                target_price = round((self.c['target_change'] / 100.00) * price, 2)
+                stop_loss = round((self.c['stop_loss'] / 100.00) * price, 2)
                 self.logger.info('Stock: {}, Price: {}, Target: {}, '
                                  'Stop loss: {}'.format(stock_details, price, target_price, stop_loss))
+                if price == 0:
+                    continue
                 quantity = int(math.floor(self.c['amount'] / price))
-                transaction_type = 'buy' if stock_details['type'] == 'gainer' else 'sell'
+                transaction_type = 'buy' if stock_details['type'] == self.EXP_TYPE_GN else 'sell'
                 if quantity > 0:
                     order_id = self.stock_history.place_bracket_order_at_market_price(
                         symbol=stock_details['stock'].symbol,
@@ -98,11 +158,14 @@ class OpenDoor(object):
                         stop_loss=stop_loss,
                         price=price)
                     self.logger.info('Order id: {}, Stock: {}'.format(order_id, stock_details))
-                done.append(stock_details['stock'].instrument)
+                r.set('stock_orders_{}'.format(stock.instrument), str(order_id), ex=60 * 60 * 17)
+                done.append(stock.instrument)
                 self.write_file_row(
                     '{},{},{},{},{},{},{}'.format(price, target_price, stop_loss, transaction_type, quantity,
                                                   quantity * target_price, order_id))
-            success = True
+            counter += 1
+            if len(in_queue) == len(done):
+                break
         return True
 
     def write_file_row(self, data):
