@@ -49,4 +49,5 @@ logging.config.dictConfig({
 #     logger.info("Voila! Done.")
 
 x = OpenDoor(logger=logger, )
-x.run()
+while not x.run():
+    pass

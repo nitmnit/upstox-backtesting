@@ -11,11 +11,11 @@ from zerodha import KiteHistory
 class OpenDoor(object):
     def __init__(self, logger,
                  configuration={'change': .2,
-                                'stop_loss': 1,
+                                'stop_loss': .7,
                                 'amount': 20000,
                                 'max_change': .5,
                                 'start_trading': datetime.time(hour=9, minute=15),
-                                'target_change': .6}):
+                                'target_change': .5}):
         self.logger = logger
         self.today_date = datetime.datetime.now().date()
         self.c = configuration
@@ -32,30 +32,28 @@ class OpenDoor(object):
         previous_day = get_previous_open_date(date=self.today_date)
         nifty50_close = {}
         for stock in self.nifty50:
-            nifty50_close[stock.symbol] = self.stock_history.get_daily_close_price(instrument=stock.instrument,
-                                                                                   date=previous_day)
-        return nifty50_close
-
-    def get_nifty50_previous_day_close(self):
-        previous_day = get_previous_open_date(date=self.today_date)
-        nifty50_close = {}
-        for stock in self.nifty50:
-            nifty50_close[stock.symbol] = self.stock_history.get_daily_close_price(instrument=stock.instrument,
-                                                                                   date=previous_day)
+            try:
+                nifty50_close[stock.symbol] = self.stock_history.get_daily_close_price(instrument=stock.instrument,
+                                                                                       date=previous_day)
+            except IndexError:
+                continue
         return nifty50_close
 
     def get_nifty50_open(self):
         nifty50_open = {}
         for stock in self.nifty50:
             nifty50_open[stock.symbol] = self.stock_history.get_daily_open_price(instrument=stock.instrument,
-                                                                                 date=self.today_date.date())
+                                                                                 date=self.today_date)
         return nifty50_open
 
     def filter_stocks(self):
+        self.logger.info('Start filter')
         nifty50_close = self.get_nifty50_previous_day_close()
         nifty50_open = self.get_nifty50_open()
         shortlist = []
         for stock in self.nifty50:
+            if stock.symbol not in nifty50_open or stock.symbol not in nifty50_close:
+                continue
             change = (nifty50_open[stock.symbol] - nifty50_close[stock.symbol]) / nifty50_close[stock.symbol]
             if self.c['change'] / 100 <= change <= self.c['max_change'] / 100:
                 shortlist.append({'stock': stock, 'type': 'gainer', 'open': nifty50_open[stock.symbol],
@@ -63,6 +61,7 @@ class OpenDoor(object):
             elif -self.c['max_change'] / 100 <= change <= -self.c['change'] / 100:
                 shortlist.append({'stock': stock, 'type': 'loser', 'open': nifty50_open[stock.symbol],
                                   'prev_close': nifty50_close[stock.symbol]})
+        self.logger.info('End filter')
         return shortlist
 
     def run(self):
@@ -104,7 +103,7 @@ class OpenDoor(object):
                     '{},{},{},{},{},{},{}'.format(price, target_price, stop_loss, transaction_type, quantity,
                                                   quantity * target_price, order_id))
             success = True
-        return None
+        return True
 
     def write_file_row(self, data):
         with open(self.file_name, 'a') as report_file:
