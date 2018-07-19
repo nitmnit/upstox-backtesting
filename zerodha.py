@@ -60,12 +60,16 @@ class KiteCon(object):
 
 class KiteHistory(object):
 
-    def __init__(self, exchange, logger):
+    def __init__(self, exchange, logger=None):
         self.logger = logger
         self.exchange = exchange
         self.con = KiteConnect(api_key=settings.KITE['API_KEY'])
         access_token = self.get_access_token()
         self.con.set_access_token(access_token)
+
+    def log(self, message, level='INFO'):
+        if self.logger:
+            self.logger.info(message)
 
     def get_access_token(self):
         db_con = DbCon()
@@ -77,11 +81,11 @@ class KiteHistory(object):
         return access_token
 
     def create_new_access_token(self):
-        self.logger.info('Creating new access token.')
+        self.log('Creating new access token.')
         request_token = self.get_request_token()
         data = self.con.generate_session(request_token, api_secret=settings.KITE['API_SECRET'])
         if 'access_token' in data:
-            self.logger.info('Created new Access token. {}'.format(data['access_token']))
+            self.log('Created new Access token. {}'.format(data['access_token']))
             return data['access_token']
         else:
             raise Exception('Token not found.')
@@ -92,13 +96,13 @@ class KiteHistory(object):
             self.con.holdings()
             return True
         except (TokenException, ConnectionError):
-            self.logger.info('Access token validation failed. {}'.format(token))
+            self.log('Access token validation failed. {}'.format(token))
             return False
 
     @wait_response
     def get_quote(self, instrument_id):
         quote = self.con.quote(instrument_id)
-        self.logger.info('Getting quote. {}'.format(quote))
+        self.log('Getting quote. {}'.format(quote))
         return quote
 
     @wait_response
@@ -119,17 +123,13 @@ class KiteHistory(object):
                                         stoploss=stop_loss,
                                         price=price,
                                         validity=self.con.VALIDITY_DAY)
-        self.logger.info('Order Place: {}'.format(order_id))
+        self.log('Order Place: {}'.format(order_id))
         return order_id
 
     def get_daily_open_price(self, instrument, date):
         start_date = datetime(year=date.year, month=date.month, day=date.day, hour=9, minute=15, second=0)
         end_date = datetime(year=date.year, month=date.month, day=date.day, hour=15, minute=30, second=0)
         data = self.get_minutes_candles(instrument=instrument, from_date=start_date, to_date=end_date)
-        print(instrument)
-        print(start_date)
-        print(end_date)
-        print(data)
         return data[0]['open']
 
     def get_daily_close_price(self, instrument, date):
@@ -178,7 +178,7 @@ class KiteHistory(object):
     def get_top_losers(self, date, number=5):
         data = self.get_nifty50_sorted_by_change(date=date)
         if len(data) >= number:
-            self.logger.info('Top losers :  data- {}\n data: {}'.format(date, data[:number]))
+            self.log('Top losers :  data- {}\n data: {}'.format(date, data[:number]))
             return data[:number]
 
     @wait_response
@@ -217,7 +217,7 @@ class KiteHistory(object):
         return answer
 
     def get_request_token(self):
-        self.logger.info('Getting request token.')
+        self.log('Getting request token.')
         con = SeleniumConnector(logger=self.logger)
         con.driver.get(self.con.login_url())
         time.sleep(3)
@@ -242,5 +242,14 @@ class KiteHistory(object):
         parsed = urlparse.urlparse(con.driver.current_url)
         request_token = urlparse.parse_qs(parsed.query)['request_token'][0]
         con.driver.close()
-        self.logger.info('Got request token. {}'.format(request_token))
+        self.log('Got request token. {}'.format(request_token))
         return request_token
+
+    def get_nifty50_today_minutes_data_files(self):
+        for symbol, instrument in settings.NIFTY50.items():
+            with open('data/report_today_' + str(symbol) + '.csv', 'w') as fi:
+                data_c = self.get_minutes_candles(from_date=datetime.now().date(),
+                                                  to_date=datetime.now() + timedelta(days=1), instrument=instrument)
+                fi.write(','.join([str(key) for key, x in data_c[0].items()]))
+                for dt in data_c:
+                    fi.write(','.join([str(x) for key, x in dt.items()]) + '\n')
