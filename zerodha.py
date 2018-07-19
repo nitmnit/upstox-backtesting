@@ -60,7 +60,7 @@ class KiteCon(object):
 
 class KiteHistory(object):
 
-    def __init__(self, exchange, logger=None):
+    def __init__(self, exchange='NSE', logger=None):
         self.logger = logger
         self.exchange = exchange
         self.con = KiteConnect(api_key=settings.KITE['API_KEY'])
@@ -106,6 +106,13 @@ class KiteHistory(object):
         return quote
 
     @wait_response
+    def get_quotes(self, instruments):
+        assert (type(instruments) == list)
+        quotes = self.con.quote(instruments)
+        self.log('Getting Group quotes. {}'.format(quotes))
+        return quotes
+
+    @wait_response
     def place_bracket_order_at_market_price(self, symbol, transaction_type, quantity, square_off, stop_loss, price):
         if transaction_type == 'buy':
             transaction_type = self.con.TRANSACTION_TYPE_BUY
@@ -132,6 +139,15 @@ class KiteHistory(object):
         data = self.get_minutes_candles(instrument=instrument, from_date=start_date, to_date=end_date)
         return data[0]['open']
 
+    def get_nifty50_open_price(self):
+        nifty_instruments = [instrument for symbol, instrument in settings.NIFTY50.iteritems()]
+        data = self.get_quotes(instruments=nifty_instruments)
+        open_prices = {}
+        for instrument, quote in data.iteritems():
+            if 'ohlc' in quote and 'open' in quote['ohlc'] and quote['ohlc']['open'] != 0:
+                open_prices[str(instrument)] = quote[str(instrument)]['ohlc']['open']
+        return open_prices
+
     def get_daily_close_price(self, instrument, date):
         start_date = datetime(year=date.year, month=date.month, day=date.day, hour=9, minute=15, second=0)
         end_date = datetime(year=date.year, month=date.month, day=date.day, hour=15, minute=30, second=0)
@@ -145,6 +161,8 @@ class KiteHistory(object):
 
     @wait_response
     def get_minutes_candles(self, instrument, from_date, to_date):
+        if to_date > datetime.now():
+            to_date = datetime.now()
         if settings.REDIS['IS_ENABLED']:
             data = r.hget('get_minutes_candles', self.get_key(instrument, from_date, to_date))
             if not data or len(data) < 3:

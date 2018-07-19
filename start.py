@@ -49,4 +49,5 @@ logging.config.dictConfig({
 #     logger.info("Voila! Done.")
 
 x = OpenDoor(logger=logger, )
+logger.info('Starting Open Door.')
 x.run()

@@ -6,10 +6,10 @@ import time
 
 import redis
 
-r = redis.StrictRedis(host='localhost', port=6379)
-
 from helpers import get_previous_open_date
 from zerodha import KiteHistory
+
+r = redis.StrictRedis(host='localhost', port=6379)
 
 
 class OpenDoor(object):
@@ -28,6 +28,7 @@ class OpenDoor(object):
                                 'end_trading': datetime.time(hour=9, minute=30),
                                 'target_change': .6}):
         self.logger = logger
+        self.logger.info('init OpenDoor')
         self.today_date = datetime.datetime.now().date()
         self.c = configuration
         self.success_rate = 0
@@ -42,12 +43,19 @@ class OpenDoor(object):
         self.filtered_stocks = {}
         self.set_nifty50_previous_day_close()
         self.write_file_row('price,target_price,stop_loss,trans_type,quantity,profit,order_id')
+        self.logger.info('init OpenDoor ended.')
+
+    def clean_redis(self):
+        all_keys = r.hgetall('get_minutes_candles')
+        for key, value in all_keys.iteritems():
+            r.hdel('get_minutes_candles', key)
 
     def set_nifty50_previous_day_close(self):
         if len(self.nifty50_close) == len(self.nifty50):
             return
         for stock in self.nifty50:
             self.get_stock_previous_close(stock)
+        self.logger.info('Previous day close set: {}'.format(self.nifty50_close))
 
     def set_nifty50_open(self):
         if len(self.nifty50_close) == len(self.nifty50):
@@ -76,9 +84,13 @@ class OpenDoor(object):
     def get_stock_open(self, stock):
         try:
             if stock.symbol not in self.nifty50_open:
-                self.nifty50_open[stock.symbol] = self.stock_history.get_daily_open_price(instrument=stock.instrument,
-                                                                                          date=self.today_date)
-        except IndexError:
+                data = self.stock_history.get_nifty50_open_price()
+                if str(stock.symbol) in data and data[str(stock.symbol)]:
+                    self.nifty50_open[stock.symbol] = data[str(stock.symbol)]
+                else:
+                    return
+        except (IndexError, KeyError) as e:
+            self.logger.error('Error: {}'.format(e.message))
             return
         return self.nifty50_open[stock.symbol]
 
@@ -89,6 +101,7 @@ class OpenDoor(object):
                 self.nifty50_close[stock.symbol] = self.stock_history.get_daily_close_price(instrument=stock.instrument,
                                                                                             date=previous_day)
         except IndexError:
+            self.logger.error('Error getting previous close for {}, date: {}'.format(stock, self.today_date))
             return
         return self.nifty50_close[stock.symbol]
 
@@ -113,6 +126,7 @@ class OpenDoor(object):
         return self.filtered_stocks[stock.symbol]
 
     def run(self):
+        self.logger.info('Starting run.')
         in_queue = []
         done = []
         counter = 1
@@ -124,6 +138,7 @@ class OpenDoor(object):
             if datetime.datetime.now().time() > self.c['end_trading']:
                 self.logger.error('End time reached. Shutting Down the script.')
                 break
+            self.set_nifty50_open()
             for stock in self.nifty50:
                 filter_status = self.filter_one_stock(stock)
                 if filter_status[0] in [self.FILTER_STATUS_PN, self.FILTER_STATUS_FL]:
@@ -167,6 +182,7 @@ class OpenDoor(object):
             counter += 1
             if in_queue and done and (len(in_queue) == len(done)):
                 break
+        self.logger.info('Ending run.')
         return True
 
     def write_file_row(self, data):
