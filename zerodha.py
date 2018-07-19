@@ -109,7 +109,7 @@ class KiteHistory(object):
     def get_quotes(self, instruments):
         assert (type(instruments) == list)
         quotes = self.con.quote(instruments)
-        self.log('Getting Group quotes. {}'.format(quotes))
+        self.log('Getting Group quotes')
         return quotes
 
     @wait_response
@@ -145,7 +145,7 @@ class KiteHistory(object):
         open_prices = {}
         for instrument, quote in data.iteritems():
             if 'ohlc' in quote and 'open' in quote['ohlc'] and quote['ohlc']['open'] != 0:
-                open_prices[str(instrument)] = quote[str(instrument)]['ohlc']['open']
+                open_prices[str(instrument)] = quote['ohlc']['open']
         return open_prices
 
     def get_daily_close_price(self, instrument, date):

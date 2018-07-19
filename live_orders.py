@@ -85,12 +85,12 @@ class OpenDoor(object):
         try:
             if stock.symbol not in self.nifty50_open:
                 data = self.stock_history.get_nifty50_open_price()
-                if str(stock.symbol) in data and data[str(stock.symbol)]:
-                    self.nifty50_open[stock.symbol] = data[str(stock.symbol)]
+                if str(stock.instrument) in data and data[str(stock.instrument)]:
+                    self.nifty50_open[stock.symbol] = data[str(stock.instrument)]
                 else:
                     return
         except (IndexError, KeyError) as e:
-            self.logger.error('Error: {}'.format(e.message))
+            self.logger.error('Error: {}'.format(e))
             return
         return self.nifty50_open[stock.symbol]
 
@@ -109,7 +109,6 @@ class OpenDoor(object):
         if stock.symbol in self.filtered_stocks:
             return self.filtered_stocks[stock.symbol]
         self.get_stock_open(stock)
-        self.get_stock_previous_close(stock)
         if (stock.symbol not in self.nifty50_open) or (stock.symbol not in self.nifty50_close):
             return self.FILTER_STATUS_PN, None
         change = (self.nifty50_open[stock.symbol] - self.nifty50_close[stock.symbol]) / self.nifty50_close[stock.symbol]
