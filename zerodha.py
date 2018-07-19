@@ -126,6 +126,10 @@ class KiteHistory(object):
         start_date = datetime(year=date.year, month=date.month, day=date.day, hour=9, minute=15, second=0)
         end_date = datetime(year=date.year, month=date.month, day=date.day, hour=15, minute=30, second=0)
         data = self.get_minutes_candles(instrument=instrument, from_date=start_date, to_date=end_date)
+        print(instrument)
+        print(start_date)
+        print(end_date)
+        print(data)
         return data[0]['open']
 
     def get_daily_close_price(self, instrument, date):
@@ -143,7 +147,7 @@ class KiteHistory(object):
     def get_minutes_candles(self, instrument, from_date, to_date):
         if settings.REDIS['IS_ENABLED']:
             data = r.hget('get_minutes_candles', self.get_key(instrument, from_date, to_date))
-            if not data:
+            if not data or len(data) < 3:
                 data = self.con.historical_data(instrument_token=instrument, from_date=from_date, to_date=to_date,
                                                 interval='minute')
                 for dl in data:

@@ -22,14 +22,13 @@ class OpenDoor(object):
     def __init__(self, logger,
                  configuration={'change': .2,
                                 'stop_loss': 1.0,
-                                'amount': 20000.00,
+                                'amount': 30000.00,
                                 'max_change': .54,
-                                'start_trading': datetime.time(hour=9, minute=13),
-                                'end_trading': datetime.time(hour=9, minute=20),
+                                'start_trading': datetime.time(hour=9, minute=14, second=56),
+                                'end_trading': datetime.time(hour=9, minute=30),
                                 'target_change': .6}):
         self.logger = logger
         self.today_date = datetime.datetime.now().date()
-        self.today_date = (datetime.datetime.now() - datetime.timedelta(days=2)).date()
         self.c = configuration
         self.success_rate = 0
         self.master_profit = 0
@@ -119,6 +118,7 @@ class OpenDoor(object):
         counter = 1
         while True:
             while datetime.datetime.now().time() < self.c['start_trading']:
+                self.logger.info("Just waiting!")
                 time.sleep(1)
             self.logger.info('Trying for the {}th time.'.format(counter))
             if datetime.datetime.now().time() > self.c['end_trading']:
@@ -127,6 +127,7 @@ class OpenDoor(object):
             for stock in self.nifty50:
                 filter_status = self.filter_one_stock(stock)
                 if filter_status[0] in [self.FILTER_STATUS_PN, self.FILTER_STATUS_FL]:
+                    self.logger.info('Failed filter: {}, stock: {}'.format(filter_status[0], stock))
                     continue
                 stock_details = filter_status[1]
                 if r.get('stock_orders_{}'.format(stock.instrument)):
@@ -135,8 +136,8 @@ class OpenDoor(object):
                     in_queue.append(stock.instrument)
                 quote = self.stock_history.get_quote(stock_details['stock'].instrument)
                 if not quote:
+                    self.logger.info('Quote not found. {}'.format(stock))
                     continue
-                self.logger.info('Quote Stock{}: Day: {} Quote: {}'.format(stock_details, self.today_date, quote))
                 if stock_details['type'] == self.EXP_TYPE_GN:
                     price = round(quote[str(stock_details['stock'].instrument)]['depth']['sell'][0]['price'], 2)
                 else:
@@ -164,7 +165,7 @@ class OpenDoor(object):
                     '{},{},{},{},{},{},{}'.format(price, target_price, stop_loss, transaction_type, quantity,
                                                   quantity * target_price, order_id))
             counter += 1
-            if len(in_queue) == len(done):
+            if in_queue and done and (len(in_queue) == len(done)):
                 break
         return True
 
