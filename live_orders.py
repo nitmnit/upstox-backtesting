@@ -175,9 +175,6 @@ class OpenDoor(object):
                     self.logger.info('Order id: {}, Stock: {}'.format(order_id, stock_details))
                 r.set('stock_orders_{}'.format(stock.instrument), str(order_id), ex=60 * 60 * 17)
                 done.append(stock.instrument)
-                self.write_file_row(
-                    '{},{},{},{},{},{},{}'.format(price, target_price, stop_loss, transaction_type, quantity,
-                                                  quantity * target_price, order_id))
             counter += 1
             if in_queue and done and (len(in_queue) == len(done)):
                 break
