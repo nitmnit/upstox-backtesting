@@ -22,7 +22,7 @@ class OpenDoor(object):
     def __init__(self, logger,
                  configuration={'change': .2,
                                 'stop_loss': 1.0,
-                                'amount': 45000.00,
+                                'amount': 30000.00,
                                 'max_change': .54,
                                 'start_trading': datetime.time(hour=9, minute=14, second=56),
                                 'end_trading': datetime.time(hour=9, minute=30),
@@ -131,6 +131,8 @@ class OpenDoor(object):
         counter = 1
         while True:
             while datetime.datetime.now().time() < self.c['start_trading']:
+                if datetime.datetime.now().time().minute == 10:
+                    self.stock_history.get_access_token()
                 self.logger.info("Just waiting!")
                 time.sleep(1)
             self.logger.info('Trying for the {}th time.'.format(counter))
