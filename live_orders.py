@@ -41,7 +41,10 @@ class OpenDoor(object):
         self.nifty50_close = {}
         self.nifty50_open = {}
         self.filtered_stocks = {}
-        self.set_nifty50_previous_day_close()
+        while len(self.nifty50_close) != len(self.nifty50):
+            self.set_nifty50_previous_day_close()
+            self.logger.info('Setting close price.')
+            time.sleep(1)
         self.write_file_row('price,target_price,stop_loss,trans_type,quantity,profit,order_id')
         self.logger.info('init OpenDoor ended.')
 
