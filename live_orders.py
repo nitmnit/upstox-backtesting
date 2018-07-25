@@ -22,7 +22,7 @@ class OpenDoor(object):
     def __init__(self, logger,
                  configuration={'change': .2,
                                 'stop_loss': 1.0,
-                                'amount': 150000.00,
+                                'amount': 120000.00,
                                 'max_change': .54,
                                 'start_trading': datetime.time(hour=9, minute=14, second=53),
                                 'end_trading': datetime.time(hour=9, minute=30),
