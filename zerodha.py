@@ -6,7 +6,7 @@ from datetime import timedelta, datetime, date as ddate
 
 import psycopg2
 from kiteconnect import KiteConnect
-from kiteconnect.exceptions import TokenException
+from kiteconnect.exceptions import TokenException, PermissionException
 import redis
 from requests.exceptions import ConnectionError
 
@@ -95,7 +95,7 @@ class KiteHistory(object):
             self.con.set_access_token(access_token=token)
             self.con.holdings()
             return True
-        except (TokenException, ConnectionError):
+        except (TokenException, ConnectionError, PermissionException):
             self.log('Access token validation failed. {}'.format(token))
             return False
 
