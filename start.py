@@ -25,7 +25,7 @@ logging.config.dictConfig({
             'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': 'freaky_bananas.log',
-            'maxBytes': 1024 * 1024 * 100,
+            'maxBytes': 1024 * 1024,
             'backupCount': 100,
             'formatter': 'standard',
         },
