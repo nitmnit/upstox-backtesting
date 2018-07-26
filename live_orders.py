@@ -24,7 +24,7 @@ class OpenDoor(object):
                                 'stop_loss': 1.0,
                                 'amount': 120000.00,
                                 'max_change': .54,
-                                'start_trading': datetime.time(hour=9, minute=14, second=53),
+                                'start_trading': datetime.time(hour=9, minute=14, second=56),
                                 'end_trading': datetime.time(hour=9, minute=30),
                                 'target_change': .6}):
         self.logger = logger
