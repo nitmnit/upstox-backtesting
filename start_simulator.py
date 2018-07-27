@@ -40,7 +40,7 @@ logging.config.dictConfig({
     }
 })
 
-start_date = ddatetime(year=2018, month=7, day=18, hour=9, minute=15, second=0)
+start_date = ddatetime(year=2018, month=1, day=1, hour=9, minute=15, second=0)
 # start_date = ddatetime(year=2018, month=1, day=1, hour=9, minute=15, second=0)
 # end_date = ddatetime(year=2018, month=1, day=31, hour=9, minute=15, second=0)
 end_date = ddatetime(year=2018, month=7, day=19, hour=9, minute=15, second=0)
