@@ -271,3 +271,50 @@ class KiteHistory(object):
                 fi.write(','.join([str(key) for key, x in data_c[0].items()]))
                 for dt in data_c:
                     fi.write(','.join([str(x) for key, x in dt.items()]) + '\n')
+
+
+class MarginCalculator(object):
+    @staticmethod
+    def margin(stock, price, quantity, stoploss, trigger_price, type='bo'):
+        if type == 'bo':
+            pass
+        else:
+            raise Exception('Type doesn\'t exist.')
+
+    @staticmethod
+    def calculate_margin(co_lower, co_upper, price, stoploss, quantity, factor=1.20):
+        co_lower = co_lower / 100
+        co_upper = co_upper / 100
+        trigger = price - (co_upper * price)
+        if stoploss > trigger:
+            trigger = stoploss
+        x = abs(price - trigger) * quantity
+        y = co_lower * price * quantity
+        margin = max(x, y) * factor
+        return margin
+
+    @staticmethod
+    def calculate_margin_boco(co_lower, co_upper, price, stoploss, quantity):
+        return MarginCalculator.calculate_margin_boco(co_lower, co_upper, price, stoploss, quantity)
+
+    @staticmethod
+    def margin_nfo(co_lower, co_upper, price, stoploss, transaction_type, quantity, options, tradingsymbol,
+                   strike_price):
+        if options:
+            # For NIFTY and BANKNIFTY
+            if 'NIFTY' in tradingsymbol and transaction_type == 'buy':
+                margin = price * quantity * 0.70
+            else:
+                margin = (strike_price + price) * quantity * 0.25
+            return margin
+        return MarginCalculator.calculate_margin(co_lower, co_upper, price, stoploss, quantity)
+
+    @staticmethod
+    def margin_mcx(price, stoploss, quantity):
+        return MarginCalculator.calculate_margin(co_lower=1.00, co_upper=1.90, price=price, stoploss=stoploss,
+                                                 quantity=quantity, factor=1.40)
+
+    @staticmethod
+    def margin_cds(co_lower, co_upper, price, stoploss, quantity):
+        return MarginCalculator.calculate_margin(co_lower=co_lower, co_upper=co_upper, price=price, stoploss=stoploss,
+                                                 quantity=quantity, factor=0.20)
