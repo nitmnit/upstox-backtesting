@@ -22,7 +22,7 @@ class OpenDoor(object):
     def __init__(self, logger,
                  configuration={'change': .2,
                                 'stop_loss': 1.0,
-                                'amount': 120000.00,
+                                'amount': 200000.00,
                                 'max_change': .54,
                                 'start_trading': datetime.time(hour=9, minute=14, second=56),
                                 'end_trading': datetime.time(hour=9, minute=30),
@@ -104,7 +104,7 @@ class OpenDoor(object):
                 self.nifty50_close[stock.symbol] = self.stock_history.get_daily_close_price(instrument=stock.instrument,
                                                                                             date=previous_day)
         except IndexError:
-            self.logger.error('Error getting previous close for {}, date: {}'.format(stock, self.today_date))
+            self.logger.error('Error getting previous close for {}, date: {}'.format(stock, previous_day))
             return
         return self.nifty50_close[stock.symbol]
 
@@ -178,8 +178,8 @@ class OpenDoor(object):
                         stop_loss=stop_loss,
                         price=price)
                     self.logger.info('Order id: {}, Stock: {}'.format(order_id, stock_details))
-                    self.write_file_row('{},{},{},{},{},{}'.format(price, target_price, stop_loss, transaction_type,
-                                                                   quantity, order_id))
+                    self.write_file_row('\n{},{},{},{},{},{}'.format(price, target_price, stop_loss, transaction_type,
+                                                                     quantity, order_id))
                 r.set('stock_orders_{}'.format(stock.instrument), str(order_id), ex=60 * 60 * 17)
                 done.append(stock.instrument)
             counter += 1
