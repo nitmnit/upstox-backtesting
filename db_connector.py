@@ -54,6 +54,23 @@ class DbCon(object):
                     ')')
         self.con.commit()
 
+    def create_margins_table(self):
+        cur = self.con.cursor()
+        cur.execute('DROP TABLE IF EXISTS margins')
+        self.con.commit()
+        cur.execute('CREATE TABLE margins ('
+                    'id SERIAL PRIMARY KEY NOT NULL,'
+                    'margin DOUBLE PRECISION NOT NULL,'
+                    'co_lower DOUBLE PRECISION NOT NULL,'
+                    'co_upper DOUBLE PRECISION NOT NULL,'
+                    'mis_multiplier DOUBLE PRECISION NOT NULL,'
+                    'nrml_margin DOUBLE PRECISION NOT NULL,'
+                    'mis_margin DOUBLE PRECISION NOT NULL,'
+                    'tradingsymbol VARCHAR(100) NOT NULL,'
+                    'segment VARCHAR(100) NOT NULL'
+                    ')')
+        self.con.commit()
+
     def insert_order(self, symbol, instrument, order_id, order_type, price, quantity, trigger_price, created_at,
                      stop_loss, order_status='pending'):
         cur = self.con.cursor()
