@@ -45,7 +45,7 @@ class OpenDoor(object):
             self.set_nifty50_previous_day_close()
             self.logger.info('Setting close price.')
             time.sleep(1)
-        self.write_file_row('price,target_price,stop_loss,trans_type,quantity,profit,order_id')
+        self.write_file_row('price,target_price,stop_loss,trans_type,quantity,order_id')
         self.logger.info('init OpenDoor ended.')
 
     def clean_redis(self):
@@ -178,6 +178,8 @@ class OpenDoor(object):
                         stop_loss=stop_loss,
                         price=price)
                     self.logger.info('Order id: {}, Stock: {}'.format(order_id, stock_details))
+                    self.write_file_row('{},{},{},{},{},{}'.format(price, target_price, stop_loss, transaction_type,
+                                                                   quantity, order_id))
                 r.set('stock_orders_{}'.format(stock.instrument), str(order_id), ex=60 * 60 * 17)
                 done.append(stock.instrument)
             counter += 1
