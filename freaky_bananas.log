@@ -6399,3 +6399,188 @@ Success Rate: 50
 [2018-07-27 09:21:18,606] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:179] - Order id: 180727000141541, Stock: {'prev_close': 388.7, 'open': 390, 'type': 'gainer', 'stock': BPCL-134657-NSE}
 [2018-07-27 09:21:27,344] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
 [2018-07-27 09:21:27,345] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: M&M-519937-NSE
+[2018-07-30 09:12:25,701] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:31] - init OpenDoor
+[2018-07-30 09:12:25,716] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Creating new access token.
+[2018-07-30 09:12:25,717] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting request token.
+[2018-07-30 09:12:25,717] INFO in webpage_interaction [/home/nitin/.atom/freakybananas/webpage_interaction.py:9] - Selenium Connect Started
+[2018-07-30 09:12:27,130] INFO in webpage_interaction [/home/nitin/.atom/freakybananas/webpage_interaction.py:22] - Selenium Connect Ended
+[2018-07-30 09:12:40,526] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Got request token. KYScPT3lslpAw6dTmQ1ahKtWOa5UnILg
+[2018-07-30 09:12:41,205] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Created new Access token. Yw9GTnv5OVOmnMQUiiHitm5mOTWEmQ4E
+[2018-07-30 09:13:26,008] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:61] - Previous day close set: {'BHARTIARTL': 362.25, 'TATASTEEL': 549.15, 'EICHERMOT': 28963, 'BPCL': 396.4, 'M&M': 909.65, 'POWERGRID': 181, 'HINDPETRO': 284.25, 'GAIL': 378.65, 'HINDUNILVR': 1659.95, 'KOTAKBANK': 1312.9, 'SBIN': 286.6, 'ADANIPORTS': 395, 'DRREDDY': 2082.5, 'TITAN': 885, 'TCS': 1943.75, 'ASIANPAINT': 1434.25, 'RELIANCE': 1128.85, 'CIPLA': 635.15, 'AXISBANK': 551.35, 'LT': 1310.3, 'COALINDIA': 262.85, 'BAJAJ-AUTO': 2685, 'HCLTECH': 963.4, 'IOC': 165.35, 'INFRATEL': 289.05, 'WIPRO': 274, 'UPL': 635.5, 'GRASIM': 1029, 'LUPIN': 817.2, 'ONGC': 161.45, 'BAJAJFINSV': 6925.05, 'TECHM': 645.8, 'SUNPHARMA': 556.6, 'HEROMOTOCO': 3203, 'ZEEL': 516.9, 'HDFCBANK': 2203.05, 'TATAMOTORS': 268.15, 'HINDALCO': 214, 'ULTRACEMCO': 4125, 'YESBANK': 369.8, 'ITC': 301.6, 'MARUTI': 9318, 'INDUSINDBK': 1981.6, 'HDFC': 2046, 'ICICIBANK': 292.65, 'IBULHSGFIN': 1319, 'INFY': 1370.75, 'NTPC': 154.7, 'VEDL': 220, 'BAJFINANCE': 2719}
+[2018-07-30 09:13:26,008] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:46] - Setting close price.
+[2018-07-30 09:13:27,010] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:49] - init OpenDoor ended.
+[2018-07-30 09:13:27,011] INFO in start [/home/nitin/.atom/freakybananas/start.py:52] - Starting Open Door.
+[2018-07-30 09:13:27,011] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:131] - Starting run.
+[2018-07-30 09:13:27,556] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:13:29,010] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:13:30,622] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:13:32,004] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:13:33,491] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:13:34,918] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:13:36,367] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:13:38,100] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:13:39,519] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:13:41,115] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:13:43,223] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:13:44,798] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:13:46,371] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:13:48,036] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:13:49,673] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:13:51,130] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:13:52,552] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:13:54,180] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:13:55,601] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:13:57,151] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:13:58,791] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:14:00,206] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:14:01,622] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:14:03,029] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:14:04,614] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:14:06,158] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:14:07,569] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:14:09,184] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:14:11,273] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:14:13,539] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:14:15,176] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:14:28,182] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:31] - init OpenDoor
+[2018-07-30 09:14:28,187] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Creating new access token.
+[2018-07-30 09:14:28,187] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting request token.
+[2018-07-30 09:14:28,187] INFO in webpage_interaction [/home/nitin/.atom/freakybananas/webpage_interaction.py:9] - Selenium Connect Started
+[2018-07-30 09:14:29,592] INFO in webpage_interaction [/home/nitin/.atom/freakybananas/webpage_interaction.py:22] - Selenium Connect Ended
+[2018-07-30 09:14:42,534] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Got request token. poTGAFeNFqDOMGzwUk6IqeP1nMDJuTte
+[2018-07-30 09:14:43,327] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Created new Access token. Yw9GTnv5OVOmnMQUiiHitm5mOTWEmQ4E
+[2018-07-30 09:14:44,186] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:61] - Previous day close set: {'BHARTIARTL': 362.25, 'TATASTEEL': 549.15, 'EICHERMOT': 28963, 'BPCL': 396.4, 'M&M': 909.65, 'POWERGRID': 181, 'HINDPETRO': 284.25, 'GAIL': 378.65, 'HINDUNILVR': 1659.95, 'KOTAKBANK': 1312.9, 'SBIN': 286.6, 'ADANIPORTS': 395, 'DRREDDY': 2082.5, 'TITAN': 885, 'TCS': 1943.75, 'ASIANPAINT': 1434.25, 'RELIANCE': 1128.85, 'CIPLA': 635.15, 'AXISBANK': 551.35, 'LT': 1310.3, 'COALINDIA': 262.85, 'BAJAJ-AUTO': 2685, 'HCLTECH': 963.4, 'IOC': 165.35, 'INFRATEL': 289.05, 'WIPRO': 274, 'UPL': 635.5, 'GRASIM': 1029, 'LUPIN': 817.2, 'ONGC': 161.45, 'BAJAJFINSV': 6925.05, 'TECHM': 645.8, 'SUNPHARMA': 556.6, 'HEROMOTOCO': 3203, 'ZEEL': 516.9, 'HDFCBANK': 2203.05, 'TATAMOTORS': 268.15, 'HINDALCO': 214, 'ULTRACEMCO': 4125, 'YESBANK': 369.8, 'ITC': 301.6, 'MARUTI': 9318, 'INDUSINDBK': 1981.6, 'HDFC': 2046, 'ICICIBANK': 292.65, 'IBULHSGFIN': 1319, 'INFY': 1370.75, 'NTPC': 154.7, 'VEDL': 220, 'BAJFINANCE': 2719}
+[2018-07-30 09:14:44,186] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:46] - Setting close price.
+[2018-07-30 09:14:45,187] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:49] - init OpenDoor ended.
+[2018-07-30 09:14:45,188] INFO in start [/home/nitin/.atom/freakybananas/start.py:52] - Starting Open Door.
+[2018-07-30 09:14:45,189] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:131] - Starting run.
+[2018-07-30 09:14:45,613] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:14:47,239] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:14:48,686] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:14:50,190] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:14:51,598] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:14:53,222] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:14:54,666] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:14:56,097] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-30 09:14:57,100] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:140] - Trying for the 1th time.
+[2018-07-30 09:14:57,895] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:14:57,896] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: ASIANPAINT-60417-NSE
+[2018-07-30 09:14:58,663] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:14:59,072] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting quote. {u'1207553': {u'oi': 0, u'timestamp': datetime.datetime(2018, 7, 30, 9, 13, 1), u'average_price': 380, u'last_price': 380, u'oi_day_low': 0, u'ohlc': {u'high': 380, u'close': 378.5, u'open': 380, u'low': 380}, u'oi_day_high': 0, u'volume': 3524, u'depth': {u'sell': [{u'price': 380, u'orders': 34, u'quantity': 3308}, {u'price': 380.1, u'orders': 1, u'quantity': 184}, {u'price': 380.2, u'orders': 1, u'quantity': 150}, {u'price': 380.35, u'orders': 1, u'quantity': 125}, {u'price': 380.4, u'orders': 1, u'quantity': 50}], u'buy': [{u'price': 379.9, u'orders': 2, u'quantity': 120}, {u'price': 379.7, u'orders': 1, u'quantity': 13}, {u'price': 378.8, u'orders': 2, u'quantity': 54}, {u'price': 378.65, u'orders': 4, u'quantity': 120}, {u'price': 378.5, u'orders': 10, u'quantity': 233}]}, u'instrument_token': 1207553, u'last_trade_time': datetime.datetime(2018, 7, 30, 9, 13, 1), u'sell_quantity': 22046, u'buy_quantity': 4678, u'last_quantity': 5, u'net_change': 1.5}}
+[2018-07-30 09:14:59,072] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:166] - Stock: {'prev_close': 378.65, 'open': 380, 'type': 'gainer', 'stock': GAIL-1207553-NSE}, Price: 380.0, Target: 2.28, Stop loss: 3.8
+[2018-07-30 09:14:59,655] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Order Place: 180730000030610
+[2018-07-30 09:14:59,656] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:179] - Order id: 180730000030610, Stock: {'prev_close': 378.65, 'open': 380, 'type': 'gainer', 'stock': GAIL-1207553-NSE}
+[2018-07-30 09:15:00,268] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:01,588] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting quote. {u'356865': {u'oi': 0, u'timestamp': datetime.datetime(2018, 7, 30, 9, 13, 1), u'average_price': 1666.25, u'last_price': 1666.25, u'oi_day_low': 0, u'ohlc': {u'high': 1666.25, u'close': 1659, u'open': 1666.25, u'low': 1666.25}, u'oi_day_high': 0, u'volume': 485, u'depth': {u'sell': [{u'price': 1668.15, u'orders': 1, u'quantity': 1}, {u'price': 1668.7, u'orders': 1, u'quantity': 100}, {u'price': 1669, u'orders': 6, u'quantity': 338}, {u'price': 1669.95, u'orders': 2, u'quantity': 2}, {u'price': 1670, u'orders': 3, u'quantity': 110}], u'buy': [{u'price': 1666.25, u'orders': 12, u'quantity': 105}, {u'price': 1666, u'orders': 1, u'quantity': 50}, {u'price': 1665.05, u'orders': 1, u'quantity': 100}, {u'price': 1662.25, u'orders': 1, u'quantity': 5}, {u'price': 1662, u'orders': 1, u'quantity': 3}]}, u'instrument_token': 356865, u'last_trade_time': datetime.datetime(2018, 7, 30, 9, 13, 1), u'sell_quantity': 17765, u'buy_quantity': 10962, u'last_quantity': 12, u'net_change': 7.25}}
+[2018-07-30 09:15:01,589] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:166] - Stock: {'prev_close': 1659.95, 'open': 1666.25, 'type': 'gainer', 'stock': HINDUNILVR-356865-NSE}, Price: 1668.15, Target: 10.01, Stop loss: 16.68
+[2018-07-30 09:15:02,014] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Order Place: 180730000031228
+[2018-07-30 09:15:02,014] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:179] - Order id: 180730000031228, Stock: {'prev_close': 1659.95, 'open': 1666.25, 'type': 'gainer', 'stock': HINDUNILVR-356865-NSE}
+[2018-07-30 09:15:02,532] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:02,534] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: SBIN-779521-NSE
+[2018-07-30 09:15:04,196] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:04,196] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: ADANIPORTS-3861249-NSE
+[2018-07-30 09:15:04,650] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:04,650] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: DRREDDY-225537-NSE
+[2018-07-30 09:15:05,817] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:05,818] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: HINDPETRO-359937-NSE
+[2018-07-30 09:15:07,137] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:07,138] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: RELIANCE-738561-NSE
+[2018-07-30 09:15:07,588] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:07,588] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: AXISBANK-1510401-NSE
+[2018-07-30 09:15:08,350] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:08,351] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: COALINDIA-5215745-NSE
+[2018-07-30 09:15:09,508] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:09,508] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: IOC-415745-NSE
+[2018-07-30 09:15:09,991] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:09,991] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: GRASIM-315393-NSE
+[2018-07-30 09:15:10,661] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:11,081] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting quote. {u'857857': {u'oi': 0, u'timestamp': datetime.datetime(2018, 7, 30, 9, 15, 10), u'average_price': 555.47, u'last_price': 555.3, u'oi_day_low': 0, u'ohlc': {u'high': 556.55, u'close': 557.05, u'open': 555.3, u'low': 555.1}, u'oi_day_high': 0, u'volume': 10852, u'depth': {u'sell': [{u'price': 555.45, u'orders': 1, u'quantity': 457}, {u'price': 555.5, u'orders': 2, u'quantity': 722}, {u'price': 555.7, u'orders': 1, u'quantity': 234}, {u'price': 555.75, u'orders': 1, u'quantity': 453}, {u'price': 555.9, u'orders': 1, u'quantity': 1100}], u'buy': [{u'price': 555.3, u'orders': 1, u'quantity': 200}, {u'price': 555.15, u'orders': 1, u'quantity': 40}, {u'price': 555.1, u'orders': 1, u'quantity': 279}, {u'price': 555.05, u'orders': 2, u'quantity': 25}, {u'price': 555, u'orders': 21, u'quantity': 1237}]}, u'instrument_token': 857857, u'last_trade_time': datetime.datetime(2018, 7, 30, 9, 15, 10), u'sell_quantity': 173289, u'buy_quantity': 100563, u'last_quantity': 250, u'net_change': -1.75}}
+[2018-07-30 09:15:11,081] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:166] - Stock: {'prev_close': 556.6, 'open': 555.3, 'type': 'loser', 'stock': SUNPHARMA-857857-NSE}, Price: 555.3, Target: 3.33, Stop loss: 5.55
+[2018-07-30 09:15:11,511] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Order Place: 180730000035466
+[2018-07-30 09:15:11,511] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:179] - Order id: 180730000035466, Stock: {'prev_close': 556.6, 'open': 555.3, 'type': 'loser', 'stock': SUNPHARMA-857857-NSE}
+[2018-07-30 09:15:12,813] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:12,813] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: HEROMOTOCO-345089-NSE
+[2018-07-30 09:15:14,621] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:14,622] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: ZEEL-975873-NSE
+[2018-07-30 09:15:15,796] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:15,797] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: HDFCBANK-341249-NSE
+[2018-07-30 09:15:17,328] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:17,329] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: TATAMOTORS-884737-NSE
+[2018-07-30 09:15:18,290] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:18,290] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: ITC-424961-NSE
+[2018-07-30 09:15:19,207] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:19,208] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: MARUTI-2815745-NSE
+[2018-07-30 09:15:20,564] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:20,565] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: HDFC-340481-NSE
+[2018-07-30 09:15:21,028] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:21,028] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: INFY-408065-NSE
+[2018-07-30 09:15:22,231] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:22,232] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: VEDL-784129-NSE
+[2018-07-30 09:15:23,329] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:23,330] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: BHARTIARTL-2714625-NSE
+[2018-07-30 09:15:23,791] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:23,791] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: TATASTEEL-895745-NSE
+[2018-07-30 09:15:24,253] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:24,253] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: BPCL-134657-NSE
+[2018-07-30 09:15:25,673] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:25,674] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: M&M-519937-NSE
+[2018-07-30 09:15:26,889] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:26,889] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: POWERGRID-3834113-NSE
+[2018-07-30 09:15:27,361] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:28,520] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting quote. {u'492033': {u'oi': 0, u'timestamp': datetime.datetime(2018, 7, 30, 9, 15, 28), u'average_price': 1297.12, u'last_price': 1289.6, u'oi_day_low': 0, u'ohlc': {u'high': 1307.9, u'close': 1311.1, u'open': 1307.9, u'low': 1285.5}, u'oi_day_high': 0, u'volume': 27812, u'depth': {u'sell': [{u'price': 1290.55, u'orders': 1, u'quantity': 31}, {u'price': 1290.95, u'orders': 1, u'quantity': 7}, {u'price': 1291, u'orders': 2, u'quantity': 459}, {u'price': 1291.25, u'orders': 1, u'quantity': 38}, {u'price': 1291.3, u'orders': 1, u'quantity': 800}], u'buy': [{u'price': 1290.05, u'orders': 1, u'quantity': 10}, {u'price': 1290, u'orders': 1, u'quantity': 50}, {u'price': 1289.9, u'orders': 1, u'quantity': 38}, {u'price': 1289.85, u'orders': 1, u'quantity': 116}, {u'price': 1289.75, u'orders': 1, u'quantity': 72}]}, u'instrument_token': 492033, u'last_trade_time': datetime.datetime(2018, 7, 30, 9, 15, 28), u'sell_quantity': 77181, u'buy_quantity': 62940, u'last_quantity': 8, u'net_change': -21.5}}
+[2018-07-30 09:15:28,521] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:166] - Stock: {'prev_close': 1312.9, 'open': 1307.9, 'type': 'loser', 'stock': KOTAKBANK-492033-NSE}, Price: 1290.05, Target: 7.74, Stop loss: 12.9
+[2018-07-30 09:15:29,103] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Order Place: 180730000042133
+[2018-07-30 09:15:29,104] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:179] - Order id: 180730000042133, Stock: {'prev_close': 1312.9, 'open': 1307.9, 'type': 'loser', 'stock': KOTAKBANK-492033-NSE}
+[2018-07-30 09:15:29,572] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:30,181] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting quote. {u'897537': {u'oi': 0, u'timestamp': datetime.datetime(2018, 7, 30, 9, 15, 29), u'average_price': 884.93, u'last_price': 885.4, u'oi_day_low': 0, u'ohlc': {u'high': 888.35, u'close': 884.1, u'open': 882.8, u'low': 881.3}, u'oi_day_high': 0, u'volume': 9859, u'depth': {u'sell': [{u'price': 886.1, u'orders': 1, u'quantity': 24}, {u'price': 886.15, u'orders': 1, u'quantity': 200}, {u'price': 886.35, u'orders': 1, u'quantity': 40}, {u'price': 886.55, u'orders': 1, u'quantity': 65}, {u'price': 886.6, u'orders': 1, u'quantity': 65}], u'buy': [{u'price': 885.45, u'orders': 1, u'quantity': 200}, {u'price': 885.2, u'orders': 1, u'quantity': 65}, {u'price': 885.15, u'orders': 2, u'quantity': 65}, {u'price': 885.05, u'orders': 1, u'quantity': 40}, {u'price': 885, u'orders': 1, u'quantity': 50}]}, u'instrument_token': 897537, u'last_trade_time': datetime.datetime(2018, 7, 30, 9, 15, 29), u'sell_quantity': 62395, u'buy_quantity': 57336, u'last_quantity': 5, u'net_change': 1.2999999999999545}}
+[2018-07-30 09:15:30,182] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:166] - Stock: {'prev_close': 885, 'open': 882.8, 'type': 'loser', 'stock': TITAN-897537-NSE}, Price: 885.45, Target: 5.31, Stop loss: 8.85
+[2018-07-30 09:15:30,643] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Order Place: 180730000042797
+[2018-07-30 09:15:30,644] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:179] - Order id: 180730000042797, Stock: {'prev_close': 885, 'open': 882.8, 'type': 'loser', 'stock': TITAN-897537-NSE}
+[2018-07-30 09:15:31,822] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:31,823] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: TCS-2953217-NSE
+[2018-07-30 09:15:33,028] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:34,539] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting quote. {u'177665': {u'oi': 0, u'timestamp': datetime.datetime(2018, 7, 30, 9, 15, 32), u'average_price': 633.33, u'last_price': 633.4, u'oi_day_low': 0, u'ohlc': {u'high': 634.8, u'close': 636.2, u'open': 633, u'low': 632.95}, u'oi_day_high': 0, u'volume': 8760, u'depth': {u'sell': [{u'price': 633.2, u'orders': 1, u'quantity': 25}, {u'price': 633.25, u'orders': 1, u'quantity': 230}, {u'price': 633.4, u'orders': 1, u'quantity': 13}, {u'price': 633.45, u'orders': 2, u'quantity': 46}, {u'price': 633.5, u'orders': 1, u'quantity': 230}], u'buy': [{u'price': 633, u'orders': 1, u'quantity': 30}, {u'price': 632.95, u'orders': 1, u'quantity': 5}, {u'price': 632.7, u'orders': 1, u'quantity': 25}, {u'price': 632.65, u'orders': 2, u'quantity': 15}, {u'price': 632.5, u'orders': 1, u'quantity': 10}]}, u'instrument_token': 177665, u'last_trade_time': datetime.datetime(2018, 7, 30, 9, 15, 32), u'sell_quantity': 97874, u'buy_quantity': 65392, u'last_quantity': 24, u'net_change': -2.800000000000068}}
+[2018-07-30 09:15:34,541] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:166] - Stock: {'prev_close': 635.15, 'open': 633, 'type': 'loser', 'stock': CIPLA-177665-NSE}, Price: 633.0, Target: 3.8, Stop loss: 6.33
+[2018-07-30 09:15:35,001] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Order Place: 180730000044334
+[2018-07-30 09:15:35,002] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:179] - Order id: 180730000044334, Stock: {'prev_close': 635.15, 'open': 633, 'type': 'loser', 'stock': CIPLA-177665-NSE}
+[2018-07-30 09:15:35,498] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:35,498] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: LT-2939649-NSE
+[2018-07-30 09:15:37,359] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:37,359] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: EICHERMOT-232961-NSE
+[2018-07-30 09:15:37,868] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:37,870] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: BAJAJ-AUTO-4267265-NSE
+[2018-07-30 09:15:39,814] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:39,814] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: HCLTECH-1850625-NSE
+[2018-07-30 09:15:40,275] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:40,275] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: IBULHSGFIN-7712001-NSE
+[2018-07-30 09:15:41,554] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:41,554] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: UPL-2889473-NSE
+[2018-07-30 09:15:42,732] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:43,863] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting quote. {u'2672641': {u'oi': 0, u'timestamp': datetime.datetime(2018, 7, 30, 9, 15, 43), u'average_price': 813.13, u'last_price': 811.35, u'oi_day_low': 0, u'ohlc': {u'high': 816.9, u'close': 815.25, u'open': 815.4, u'low': 810}, u'oi_day_high': 0, u'volume': 21527, u'depth': {u'sell': [{u'price': 811.85, u'orders': 3, u'quantity': 18}, {u'price': 811.9, u'orders': 1, u'quantity': 5}, {u'price': 812, u'orders': 2, u'quantity': 16}, {u'price': 812.05, u'orders': 1, u'quantity': 25}, {u'price': 812.15, u'orders': 1, u'quantity': 21}], u'buy': [{u'price': 811.35, u'orders': 2, u'quantity': 127}, {u'price': 811.3, u'orders': 1, u'quantity': 700}, {u'price': 811.1, u'orders': 2, u'quantity': 121}, {u'price': 811.05, u'orders': 1, u'quantity': 81}, {u'price': 810.8, u'orders': 1, u'quantity': 93}]}, u'instrument_token': 2672641, u'last_trade_time': datetime.datetime(2018, 7, 30, 9, 15, 43), u'sell_quantity': 77250, u'buy_quantity': 79655, u'last_quantity': 1, u'net_change': -3.8999999999999773}}
+[2018-07-30 09:15:43,864] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:166] - Stock: {'prev_close': 817.2, 'open': 815.4, 'type': 'loser', 'stock': LUPIN-2672641-NSE}, Price: 811.35, Target: 4.87, Stop loss: 8.11
+[2018-07-30 09:15:44,294] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Order Place: 180730000047748
+[2018-07-30 09:15:44,295] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:179] - Order id: 180730000047748, Stock: {'prev_close': 817.2, 'open': 815.4, 'type': 'loser', 'stock': LUPIN-2672641-NSE}
+[2018-07-30 09:15:44,781] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:44,781] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: ONGC-633601-NSE
+[2018-07-30 09:15:45,268] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:45,269] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: BAJAJFINSV-4268801-NSE
+[2018-07-30 09:15:46,444] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:47,596] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting quote. {u'3465729': {u'oi': 0, u'timestamp': datetime.datetime(2018, 7, 30, 9, 15, 46), u'average_price': 650.33, u'last_price': 652.25, u'oi_day_low': 0, u'ohlc': {u'high': 652.5, u'close': 645.1, u'open': 648, u'low': 647.9}, u'oi_day_high': 0, u'volume': 38985, u'depth': {u'sell': [{u'price': 652.5, u'orders': 2, u'quantity': 875}, {u'price': 652.95, u'orders': 2, u'quantity': 233}, {u'price': 653, u'orders': 6, u'quantity': 255}, {u'price': 653.3, u'orders': 4, u'quantity': 205}, {u'price': 653.35, u'orders': 1, u'quantity': 15}], u'buy': [{u'price': 652.25, u'orders': 2, u'quantity': 223}, {u'price': 652.2, u'orders': 1, u'quantity': 230}, {u'price': 652.15, u'orders': 1, u'quantity': 25}, {u'price': 652.1, u'orders': 1, u'quantity': 1200}, {u'price': 652.05, u'orders': 1, u'quantity': 342}]}, u'instrument_token': 3465729, u'last_trade_time': datetime.datetime(2018, 7, 30, 9, 15, 46), u'sell_quantity': 94467, u'buy_quantity': 96920, u'last_quantity': 254, u'net_change': 7.149999999999977}}
+[2018-07-30 09:15:47,597] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:166] - Stock: {'prev_close': 645.8, 'open': 648, 'type': 'gainer', 'stock': TECHM-3465729-NSE}, Price: 652.5, Target: 3.92, Stop loss: 6.53
+[2018-07-30 09:15:48,036] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Order Place: 180730000049131
+[2018-07-30 09:15:48,037] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:179] - Order id: 180730000049131, Stock: {'prev_close': 645.8, 'open': 648, 'type': 'gainer', 'stock': TECHM-3465729-NSE}
+[2018-07-30 09:15:49,235] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:49,235] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: WIPRO-969473-NSE
+[2018-07-30 09:15:50,425] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:50,425] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: ULTRACEMCO-2952193-NSE
+[2018-07-30 09:15:51,813] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:51,814] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: HINDALCO-348929-NSE
+[2018-07-30 09:15:52,291] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:52,291] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: YESBANK-3050241-NSE
+[2018-07-30 09:15:53,465] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:53,465] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: BAJFINANCE-81153-NSE
+[2018-07-30 09:15:54,763] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:54,763] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:148] - Failed filter: failure, stock: ICICIBANK-1270529-NSE
+[2018-07-30 09:15:55,433] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-30 09:15:55,850] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting quote. {u'7458561': {u'oi': 0, u'timestamp': datetime.datetime(2018, 7, 30, 9, 15, 54), u'average_price': 289.14, u'last_price': 288.8, u'oi_day_low': 0, u'ohlc': {u'high': 290.45, u'close': 289.45, u'open': 290, u'low': 288}, u'oi_day_high': 0, u'volume': 7496, u'depth': {u'sell': [{u'price': 288.8, u'orders': 2, u'quantity': 3}, {u'price': 288.85, u'orders': 1, u'quantity': 16}, {u'price': 288.9, u'orders': 2, u'quantity': 17}, {u'price': 288.95, u'orders': 1, u'quantity': 79}, {u'price': 289, u'orders': 3, u'quantity': 718}], u'buy': [{u'price': 288.7, u'orders': 2, u'quantity': 78}, {u'price': 288.55, u'orders': 1, u'quantity': 83}, {u'price': 288.5, u'orders': 1, u'quantity': 50}, {u'price': 288.45, u'orders': 1, u'quantity': 126}, {u'price': 288.35, u'orders': 1, u'quantity': 140}]}, u'instrument_token': 7458561, u'last_trade_time': datetime.datetime(2018, 7, 30, 9, 15, 54), u'sell_quantity': 102272, u'buy_quantity': 128506, u'last_quantity': 1, u'net_change': -0.6499999999999773}}
+[2018-07-30 09:15:55,851] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:166] - Stock: {'prev_close': 289.05, 'open': 290, 'type': 'gainer', 'stock': INFRATEL-7458561-NSE}, Price: 288.8, Target: 1.73, Stop loss: 2.89
