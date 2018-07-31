@@ -94,3 +94,32 @@ class DbCon(object):
         cur.execute('DELETE FROM tokens;')
         cur.execute('INSERT INTO tokens (access_token) VALUES (%s);', [token])
         self.con.commit()
+
+    def create_table_instrument(self):
+        cur = self.con.cursor()
+        cur.execute('DROP TABLE IF EXISTS instrument')
+        self.con.commit()
+        cur.execute('CREATE TABLE instrument ('
+                    'id SERIAL PRIMARY KEY NOT NULL,'
+                    'symbol VARCHAR(60) NOT NULL,'
+                    'instrument INTEGER NOT NULL,'
+                    'instrument_type VARCHAR(60) NOT NULL,'
+                    'tick_size DOUBLE PRECISION,'
+                    'name VARCHAR(200) NOT NULL,'
+                    'exchange VARCHAR(60) NOT NULL'
+                    ')')
+        self.con.commit()
+
+    def push_instruments_to_database(self):
+        cur = self.con.cursor()
+        instruments = self.kite_connect.instruments(exchange='NSE')
+        for instrument in instruments:
+            self.create_table()
+            cur.execute('INSERT INTO instrument (symbol, instrument, instrument_type, tick_size, name, exchange) '
+                        'VALUES(\'{}\',{},\'{}\',{},\'{}\',\'{}\')'.format(instrument['tradingsymbol'],
+                                                                           instrument['instrument_token'],
+                                                                           instrument['instrument_type'],
+                                                                           instrument['tick_size'],
+                                                                           instrument['name'].replace('\'', ''),
+                                                                           instrument['exchange']))
+        self.con.commit()
