@@ -24,8 +24,8 @@ class OpenDoor(object):
                                 'stop_loss': 1.0,
                                 'amount': 500000.00,
                                 'max_change': .54,
-                                'open_price': datetime.time(hour=9, minute=12, second=5),
-                                'start_trading': datetime.time(hour=9, minute=14, second=58),
+                                'open_price': datetime.time(hour=7, minute=12, second=5),
+                                'start_trading': datetime.time(hour=7, minute=14, second=58),
                                 'end_trading': datetime.time(hour=9, minute=15, second=10),
                                 'target_change': .6}):
         self.logger = logger
@@ -62,7 +62,7 @@ class OpenDoor(object):
         self.logger.info('Previous day close set: {}'.format(self.nifty50_close))
 
     def set_nifty50_open(self):
-        if len(self.nifty50_close) == len(self.nifty50):
+        if len(self.nifty50_open) == len(self.nifty50):
             return
         for stock in self.nifty50:
             self.get_stock_open(stock)
@@ -70,7 +70,6 @@ class OpenDoor(object):
     def filter_stocks(self):
         self.logger.info('Start filter')
         self.set_nifty50_open()
-        shortlist = []
         for stock in self.nifty50:
             if stock.symbol not in self.nifty50_open or stock.symbol not in self.nifty50_close:
                 self.logger.error("Symbol not in either open or close: stock - {}".format(stock.symbol))
@@ -79,15 +78,11 @@ class OpenDoor(object):
             change = (self.nifty50_open[stock.symbol] - self.nifty50_close[stock.symbol]) / self.nifty50_close[
                 stock.symbol]
             if self.c['change'] / 100.00 <= change <= self.c['max_change'] / 100.00:
-                shortlist.append({'stock': stock, 'type': self.EXP_TYPE_GN, 'open': self.nifty50_open[stock.symbol],
-                                  'prev_close': self.nifty50_close[stock.symbol]})
                 self.filtered_stocks[stock.symbol] = (self.FILTER_STATUS_SC,
                                                       {'stock': stock, 'type': self.EXP_TYPE_GN,
                                                        'open': self.nifty50_open[stock.symbol],
                                                        'prev_close': self.nifty50_close[stock.symbol]},)
             elif -self.c['max_change'] / 100.00 <= change <= -self.c['change'] / 100.00:
-                shortlist.append({'stock': stock, 'type': self.EXP_TYPE_LS, 'open': self.nifty50_open[stock.symbol],
-                                  'prev_close': self.nifty50_close[stock.symbol]})
                 self.filtered_stocks[stock.symbol] = (self.FILTER_STATUS_SC,
                                                       {'stock': stock, 'type': self.EXP_TYPE_LS,
                                                        'open': self.nifty50_open[stock.symbol],
@@ -95,7 +90,6 @@ class OpenDoor(object):
             else:
                 self.filtered_stocks[stock.symbol] = (self.FILTER_STATUS_FL, None,)
         self.logger.info('End filter. {}'.format(self.filtered_stocks))
-        return shortlist
 
     def get_stock_open(self, stock):
         try:
@@ -155,18 +149,21 @@ class OpenDoor(object):
             self.logger.info("Just waiting!")
             time.sleep(1)
         self.logger.info('Trying for the {}st time.'.format(counter))
-        for stock in self.filtered_stocks:
+        print(self.filtered_stocks)
+        for symbol, stock in self.filtered_stocks.iteritems():
             if stock[0] in [self.FILTER_STATUS_PN, self.FILTER_STATUS_FL]:
                 self.logger.info('Failed filter: {}, stock: {}'.format(stock[0], stock))
                 continue
             stock_details = stock[1]
-            if r.get('stock_orders_{}'.format(stock.instrument)):
+            if r.get('stock_orders_{}'.format(stock_details['stock'].instrument)):
+                self.logger.info('Order already in redis, '
+                                 'key: {}'.format('stock_orders_{}'.format(stock_details['stock'].instrument)))
                 continue
-            if stock.instrument not in in_queue:
-                in_queue.append(stock.instrument)
+            if stock_details['stock'].instrument not in in_queue:
+                in_queue.append(stock_details['stock'].instrument)
             quote = self.stock_history.get_quote(stock_details['stock'].instrument)
             if not quote:
-                self.logger.info('Quote not found. {}'.format(stock))
+                self.logger.info('Quote not found. {}'.format(stock_details['stock']))
                 continue
             if stock_details['type'] == self.EXP_TYPE_GN:
                 price = round(quote[str(stock_details['stock'].instrument)]['depth']['sell'][0]['price'], 2)
@@ -193,7 +190,7 @@ class OpenDoor(object):
                 self.write_file_row('\n{},{},{},{},{},{}'.format(price, target_price, stop_loss, transaction_type,
                                                                  quantity, order_id))
             r.set('stock_orders_{}'.format(stock.instrument), str(order_id), ex=60 * 60 * 17)
-            done.append(stock.instrument)
+            done.append(stock_details['stock'].instrument)
         self.logger.info('Ending run.')
         return True
 
