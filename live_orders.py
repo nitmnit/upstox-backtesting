@@ -24,8 +24,8 @@ class OpenDoor(object):
                                 'stop_loss': 1.0,
                                 'amount': 500000.00,
                                 'max_change': .54,
-                                'open_price': datetime.time(hour=7, minute=12, second=5),
-                                'start_trading': datetime.time(hour=7, minute=14, second=58),
+                                'open_price': datetime.time(hour=7, minute=58, second=5),
+                                'start_trading': datetime.time(hour=8, minute=0, second=58),
                                 'end_trading': datetime.time(hour=9, minute=15, second=10),
                                 'target_change': .6}):
         self.logger = logger
@@ -95,10 +95,8 @@ class OpenDoor(object):
         try:
             if stock.symbol not in self.nifty50_open:
                 data = self.stock_history.get_nifty50_open_price()
-                if str(stock.instrument) in data and data[str(stock.instrument)]:
-                    self.nifty50_open[stock.symbol] = data[str(stock.instrument)]
-                else:
-                    return
+                for instrument, open_price in data.iteritems():
+                    self.nifty50_open[self.stock_history.get_stock(instrument).symbol] = open_price
         except (IndexError, KeyError) as e:
             self.logger.error('Index Error get open price: {}'.format(e))
             return
