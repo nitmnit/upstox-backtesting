@@ -22,10 +22,11 @@ class OpenDoor(object):
     def __init__(self, logger,
                  configuration={'change': .2,
                                 'stop_loss': 1.0,
-                                'amount': 270000.00,
+                                'amount': 500000.00,
                                 'max_change': .54,
-                                'start_trading': datetime.time(hour=9, minute=14, second=56),
-                                'end_trading': datetime.time(hour=9, minute=30),
+                                'open_price': datetime.time(hour=9, minute=12, second=5),
+                                'start_trading': datetime.time(hour=9, minute=14, second=58),
+                                'end_trading': datetime.time(hour=9, minute=15, second=10),
                                 'target_change': .6}):
         self.logger = logger
         self.logger.info('init OpenDoor')
@@ -133,6 +134,11 @@ class OpenDoor(object):
         done = []
         counter = 1
         while True:
+            while datetime.datetime.now().time() < self.c['open_price']:
+                self.stock_history.get_access_token()
+                self.logger.info("Just waiting1!")
+                time.sleep(1)
+            self.set_nifty50_open()
             while datetime.datetime.now().time() < self.c['start_trading']:
                 self.stock_history.get_access_token()
                 self.logger.info("Just waiting!")
@@ -141,7 +147,6 @@ class OpenDoor(object):
             if datetime.datetime.now().time() > self.c['end_trading']:
                 self.logger.error('End time reached. Shutting Down the script.')
                 break
-            self.set_nifty50_open()
             for stock in self.nifty50:
                 filter_status = self.filter_one_stock(stock)
                 if filter_status[0] in [self.FILTER_STATUS_PN, self.FILTER_STATUS_FL]:

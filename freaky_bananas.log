@@ -6584,3 +6584,239 @@ Success Rate: 50
 [2018-07-30 09:15:55,433] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
 [2018-07-30 09:15:55,850] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting quote. {u'7458561': {u'oi': 0, u'timestamp': datetime.datetime(2018, 7, 30, 9, 15, 54), u'average_price': 289.14, u'last_price': 288.8, u'oi_day_low': 0, u'ohlc': {u'high': 290.45, u'close': 289.45, u'open': 290, u'low': 288}, u'oi_day_high': 0, u'volume': 7496, u'depth': {u'sell': [{u'price': 288.8, u'orders': 2, u'quantity': 3}, {u'price': 288.85, u'orders': 1, u'quantity': 16}, {u'price': 288.9, u'orders': 2, u'quantity': 17}, {u'price': 288.95, u'orders': 1, u'quantity': 79}, {u'price': 289, u'orders': 3, u'quantity': 718}], u'buy': [{u'price': 288.7, u'orders': 2, u'quantity': 78}, {u'price': 288.55, u'orders': 1, u'quantity': 83}, {u'price': 288.5, u'orders': 1, u'quantity': 50}, {u'price': 288.45, u'orders': 1, u'quantity': 126}, {u'price': 288.35, u'orders': 1, u'quantity': 140}]}, u'instrument_token': 7458561, u'last_trade_time': datetime.datetime(2018, 7, 30, 9, 15, 54), u'sell_quantity': 102272, u'buy_quantity': 128506, u'last_quantity': 1, u'net_change': -0.6499999999999773}}
 [2018-07-30 09:15:55,851] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:166] - Stock: {'prev_close': 289.05, 'open': 290, 'type': 'gainer', 'stock': INFRATEL-7458561-NSE}, Price: 288.8, Target: 1.73, Stop loss: 2.89
+[2018-07-31 09:01:22,690] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:31] - init OpenDoor
+[2018-07-31 09:01:40,041] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:31] - init OpenDoor
+[2018-07-31 09:01:40,515] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Access token validation failed. Yw9GTnv5OVOmnMQUiiHitm5mOTWEmQ4E
+[2018-07-31 09:01:40,516] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Creating new access token.
+[2018-07-31 09:01:40,516] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting request token.
+[2018-07-31 09:01:40,517] INFO in webpage_interaction [/home/nitin/.atom/freakybananas/webpage_interaction.py:9] - Selenium Connect Started
+[2018-07-31 09:02:15,718] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:31] - init OpenDoor
+[2018-07-31 09:02:34,147] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:31] - init OpenDoor
+[2018-07-31 09:02:34,835] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Access token validation failed. Yw9GTnv5OVOmnMQUiiHitm5mOTWEmQ4E
+[2018-07-31 09:02:34,837] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Creating new access token.
+[2018-07-31 09:02:34,838] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting request token.
+[2018-07-31 09:02:34,839] INFO in webpage_interaction [/home/nitin/.atom/freakybananas/webpage_interaction.py:9] - Selenium Connect Started
+[2018-07-31 09:02:36,257] INFO in webpage_interaction [/home/nitin/.atom/freakybananas/webpage_interaction.py:22] - Selenium Connect Ended
+[2018-07-31 09:02:49,705] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Got request token. mk7ieixkVAL368W3Ax5yQZvDz2ykfpZU
+[2018-07-31 09:02:50,371] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Created new Access token. jgeY5FbrO4cLfbWDuTS4xnYMtzLrQRtP
+[2018-07-31 09:05:20,804] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:61] - Previous day close set: {'BHARTIARTL': 384.9, 'TATASTEEL': 552, 'EICHERMOT': 28650, 'BPCL': 395.55, 'M&M': 933, 'POWERGRID': 183, 'HINDPETRO': 288, 'GAIL': 378.8, 'HINDUNILVR': 1689.75, 'KOTAKBANK': 1304.8, 'SBIN': 296.5, 'ADANIPORTS': 389.15, 'DRREDDY': 2066.2, 'TITAN': 892.5, 'TCS': 1944.3, 'ASIANPAINT': 1430, 'RELIANCE': 1152, 'CIPLA': 635, 'AXISBANK': 569.25, 'LT': 1295.4, 'COALINDIA': 262.8, 'BAJAJ-AUTO': 2668.95, 'HCLTECH': 947.95, 'IOC': 166.95, 'INFRATEL': 288.5, 'WIPRO': 273.4, 'UPL': 640.4, 'GRASIM': 1024.05, 'LUPIN': 820.65, 'ONGC': 164.3, 'BAJAJFINSV': 6908, 'TECHM': 658, 'SUNPHARMA': 562.4, 'HEROMOTOCO': 3211, 'ZEEL': 523.5, 'HDFCBANK': 2164.7, 'TATAMOTORS': 268, 'HINDALCO': 210.85, 'ULTRACEMCO': 4240, 'YESBANK': 369.5, 'ITC': 300.6, 'MARUTI': 9390, 'INDUSINDBK': 1975, 'HDFC': 2016, 'ICICIBANK': 307.4, 'IBULHSGFIN': 1338.15, 'INFY': 1351, 'NTPC': 156.2, 'VEDL': 224.9, 'BAJFINANCE': 2674.1}
+[2018-07-31 09:05:20,804] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:46] - Setting close price.
+[2018-07-31 09:05:21,806] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:49] - init OpenDoor ended.
+[2018-07-31 09:05:21,807] INFO in start [/home/nitin/.atom/freakybananas/start.py:52] - Starting Open Door.
+[2018-07-31 09:05:21,807] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:131] - Starting run.
+[2018-07-31 09:05:30,676] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-31 09:05:40,605] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-31 09:05:50,362] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-31 09:05:59,868] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-31 09:06:09,388] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-31 09:06:18,903] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-31 09:06:28,420] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-31 09:06:38,184] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-31 09:06:47,735] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-31 09:06:57,420] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-31 09:07:07,753] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-31 09:07:17,463] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:138] - Just waiting!
+[2018-07-31 09:07:23,988] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:32] - init OpenDoor
+[2018-07-31 09:07:26,022] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:62] - Previous day close set: {'BHARTIARTL': 384.9, 'TATASTEEL': 552, 'EICHERMOT': 28650, 'BPCL': 395.55, 'M&M': 933, 'POWERGRID': 183, 'HINDPETRO': 288, 'GAIL': 378.8, 'HINDUNILVR': 1689.75, 'KOTAKBANK': 1304.8, 'SBIN': 296.5, 'ADANIPORTS': 389.15, 'DRREDDY': 2066.2, 'TITAN': 892.5, 'TCS': 1944.3, 'ASIANPAINT': 1430, 'RELIANCE': 1152, 'CIPLA': 635, 'AXISBANK': 569.25, 'LT': 1295.4, 'COALINDIA': 262.8, 'BAJAJ-AUTO': 2668.95, 'HCLTECH': 947.95, 'IOC': 166.95, 'INFRATEL': 288.5, 'WIPRO': 273.4, 'UPL': 640.4, 'GRASIM': 1024.05, 'LUPIN': 820.65, 'ONGC': 164.3, 'BAJAJFINSV': 6908, 'TECHM': 658, 'SUNPHARMA': 562.4, 'HEROMOTOCO': 3211, 'ZEEL': 523.5, 'HDFCBANK': 2164.7, 'TATAMOTORS': 268, 'HINDALCO': 210.85, 'ULTRACEMCO': 4240, 'YESBANK': 369.5, 'ITC': 300.6, 'MARUTI': 9390, 'INDUSINDBK': 1975, 'HDFC': 2016, 'ICICIBANK': 307.4, 'IBULHSGFIN': 1338.15, 'INFY': 1351, 'NTPC': 156.2, 'VEDL': 224.9, 'BAJFINANCE': 2674.1}
+[2018-07-31 09:07:26,022] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:47] - Setting close price.
+[2018-07-31 09:07:27,023] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:50] - init OpenDoor ended.
+[2018-07-31 09:07:27,024] INFO in start [/home/nitin/.atom/freakybananas/start.py:52] - Starting Open Door.
+[2018-07-31 09:07:27,025] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:132] - Starting run.
+[2018-07-31 09:07:27,721] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:07:29,287] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:07:30,982] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:07:32,630] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:07:34,294] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:07:36,327] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:07:37,984] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:07:40,111] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:07:41,755] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:07:43,232] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:07:44,930] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:07:46,779] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:07:48,549] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:07:50,561] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:07:52,198] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:07:53,940] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:07:55,590] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:07:57,215] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:07:58,699] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:08:00,391] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:08:02,079] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:08:03,775] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:08:05,244] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:08:06,880] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:08:08,338] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:08:12,168] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:09:18,907] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:32] - init OpenDoor
+[2018-07-31 09:09:20,760] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:62] - Previous day close set: {'BHARTIARTL': 384.9, 'TATASTEEL': 552, 'EICHERMOT': 28650, 'BPCL': 395.55, 'M&M': 933, 'POWERGRID': 183, 'HINDPETRO': 288, 'GAIL': 378.8, 'HINDUNILVR': 1689.75, 'KOTAKBANK': 1304.8, 'SBIN': 296.5, 'ADANIPORTS': 389.15, 'DRREDDY': 2066.2, 'TITAN': 892.5, 'TCS': 1944.3, 'ASIANPAINT': 1430, 'RELIANCE': 1152, 'CIPLA': 635, 'AXISBANK': 569.25, 'LT': 1295.4, 'COALINDIA': 262.8, 'BAJAJ-AUTO': 2668.95, 'HCLTECH': 947.95, 'IOC': 166.95, 'INFRATEL': 288.5, 'WIPRO': 273.4, 'UPL': 640.4, 'GRASIM': 1024.05, 'LUPIN': 820.65, 'ONGC': 164.3, 'BAJAJFINSV': 6908, 'TECHM': 658, 'SUNPHARMA': 562.4, 'HEROMOTOCO': 3211, 'ZEEL': 523.5, 'HDFCBANK': 2164.7, 'TATAMOTORS': 268, 'HINDALCO': 210.85, 'ULTRACEMCO': 4240, 'YESBANK': 369.5, 'ITC': 300.6, 'MARUTI': 9390, 'INDUSINDBK': 1975, 'HDFC': 2016, 'ICICIBANK': 307.4, 'IBULHSGFIN': 1338.15, 'INFY': 1351, 'NTPC': 156.2, 'VEDL': 224.9, 'BAJFINANCE': 2674.1}
+[2018-07-31 09:09:20,760] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:47] - Setting close price.
+[2018-07-31 09:09:21,761] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:50] - init OpenDoor ended.
+[2018-07-31 09:09:21,762] INFO in start [/home/nitin/.atom/freakybananas/start.py:52] - Starting Open Door.
+[2018-07-31 09:09:21,762] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:132] - Starting run.
+[2018-07-31 09:09:22,415] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:09:23,923] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:09:25,599] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:09:27,269] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:09:28,919] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:09:31,533] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:09:40,237] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:09:50,989] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:10:01,026] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:10:10,756] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:10:20,263] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:10:29,846] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:10:39,597] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:10:49,355] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:11:00,418] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:11:26,898] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:32] - init OpenDoor
+[2018-07-31 09:11:30,079] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:62] - Previous day close set: {'BHARTIARTL': 384.9, 'TATASTEEL': 552, 'EICHERMOT': 28650, 'BPCL': 395.55, 'M&M': 933, 'POWERGRID': 183, 'HINDPETRO': 288, 'GAIL': 378.8, 'HINDUNILVR': 1689.75, 'KOTAKBANK': 1304.8, 'SBIN': 296.5, 'ADANIPORTS': 389.15, 'DRREDDY': 2066.2, 'TITAN': 892.5, 'TCS': 1944.3, 'ASIANPAINT': 1430, 'RELIANCE': 1152, 'CIPLA': 635, 'AXISBANK': 569.25, 'LT': 1295.4, 'COALINDIA': 262.8, 'BAJAJ-AUTO': 2668.95, 'HCLTECH': 947.95, 'IOC': 166.95, 'INFRATEL': 288.5, 'WIPRO': 273.4, 'UPL': 640.4, 'GRASIM': 1024.05, 'LUPIN': 820.65, 'ONGC': 164.3, 'BAJAJFINSV': 6908, 'TECHM': 658, 'SUNPHARMA': 562.4, 'HEROMOTOCO': 3211, 'ZEEL': 523.5, 'HDFCBANK': 2164.7, 'TATAMOTORS': 268, 'HINDALCO': 210.85, 'ULTRACEMCO': 4240, 'YESBANK': 369.5, 'ITC': 300.6, 'MARUTI': 9390, 'INDUSINDBK': 1975, 'HDFC': 2016, 'ICICIBANK': 307.4, 'IBULHSGFIN': 1338.15, 'INFY': 1351, 'NTPC': 156.2, 'VEDL': 224.9, 'BAJFINANCE': 2674.1}
+[2018-07-31 09:11:30,080] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:47] - Setting close price.
+[2018-07-31 09:11:31,081] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:50] - init OpenDoor ended.
+[2018-07-31 09:11:31,082] INFO in start [/home/nitin/.atom/freakybananas/start.py:52] - Starting Open Door.
+[2018-07-31 09:11:31,083] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:132] - Starting run.
+[2018-07-31 09:11:31,555] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:11:35,030] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:11:39,140] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:11:45,449] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:11:48,132] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:11:49,738] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:11:51,617] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:11:53,665] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:139] - Just waiting1!
+[2018-07-31 09:12:09,465] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:32] - init OpenDoor
+[2018-07-31 09:12:10,659] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:62] - Previous day close set: {'BHARTIARTL': 384.9, 'TATASTEEL': 552, 'EICHERMOT': 28650, 'BPCL': 395.55, 'M&M': 933, 'POWERGRID': 183, 'HINDPETRO': 288, 'GAIL': 378.8, 'HINDUNILVR': 1689.75, 'KOTAKBANK': 1304.8, 'SBIN': 296.5, 'ADANIPORTS': 389.15, 'DRREDDY': 2066.2, 'TITAN': 892.5, 'TCS': 1944.3, 'ASIANPAINT': 1430, 'RELIANCE': 1152, 'CIPLA': 635, 'AXISBANK': 569.25, 'LT': 1295.4, 'COALINDIA': 262.8, 'BAJAJ-AUTO': 2668.95, 'HCLTECH': 947.95, 'IOC': 166.95, 'INFRATEL': 288.5, 'WIPRO': 273.4, 'UPL': 640.4, 'GRASIM': 1024.05, 'LUPIN': 820.65, 'ONGC': 164.3, 'BAJAJFINSV': 6908, 'TECHM': 658, 'SUNPHARMA': 562.4, 'HEROMOTOCO': 3211, 'ZEEL': 523.5, 'HDFCBANK': 2164.7, 'TATAMOTORS': 268, 'HINDALCO': 210.85, 'ULTRACEMCO': 4240, 'YESBANK': 369.5, 'ITC': 300.6, 'MARUTI': 9390, 'INDUSINDBK': 1975, 'HDFC': 2016, 'ICICIBANK': 307.4, 'IBULHSGFIN': 1338.15, 'INFY': 1351, 'NTPC': 156.2, 'VEDL': 224.9, 'BAJFINANCE': 2674.1}
+[2018-07-31 09:12:10,659] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:47] - Setting close price.
+[2018-07-31 09:12:11,660] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:50] - init OpenDoor ended.
+[2018-07-31 09:12:11,661] INFO in start [/home/nitin/.atom/freakybananas/start.py:52] - Starting Open Door.
+[2018-07-31 09:12:11,662] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:132] - Starting run.
+[2018-07-31 09:12:12,714] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:12:24,408] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:32] - init OpenDoor
+[2018-07-31 09:12:26,209] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:62] - Previous day close set: {'BHARTIARTL': 384.9, 'TATASTEEL': 552, 'EICHERMOT': 28650, 'BPCL': 395.55, 'M&M': 933, 'POWERGRID': 183, 'HINDPETRO': 288, 'GAIL': 378.8, 'HINDUNILVR': 1689.75, 'KOTAKBANK': 1304.8, 'SBIN': 296.5, 'ADANIPORTS': 389.15, 'DRREDDY': 2066.2, 'TITAN': 892.5, 'TCS': 1944.3, 'ASIANPAINT': 1430, 'RELIANCE': 1152, 'CIPLA': 635, 'AXISBANK': 569.25, 'LT': 1295.4, 'COALINDIA': 262.8, 'BAJAJ-AUTO': 2668.95, 'HCLTECH': 947.95, 'IOC': 166.95, 'INFRATEL': 288.5, 'WIPRO': 273.4, 'UPL': 640.4, 'GRASIM': 1024.05, 'LUPIN': 820.65, 'ONGC': 164.3, 'BAJAJFINSV': 6908, 'TECHM': 658, 'SUNPHARMA': 562.4, 'HEROMOTOCO': 3211, 'ZEEL': 523.5, 'HDFCBANK': 2164.7, 'TATAMOTORS': 268, 'HINDALCO': 210.85, 'ULTRACEMCO': 4240, 'YESBANK': 369.5, 'ITC': 300.6, 'MARUTI': 9390, 'INDUSINDBK': 1975, 'HDFC': 2016, 'ICICIBANK': 307.4, 'IBULHSGFIN': 1338.15, 'INFY': 1351, 'NTPC': 156.2, 'VEDL': 224.9, 'BAJFINANCE': 2674.1}
+[2018-07-31 09:12:26,209] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:47] - Setting close price.
+[2018-07-31 09:12:27,210] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:50] - init OpenDoor ended.
+[2018-07-31 09:12:27,211] INFO in start [/home/nitin/.atom/freakybananas/start.py:52] - Starting Open Door.
+[2018-07-31 09:12:27,212] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:132] - Starting run.
+[2018-07-31 09:12:27,837] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:12:29,472] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:12:31,160] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:12:32,823] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:12:34,264] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:12:35,863] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:12:37,389] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:12:39,025] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:12:40,507] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:12:42,338] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:12:49,794] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:12:51,461] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:12:53,129] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:12:54,694] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:12:56,372] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:12:57,970] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:12:59,648] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:01,355] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:03,293] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:04,899] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:06,524] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:08,192] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:09,748] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:11,460] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:12,926] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:14,598] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:16,317] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:17,840] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:19,526] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:21,422] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:23,373] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:25,079] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:26,749] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:28,898] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:30,538] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:32,276] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:33,735] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:35,429] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:36,928] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:38,632] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:40,120] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:41,599] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:43,302] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:44,950] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:46,511] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:47,979] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:49,625] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:51,283] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:53,168] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:54,760] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:57,060] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:13:58,725] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:00,419] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:01,866] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:03,455] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:04,893] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:06,786] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:08,256] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:09,929] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:11,403] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:13,062] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:14,682] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:16,925] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:18,538] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:20,018] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:21,448] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:22,903] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:24,486] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:25,960] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:27,633] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:29,288] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:30,742] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:32,237] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:33,895] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:35,358] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:36,830] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:38,307] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:39,944] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:41,400] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:42,901] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:44,601] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:46,102] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:47,591] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:49,079] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:50,548] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:52,191] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:53,895] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:55,814] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:57,507] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:144] - Just waiting!
+[2018-07-31 09:14:58,508] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:146] - Trying for the 1th time.
+[2018-07-31 09:14:59,544] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-31 09:14:59,545] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:153] - Failed filter: failure, stock: ASIANPAINT-60417-NSE
+[2018-07-31 09:15:00,066] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-31 09:15:00,067] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:153] - Failed filter: failure, stock: GAIL-1207553-NSE
+[2018-07-31 09:15:01,740] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-31 09:15:01,740] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:153] - Failed filter: failure, stock: HINDUNILVR-356865-NSE
+[2018-07-31 09:15:02,648] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-31 09:15:02,649] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:153] - Failed filter: failure, stock: SBIN-779521-NSE
+[2018-07-31 09:15:03,965] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-31 09:15:03,966] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:153] - Failed filter: failure, stock: ADANIPORTS-3861249-NSE
+[2018-07-31 09:15:05,265] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-31 09:15:06,591] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting quote. {u'225537': {u'oi': 0, u'timestamp': datetime.datetime(2018, 7, 31, 9, 15, 6), u'average_price': 2075.87, u'last_price': 2077.15, u'oi_day_low': 0, u'ohlc': {u'high': 2079.85, u'close': 2067.2, u'open': 2075, u'low': 2075}, u'oi_day_high': 0, u'volume': 7400, u'depth': {u'sell': [{u'price': 2079.85, u'orders': 1, u'quantity': 62}, {u'price': 2080, u'orders': 14, u'quantity': 78}, {u'price': 2080.7, u'orders': 1, u'quantity': 10}, {u'price': 2081.95, u'orders': 1, u'quantity': 53}, {u'price': 2082, u'orders': 1, u'quantity': 100}], u'buy': [{u'price': 2078.55, u'orders': 1, u'quantity': 67}, {u'price': 2078.5, u'orders': 1, u'quantity': 79}, {u'price': 2078.05, u'orders': 1, u'quantity': 53}, {u'price': 2078, u'orders': 2, u'quantity': 99}, {u'price': 2077.95, u'orders': 1, u'quantity': 250}]}, u'instrument_token': 225537, u'last_trade_time': datetime.datetime(2018, 7, 31, 9, 15, 6), u'sell_quantity': 24054, u'buy_quantity': 25372, u'last_quantity': 69, u'net_change': 9.950000000000273}}
+[2018-07-31 09:15:06,592] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:171] - Stock: {'prev_close': 2066.2, 'open': 2075, 'type': 'gainer', 'stock': DRREDDY-225537-NSE}, Price: 2079.85, Target: 12.48, Stop loss: 20.8
+[2018-07-31 09:15:07,101] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Order Place: 180731000035900
+[2018-07-31 09:15:07,102] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:184] - Order id: 180731000035900, Stock: {'prev_close': 2066.2, 'open': 2075, 'type': 'gainer', 'stock': DRREDDY-225537-NSE}
+[2018-07-31 09:15:08,467] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-31 09:15:08,467] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:153] - Failed filter: failure, stock: HINDPETRO-359937-NSE
+[2018-07-31 09:15:09,112] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-31 09:15:09,112] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:153] - Failed filter: failure, stock: RELIANCE-738561-NSE
+[2018-07-31 09:15:10,848] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-31 09:15:10,849] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:153] - Failed filter: failure, stock: AXISBANK-1510401-NSE
+[2018-07-31 09:15:12,314] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-31 09:15:12,944] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting quote. {u'5215745': {u'oi': 0, u'timestamp': datetime.datetime(2018, 7, 31, 9, 15, 12), u'average_price': 263.79, u'last_price': 263.7, u'oi_day_low': 0, u'ohlc': {u'high': 264.05, u'close': 262.5, u'open': 263.8, u'low': 263.2}, u'oi_day_high': 0, u'volume': 9543, u'depth': {u'sell': [{u'price': 263.45, u'orders': 1, u'quantity': 3}, {u'price': 263.65, u'orders': 1, u'quantity': 189}, {u'price': 263.7, u'orders': 2, u'quantity': 172}, {u'price': 263.75, u'orders': 1, u'quantity': 169}, {u'price': 263.8, u'orders': 1, u'quantity': 89}], u'buy': [{u'price': 263.3, u'orders': 3, u'quantity': 1066}, {u'price': 263.25, u'orders': 1, u'quantity': 45}, {u'price': 263.2, u'orders': 3, u'quantity': 169}, {u'price': 263.15, u'orders': 1, u'quantity': 30}, {u'price': 263.05, u'orders': 1, u'quantity': 153}]}, u'instrument_token': 5215745, u'last_trade_time': datetime.datetime(2018, 7, 31, 9, 15, 12), u'sell_quantity': 87467, u'buy_quantity': 77703, u'last_quantity': 169, u'net_change': 1.1999999999999886}}
+[2018-07-31 09:15:12,945] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:171] - Stock: {'prev_close': 262.8, 'open': 263.8, 'type': 'gainer', 'stock': COALINDIA-5215745-NSE}, Price: 263.45, Target: 1.58, Stop loss: 2.63
+[2018-07-31 09:15:13,542] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Order Place: 180731000038566
+[2018-07-31 09:15:13,542] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:184] - Order id: 180731000038566, Stock: {'prev_close': 262.8, 'open': 263.8, 'type': 'gainer', 'stock': COALINDIA-5215745-NSE}
+[2018-07-31 09:15:14,036] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-31 09:15:14,037] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:153] - Failed filter: failure, stock: IOC-415745-NSE
+[2018-07-31 09:15:15,734] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-31 09:15:15,734] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:153] - Failed filter: failure, stock: GRASIM-315393-NSE
+[2018-07-31 09:15:17,394] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-31 09:15:17,394] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:153] - Failed filter: failure, stock: SUNPHARMA-857857-NSE
+[2018-07-31 09:15:18,088] INFO in zerodha [/home/nitin/.atom/freakybananas/zerodha.py:72] - Getting Group quotes
+[2018-07-31 09:15:18,088] INFO in live_orders [/home/nitin/.atom/freakybananas/live_orders.py:153] - Failed filter: failure, stock: HEROMOTOCO-345089-NSE
