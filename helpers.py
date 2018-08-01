@@ -1,3 +1,4 @@
+import psycopg2
 import time
 from datetime import datetime, timedelta
 from requests import ReadTimeout
@@ -39,3 +40,20 @@ def wait_response(func):
     return wrapper
 
 
+def push_instruments_to_database():
+    from zerodha import KiteHistory
+    con = psycopg2.connect(host=settings.DATABASE['HOST'], database=settings.DATABASE['NAME'],
+                           user=settings.DATABASE['USERNAME'],
+                           password=settings.DATABASE['PASSWORD'])
+
+    cur = con.cursor()
+    instruments = KiteHistory().con.instruments(exchange='NSE')
+    for instrument in instruments:
+        cur.execute('INSERT INTO instrument (symbol, instrument, instrument_type, tick_size, name, exchange) '
+                    'VALUES(\'{}\',{},\'{}\',{},\'{}\',\'{}\')'.format(instrument['tradingsymbol'],
+                                                                       instrument['instrument_token'],
+                                                                       instrument['instrument_type'],
+                                                                       instrument['tick_size'],
+                                                                       instrument['name'].replace('\'', ''),
+                                                                       instrument['exchange']))
+    con.commit()

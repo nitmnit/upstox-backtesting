@@ -109,16 +109,3 @@ class DbCon(object):
                     'exchange VARCHAR(60) NOT NULL'
                     ')')
         self.con.commit()
-
-    def push_instruments_to_database(self):
-        cur = self.con.cursor()
-        instruments = self.kite_connect.instruments(exchange='NSE')
-        for instrument in instruments:
-            cur.execute('INSERT INTO instrument (symbol, instrument, instrument_type, tick_size, name, exchange) '
-                        'VALUES(\'{}\',{},\'{}\',{},\'{}\',\'{}\')'.format(instrument['tradingsymbol'],
-                                                                           instrument['instrument_token'],
-                                                                           instrument['instrument_type'],
-                                                                           instrument['tick_size'],
-                                                                           instrument['name'].replace('\'', ''),
-                                                                           instrument['exchange']))
-        self.con.commit()
