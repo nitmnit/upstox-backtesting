@@ -114,7 +114,6 @@ class DbCon(object):
         cur = self.con.cursor()
         instruments = self.kite_connect.instruments(exchange='NSE')
         for instrument in instruments:
-            self.create_table()
             cur.execute('INSERT INTO instrument (symbol, instrument, instrument_type, tick_size, name, exchange) '
                         'VALUES(\'{}\',{},\'{}\',{},\'{}\',\'{}\')'.format(instrument['tradingsymbol'],
                                                                            instrument['instrument_token'],
