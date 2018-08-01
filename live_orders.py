@@ -24,8 +24,8 @@ class OpenDoor(object):
                                 'stop_loss': 1.0,
                                 'amount': 500000.00,
                                 'max_change': .54,
-                                'open_price': datetime.time(hour=7, minute=58, second=5),
-                                'start_trading': datetime.time(hour=8, minute=0, second=58),
+                                'open_price': datetime.time(hour=9, minute=12, second=10),
+                                'start_trading': datetime.time(hour=9, minute=15, second=0),
                                 'end_trading': datetime.time(hour=9, minute=15, second=10),
                                 'target_change': .6}):
         self.logger = logger
@@ -147,7 +147,6 @@ class OpenDoor(object):
             self.logger.info("Just waiting!")
             time.sleep(1)
         self.logger.info('Trying for the {}st time.'.format(counter))
-        print(self.filtered_stocks)
         for symbol, stock in self.filtered_stocks.iteritems():
             if stock[0] in [self.FILTER_STATUS_PN, self.FILTER_STATUS_FL]:
                 self.logger.info('Failed filter: {}, stock: {}'.format(stock[0], stock))
@@ -176,6 +175,9 @@ class OpenDoor(object):
                 continue
             quantity = int(math.floor(self.c['amount'] / price))
             transaction_type = 'buy' if stock_details['type'] == self.EXP_TYPE_GN else 'sell'
+            if datetime.datetime.now().time() > self.c['end_trading']:
+                self.logger.info("Ending trade.!")
+                break
             if quantity > 0:
                 order_id = self.stock_history.place_bracket_order_at_market_price(
                     symbol=stock_details['stock'].symbol,
@@ -187,7 +189,7 @@ class OpenDoor(object):
                 self.logger.info('Order id: {}, Stock: {}'.format(order_id, stock_details))
                 self.write_file_row('\n{},{},{},{},{},{}'.format(price, target_price, stop_loss, transaction_type,
                                                                  quantity, order_id))
-            r.set('stock_orders_{}'.format(stock.instrument), str(order_id), ex=60 * 60 * 17)
+            r.set('stock_orders_{}'.format(stock_details['stock'].instrument), str(order_id), ex=60 * 60 * 17)
             done.append(stock_details['stock'].instrument)
         self.logger.info('Ending run.')
         return True
