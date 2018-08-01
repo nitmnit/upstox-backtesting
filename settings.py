@@ -86,3 +86,8 @@ NIFTY50 = {'UPL': '2889473',
 REDIS = {
     'IS_ENABLED': True
 }
+
+try:
+    from local_settings import *
+except ImportError as e:
+    pass
