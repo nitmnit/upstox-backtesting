@@ -193,6 +193,11 @@ class KiteHistory(object):
         data = sorted(stocks_change_list, key=lambda x: x[2])
         return data
 
+    def current_amount(self):
+        margins = self.con.margins()
+        self.logger.info(margins)
+        return margins
+
     def get_top_losers(self, date, number=5):
         data = self.get_nifty50_sorted_by_change(date=date)
         if len(data) >= number:
