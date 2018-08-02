@@ -34,6 +34,7 @@ class OpenDoor(object):
         self.c = configuration
         self.success_rate = 0
         self.master_profit = 0
+        self.clean_redis()
         self.stock_history = KiteHistory(exchange='NSE', logger=self.logger)
         self.file_name = os.path.join('data', 'report_' + str(self.today_date) + '.csv')
         self.fields = ['symbol', 'date', 'previous_close', 'open', 'type', 'trigger_price', 'target_price',
