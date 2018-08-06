@@ -16,7 +16,7 @@ class SeleniumConnector(object):
         # chrome_options.add_experimental_option('prefs', prefs)
         desired_capabilities = DesiredCapabilities.CHROME
         desired_capabilities['loggingPrefs'] = {"browser": "SEVERE"}
-        self.driver = webdriver.Chrome(executable_path='./chromedriver',
+        self.driver = webdriver.Chrome(executable_path='chromedriver',
                                        desired_capabilities=DesiredCapabilities.CHROME, chrome_options=chrome_options)
         self.wait_time = 3
         self.logger.info('Selenium Connect Ended')
