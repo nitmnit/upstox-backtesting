@@ -21,13 +21,13 @@ class OpenDoor(object):
 
     def __init__(self, logger,
                  configuration={'change': .2,
-                                'stop_loss': .9,
+                                'stop_loss': .6,
                                 'amount': 250000.00,
                                 'max_change': .50,
                                 'open_price': datetime.time(hour=9, minute=12, second=10),
                                 'start_trading': datetime.time(hour=9, minute=15, second=0),
                                 'end_trading': datetime.time(hour=9, minute=15, second=10),
-                                'target_change': .5}):
+                                'target_change': .4}):
         self.logger = logger
         self.logger.info('init OpenDoor')
         self.today_date = datetime.datetime.now().date()
