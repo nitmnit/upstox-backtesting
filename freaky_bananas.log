@@ -2383,3 +2383,840 @@
 [2018-08-02 09:15:10,732] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:172] - Stock: {'prev_close': 217.95, 'open': 217, 'type': 'loser', 'stock': VEDL-784129-NSE}, Price: 215.05, Target: 1.29, Stop loss: 2.15
 [2018-08-02 09:15:10,733] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:179] - Ending trade.!
 [2018-08-02 09:15:10,733] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:194] - Ending run.
+[2018-08-03 09:00:39,901] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:32] - init OpenDoor
+[2018-08-03 09:00:40,194] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Access token validation failed. Roxn5FqUujTQ0IORTv537jcecz3Ih5x2
+[2018-08-03 09:00:40,195] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Creating new access token.
+[2018-08-03 09:00:40,196] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Getting request token.
+[2018-08-03 09:00:40,196] INFO in webpage_interaction [/home/ubuntu/stocks/webpage_interaction.py:9] - Selenium Connect Started
+[2018-08-03 09:00:41,719] INFO in webpage_interaction [/home/ubuntu/stocks/webpage_interaction.py:22] - Selenium Connect Ended
+[2018-08-03 09:00:54,412] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Got request token. 5GSeIE7sOerwLxYIieSlZ9V7l2DAONZI
+[2018-08-03 09:00:54,516] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Created new Access token. IeZkMkPukFAX1F29PQg7GmmB6qYjE4VV
+[2018-08-03 09:01:06,993] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:63] - Previous day close set: {'BHARTIARTL': 372.4, 'TATASTEEL': 551.45, 'EICHERMOT': 27000, 'BPCL': 402.1, 'M&M': 911.25, 'POWERGRID': 188.35, 'HINDPETRO': 292.45, 'GAIL': 379, 'HINDUNILVR': 1750, 'KOTAKBANK': 1278.9, 'SBIN': 294, 'ADANIPORTS': 396.15, 'DRREDDY': 2227, 'TITAN': 925, 'TCS': 1948, 'ASIANPAINT': 1415, 'RELIANCE': 1169.2, 'CIPLA': 639, 'AXISBANK': 545, 'LT': 1280.5, 'COALINDIA': 272.95, 'BAJAJ-AUTO': 2675, 'HCLTECH': 963, 'IOC': 168.75, 'INFRATEL': 289.6, 'WIPRO': 278.9, 'UPL': 634.7, 'GRASIM': 1005.6, 'LUPIN': 866, 'ONGC': 167.1, 'BAJAJFINSV': 6915, 'TECHM': 669, 'SUNPHARMA': 581, 'HEROMOTOCO': 3262.05, 'ZEEL': 519, 'HDFCBANK': 2130.35, 'TATAMOTORS': 260.3, 'HINDALCO': 207.2, 'ULTRACEMCO': 4180, 'YESBANK': 361.8, 'ITC': 298.7, 'MARUTI': 9129.4, 'INDUSINDBK': 2022, 'HDFC': 1932, 'ICICIBANK': 298.35, 'IBULHSGFIN': 1295.1, 'INFY': 1353.4, 'NTPC': 155.6, 'VEDL': 214, 'BAJFINANCE': 2682.2}
+[2018-08-03 09:01:06,994] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:48] - Setting close price.
+[2018-08-03 09:01:07,996] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:51] - init OpenDoor ended.
+[2018-08-03 09:01:07,996] INFO in start [start.py:52] - Starting Open Door.
+[2018-08-03 09:01:07,997] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:137] - Starting run.
+[2018-08-03 09:01:08,098] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:09,192] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:10,283] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:11,565] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:12,660] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:13,759] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:14,855] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:15,948] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:17,145] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:18,240] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:19,341] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:20,451] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:21,542] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:22,636] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:23,918] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:25,018] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:26,119] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:27,219] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:28,312] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:29,407] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:30,505] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:31,619] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:32,725] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:33,823] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:34,920] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:36,013] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:37,110] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:38,205] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:39,493] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:40,767] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:42,057] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:43,166] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:44,261] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:45,376] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:46,675] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:47,770] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:48,863] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:50,158] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:51,256] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:52,355] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:53,448] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:54,539] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:55,635] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:56,738] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:58,031] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:01:59,129] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:00,227] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:01,518] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:02,617] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:03,713] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:04,810] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:05,906] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:07,206] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:08,301] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:09,400] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:10,679] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:11,777] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:12,872] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:13,962] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:15,066] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:16,158] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:17,443] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:18,712] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:19,810] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:20,904] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:21,996] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:23,302] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:24,393] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:25,486] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:26,579] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:27,680] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:28,777] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:29,885] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:30,998] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:32,309] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:33,411] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:34,509] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:35,607] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:36,702] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:37,795] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:39,088] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:40,185] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:41,291] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:42,387] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:43,481] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:44,574] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:45,664] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:46,768] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:47,867] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:48,960] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:50,057] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:51,158] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:52,440] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:53,546] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:54,641] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:55,737] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:56,830] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:57,935] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:02:59,032] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:00,133] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:01,417] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:02,531] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:03,628] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:04,723] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:05,824] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:06,921] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:08,017] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:09,118] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:10,221] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:11,317] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:12,436] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:13,530] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:14,625] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:15,924] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:17,019] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:18,165] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:19,268] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:20,559] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:21,831] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:22,930] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:24,042] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:25,135] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:26,231] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:27,333] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:28,428] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:29,836] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:30,940] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:32,045] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:33,136] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:34,233] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:35,347] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:36,444] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:37,534] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:38,627] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:39,743] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:40,847] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:41,939] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:43,049] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:44,326] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:45,423] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:46,699] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:47,793] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:48,889] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:49,988] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:51,079] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:52,175] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:53,267] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:54,379] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:55,497] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:56,593] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:57,691] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:03:58,957] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:00,049] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:01,148] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:02,246] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:03,338] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:04,437] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:05,551] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:06,845] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:07,996] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:09,095] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:10,193] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:11,287] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:12,407] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:13,505] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:14,603] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:15,695] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:16,797] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:18,097] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:19,187] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:20,292] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:21,589] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:22,689] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:23,783] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:24,880] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:25,981] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:27,279] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:28,377] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:29,474] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:30,572] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:31,662] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:32,949] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:34,047] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:35,145] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:36,237] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:37,336] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:38,432] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:39,760] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:40,869] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:41,969] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:43,391] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:44,494] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:45,591] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:46,688] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:47,787] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:48,909] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:50,008] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:51,105] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:52,198] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:53,296] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:54,397] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:55,500] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:56,597] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:57,711] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:58,810] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:04:59,962] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:01,056] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:02,154] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:03,256] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:04,351] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:05,447] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:06,541] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:07,635] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:08,730] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:09,839] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:10,938] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:12,029] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:13,122] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:14,350] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:15,456] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:16,554] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:17,648] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:18,743] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:19,839] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:20,941] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:22,128] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:23,416] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:24,536] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:25,636] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:26,731] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:27,829] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:28,931] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:30,027] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:31,118] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:32,210] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:33,301] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:34,401] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:35,500] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:36,781] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:37,878] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:39,173] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:40,268] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:41,563] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:42,659] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:43,771] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:45,075] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:46,173] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:47,295] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:48,396] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:49,516] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:50,609] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:51,717] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:53,023] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:55,423] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:56,519] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:57,610] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:58,705] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:05:59,800] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:00,897] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:02,007] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:03,107] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:04,399] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:05,664] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:06,774] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:07,868] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:08,966] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:10,072] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:11,341] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:12,458] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:13,551] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:14,656] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:15,768] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:16,868] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:17,971] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:19,063] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:20,339] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:21,436] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:22,530] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:23,636] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:24,734] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:25,825] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:27,106] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:28,394] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:29,501] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:30,592] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:31,695] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:32,795] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:34,104] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:35,233] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:36,528] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:37,636] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:38,730] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:39,830] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:40,934] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:42,032] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:43,124] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:44,217] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:45,532] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:46,627] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:47,916] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:49,231] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:50,511] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:51,777] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:52,870] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:53,971] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:55,071] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:56,164] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:57,260] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:58,353] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:06:59,450] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:00,566] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:01,664] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:02,957] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:04,060] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:05,160] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:06,256] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:07,564] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:08,667] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:09,944] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:11,049] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:12,145] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:13,243] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:14,337] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:15,438] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:16,548] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:17,644] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:18,735] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:19,832] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:20,941] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:22,044] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:23,139] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:24,443] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:25,538] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:26,637] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:27,731] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:28,833] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:29,939] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:31,231] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:32,534] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:33,835] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:34,940] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:36,042] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:37,136] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:38,233] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:39,330] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:40,635] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:41,729] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:42,823] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:44,117] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:45,270] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:46,362] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:47,656] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:48,757] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:49,850] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:50,944] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:52,042] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:53,140] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:54,437] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:55,536] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:56,634] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:57,735] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:58,834] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:07:59,929] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:01,021] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:02,112] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:03,213] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:04,310] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:05,433] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:06,544] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:07,863] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:08,965] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:10,063] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:11,152] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:12,257] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:13,354] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:14,459] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:15,724] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:17,006] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:18,323] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:19,415] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:20,711] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:21,812] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:22,915] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:24,018] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:25,134] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:26,236] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:27,334] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:28,425] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:29,518] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:30,617] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:31,712] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:32,804] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:33,898] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:34,996] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:36,097] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:37,197] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:38,293] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:39,390] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:40,488] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:41,604] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:42,705] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:43,803] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:44,907] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:46,243] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:47,342] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:48,660] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:49,768] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:50,865] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:51,959] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:53,070] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:54,162] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:55,256] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:56,354] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:57,664] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:58,779] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:08:59,889] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:00,983] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:02,273] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:03,654] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:04,749] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:05,889] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:06,991] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:08,151] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:09,252] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:10,520] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:11,617] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:12,917] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:14,197] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:15,293] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:16,389] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:17,480] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:18,575] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:19,685] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:20,783] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:21,886] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:22,978] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:24,086] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:25,193] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:26,290] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:27,391] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:28,496] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:29,615] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:30,726] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:31,823] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:32,915] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:34,208] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:35,314] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:36,689] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:37,970] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:39,077] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:40,178] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:41,491] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:42,590] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:43,687] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:44,784] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:45,880] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:47,169] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:48,262] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:49,367] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:50,467] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:51,567] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:52,663] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:53,762] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:54,858] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:56,160] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:57,283] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:58,386] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:09:59,478] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:00,577] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:01,684] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:02,782] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:03,875] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:05,171] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:06,269] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:07,471] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:08,564] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:09,850] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:10,942] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:12,039] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:13,353] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:14,449] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:15,546] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:16,816] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:18,116] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:19,206] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:20,303] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:21,399] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:22,510] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:23,606] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:24,702] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:25,821] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:26,920] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:28,211] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:29,509] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:30,600] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:31,692] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:32,790] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:33,885] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:34,977] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:36,075] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:37,348] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:38,441] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:39,540] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:40,637] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:41,737] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:43,047] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:44,141] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:45,232] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:46,331] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:47,431] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:48,529] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:49,627] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:50,734] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:52,031] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:53,127] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:54,223] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:55,517] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:57,251] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:58,345] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:10:59,444] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:00,554] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:01,650] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:02,745] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:03,845] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:04,943] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:06,044] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:17,899] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:32] - init OpenDoor
+[2018-08-03 09:11:29,699] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:63] - Previous day close set: {'BHARTIARTL': 372.4, 'TATASTEEL': 551.45, 'EICHERMOT': 27000, 'BPCL': 402.1, 'M&M': 911.25, 'POWERGRID': 188.35, 'HINDPETRO': 292.45, 'GAIL': 379, 'HINDUNILVR': 1750, 'KOTAKBANK': 1278.9, 'SBIN': 294, 'ADANIPORTS': 396.15, 'DRREDDY': 2227, 'TITAN': 925, 'TCS': 1948, 'ASIANPAINT': 1415, 'RELIANCE': 1169.2, 'CIPLA': 639, 'AXISBANK': 545, 'LT': 1280.5, 'COALINDIA': 272.95, 'BAJAJ-AUTO': 2675, 'HCLTECH': 963, 'IOC': 168.75, 'INFRATEL': 289.6, 'WIPRO': 278.9, 'UPL': 634.7, 'GRASIM': 1005.6, 'LUPIN': 866, 'ONGC': 167.1, 'BAJAJFINSV': 6915, 'TECHM': 669, 'SUNPHARMA': 581, 'HEROMOTOCO': 3262.05, 'ZEEL': 519, 'HDFCBANK': 2130.35, 'TATAMOTORS': 260.3, 'HINDALCO': 207.2, 'ULTRACEMCO': 4180, 'YESBANK': 361.8, 'ITC': 298.7, 'MARUTI': 9129.4, 'INDUSINDBK': 2022, 'HDFC': 1932, 'ICICIBANK': 298.35, 'IBULHSGFIN': 1295.1, 'INFY': 1353.4, 'NTPC': 155.6, 'VEDL': 214, 'BAJFINANCE': 2682.2}
+[2018-08-03 09:11:29,700] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:48] - Setting close price.
+[2018-08-03 09:11:30,702] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:51] - init OpenDoor ended.
+[2018-08-03 09:11:30,703] INFO in start [start.py:52] - Starting Open Door.
+[2018-08-03 09:11:30,703] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:137] - Starting run.
+[2018-08-03 09:11:30,999] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:32,093] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:33,188] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:34,494] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:35,613] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:36,718] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:37,829] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:38,932] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:40,025] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:41,124] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:42,424] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:43,725] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:44,823] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:45,922] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:47,020] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:48,117] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:49,217] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:50,310] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:51,405] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:52,506] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:53,604] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:54,703] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:55,802] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:56,900] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:57,997] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:11:59,093] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:12:00,182] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:12:01,288] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:12:02,383] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:12:03,680] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:12:04,776] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:12:05,866] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:12:07,138] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:12:08,231] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:12:09,323] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:143] - Waiting for open price.
+[2018-08-03 09:12:10,475] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Getting Group quotes
+[2018-08-03 09:12:10,770] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:72] - Start filter
+[2018-08-03 09:12:10,771] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:93] - End filter. {'BHARTIARTL': ('failure', None), 'TATASTEEL': ('failure', None), 'EICHERMOT': ('failure', None), 'BPCL': ('failure', None), 'M&M': ('success', {'prev_close': 911.25, 'open': 914.05, 'type': 'gainer', 'stock': M&M-519937-NSE}), 'POWERGRID': ('failure', None), 'HINDPETRO': ('failure', None), 'GAIL': ('failure', None), 'HINDUNILVR': ('failure', None), 'KOTAKBANK': ('failure', None), 'SBIN': ('success', {'prev_close': 294, 'open': 294.6, 'type': 'gainer', 'stock': SBIN-779521-NSE}), 'ADANIPORTS': ('failure', None), 'DRREDDY': ('failure', None), 'TITAN': ('failure', None), 'TCS': ('success', {'prev_close': 1948, 'open': 1956.5, 'type': 'gainer', 'stock': TCS-2953217-NSE}), 'ASIANPAINT': ('failure', None), 'RELIANCE': ('success', {'prev_close': 1169.2, 'open': 1175, 'type': 'gainer', 'stock': RELIANCE-738561-NSE}), 'CIPLA': ('success', {'prev_close': 639, 'open': 640.95, 'type': 'gainer', 'stock': CIPLA-177665-NSE}), 'AXISBANK': ('success', {'prev_close': 545, 'open': 546.5, 'type': 'gainer', 'stock': AXISBANK-1510401-NSE}), 'LT': ('success', {'prev_close': 1280.5, 'open': 1285.2, 'type': 'gainer', 'stock': LT-2939649-NSE}), 'COALINDIA': ('success', {'prev_close': 272.95, 'open': 274, 'type': 'gainer', 'stock': COALINDIA-5215745-NSE}), 'BAJAJ-AUTO': ('failure', None), 'HCLTECH': ('success', {'prev_close': 963, 'open': 966.05, 'type': 'gainer', 'stock': HCLTECH-1850625-NSE}), 'IOC': ('failure', None), 'INFRATEL': ('failure', None), 'WIPRO': ('failure', None), 'UPL': ('failure', None), 'GRASIM': ('failure', None), 'LUPIN': ('failure', None), 'ONGC': ('failure', None), 'BAJAJFINSV': ('failure', None), 'TECHM': ('failure', None), 'SUNPHARMA': ('success', {'prev_close': 581, 'open': 583.9, 'type': 'gainer', 'stock': SUNPHARMA-857857-NSE}), 'HEROMOTOCO': ('success', {'prev_close': 3262.05, 'open': 3270, 'type': 'gainer', 'stock': HEROMOTOCO-345089-NSE}), 'ZEEL': ('failure', None), 'HDFCBANK': ('failure', None), 'TATAMOTORS': ('failure', None), 'HINDALCO': ('success', {'prev_close': 207.2, 'open': 208.05, 'type': 'gainer', 'stock': HINDALCO-348929-NSE}), 'ULTRACEMCO': ('failure', None), 'YESBANK': ('failure', None), 'ITC': ('success', {'prev_close': 298.7, 'open': 300, 'type': 'gainer', 'stock': ITC-424961-NSE}), 'MARUTI': ('success', {'prev_close': 9129.4, 'open': 9150, 'type': 'gainer', 'stock': MARUTI-2815745-NSE}), 'INDUSINDBK': ('failure', None), 'HDFC': ('failure', None), 'ICICIBANK': ('failure', None), 'IBULHSGFIN': ('failure', None), 'INFY': ('failure', None), 'NTPC': ('failure', None), 'VEDL': ('success', {'prev_close': 214, 'open': 215.05, 'type': 'gainer', 'stock': VEDL-784129-NSE}), 'BAJFINANCE': ('failure', None)}
+[2018-08-03 09:12:10,771] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:11,772] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:12,774] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:13,776] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:14,778] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:15,779] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:16,781] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:17,783] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:18,785] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:19,787] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:20,788] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:21,790] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:22,792] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:23,794] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:24,795] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:25,797] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:26,798] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:27,800] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:28,802] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:29,803] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:30,805] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:31,806] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:32,808] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:33,810] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:34,811] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:35,813] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:36,814] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:37,817] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:38,819] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:39,820] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:40,822] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:41,824] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:42,826] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:43,827] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:44,828] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:45,830] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:46,832] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:47,834] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:48,836] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:49,837] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:50,839] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:51,841] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:52,842] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:53,844] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:54,846] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:55,848] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:56,850] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:57,851] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:58,853] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:12:59,854] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:00,856] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:01,858] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:02,860] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:03,861] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:04,863] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:05,865] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:06,866] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:07,869] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:08,871] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:09,872] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:10,874] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:11,875] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:12,877] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:13,879] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:14,880] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:15,882] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:16,884] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:17,886] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:18,887] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:19,889] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:20,891] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:21,892] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:22,894] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:23,896] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:24,898] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:25,900] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:26,901] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:27,903] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:28,905] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:29,906] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:30,908] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:31,910] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:32,912] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:33,913] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:34,915] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:35,917] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:36,918] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:37,921] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:38,923] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:39,924] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:40,926] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:41,928] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:42,929] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:43,931] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:44,933] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:45,934] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:46,936] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:47,938] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:48,940] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:49,941] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:50,943] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:51,945] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:52,947] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:53,948] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:54,950] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:55,952] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:56,953] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:57,955] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:58,957] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:13:59,959] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:00,960] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:01,962] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:02,963] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:03,965] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:04,967] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:05,968] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:06,970] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:07,972] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:08,974] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:09,976] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:10,978] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:11,979] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:12,981] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:13,983] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:14,984] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:15,986] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:16,987] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:17,988] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:18,990] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:19,992] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:20,994] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:21,995] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:22,997] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:23,998] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:25,000] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:26,002] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:27,003] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:28,004] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:29,006] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:30,008] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:31,009] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:32,011] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:33,013] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:34,015] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:35,016] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:36,018] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:37,020] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:38,022] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:39,024] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:40,026] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:41,028] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:42,029] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:43,031] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:44,033] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:45,034] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:46,036] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:47,038] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:48,040] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:49,041] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:50,043] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:51,045] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:52,047] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:53,049] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:54,050] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:55,052] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:56,054] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:57,056] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:58,058] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:14:59,059] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:148] - Just waiting!
+[2018-08-03 09:15:00,061] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:150] - Trying for the 1st time.
+[2018-08-03 09:15:00,062] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:00,062] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:00,063] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:00,063] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:00,163] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Getting quote. {u'519937': {u'oi': 0, u'timestamp': datetime.datetime(2018, 8, 3, 9, 12, 49), u'average_price': 914.05, u'last_price': 914.05, u'oi_day_low': 0, u'ohlc': {u'high': 914.05, u'close': 911.3, u'open': 914.05, u'low': 914.05}, u'oi_day_high': 0, u'volume': 1214, u'depth': {u'sell': [{u'price': 914.9, u'orders': 1, u'quantity': 40}, {u'price': 915, u'orders': 5, u'quantity': 115}, {u'price': 915.45, u'orders': 1, u'quantity': 100}, {u'price': 916, u'orders': 1, u'quantity': 1}, {u'price': 917, u'orders': 2, u'quantity': 51}], u'buy': [{u'price': 914.05, u'orders': 18, u'quantity': 581}, {u'price': 914, u'orders': 3, u'quantity': 1530}, {u'price': 913.35, u'orders': 1, u'quantity': 10}, {u'price': 913.3, u'orders': 1, u'quantity': 100}, {u'price': 913, u'orders': 4, u'quantity': 176}]}, u'instrument_token': 519937, u'last_trade_time': datetime.datetime(2018, 8, 3, 9, 12, 49), u'sell_quantity': 26601, u'buy_quantity': 29586, u'last_quantity': 2, u'net_change': 2.75}}
+[2018-08-03 09:15:00,164] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:173] - Stock: {'prev_close': 911.25, 'open': 914.05, 'type': 'gainer', 'stock': M&M-519937-NSE}, Price: 914.9, Target: 4.57, Stop loss: 8.23
+[2018-08-03 09:15:00,262] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Order Place: 180803000034104
+[2018-08-03 09:15:00,262] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:190] - Order id: 180803000034104, Stock: {'prev_close': 911.25, 'open': 914.05, 'type': 'gainer', 'stock': M&M-519937-NSE}
+[2018-08-03 09:15:00,263] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:00,263] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:00,263] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:00,264] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:00,264] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:00,558] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Getting quote. {u'779521': {u'oi': 0, u'timestamp': datetime.datetime(2018, 8, 3, 9, 12, 49), u'average_price': 294.6, u'last_price': 294.6, u'oi_day_low': 0, u'ohlc': {u'high': 294.6, u'close': 293.9, u'open': 294.6, u'low': 294.6}, u'oi_day_high': 0, u'volume': 21421, u'depth': {u'sell': [{u'price': 294.6, u'orders': 4, u'quantity': 634}, {u'price': 294.8, u'orders': 1, u'quantity': 716}, {u'price': 294.9, u'orders': 1, u'quantity': 500}, {u'price': 294.95, u'orders': 2, u'quantity': 10047}, {u'price': 295, u'orders': 18, u'quantity': 2674}], u'buy': [{u'price': 294.5, u'orders': 5, u'quantity': 2080}, {u'price': 294.3, u'orders': 1, u'quantity': 400}, {u'price': 294.2, u'orders': 5, u'quantity': 2250}, {u'price': 294.1, u'orders': 2, u'quantity': 400}, {u'price': 294.05, u'orders': 2, u'quantity': 11}]}, u'instrument_token': 779521, u'last_trade_time': datetime.datetime(2018, 8, 3, 9, 12, 49), u'sell_quantity': 281768, u'buy_quantity': 95504, u'last_quantity': 2, u'net_change': 0.7000000000000455}}
+[2018-08-03 09:15:00,559] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:173] - Stock: {'prev_close': 294, 'open': 294.6, 'type': 'gainer', 'stock': SBIN-779521-NSE}, Price: 294.6, Target: 1.47, Stop loss: 2.65
+[2018-08-03 09:15:00,890] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Order Place: 180803000034237
+[2018-08-03 09:15:00,890] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:190] - Order id: 180803000034237, Stock: {'prev_close': 294, 'open': 294.6, 'type': 'gainer', 'stock': SBIN-779521-NSE}
+[2018-08-03 09:15:00,891] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:00,891] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:00,892] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:01,370] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Getting quote. {u'2953217': {u'oi': 0, u'timestamp': datetime.datetime(2018, 8, 3, 9, 12, 49), u'average_price': 1956.5, u'last_price': 1956.5, u'oi_day_low': 0, u'ohlc': {u'high': 1956.5, u'close': 1948.4, u'open': 1956.5, u'low': 1956.5}, u'oi_day_high': 0, u'volume': 1953, u'depth': {u'sell': [{u'price': 1956.7, u'orders': 1, u'quantity': 250}, {u'price': 1956.9, u'orders': 1, u'quantity': 95}, {u'price': 1957, u'orders': 1, u'quantity': 2}, {u'price': 1957.4, u'orders': 1, u'quantity': 10}, {u'price': 1958, u'orders': 1, u'quantity': 1}], u'buy': [{u'price': 1956.5, u'orders': 37, u'quantity': 737}, {u'price': 1956.1, u'orders': 1, u'quantity': 25}, {u'price': 1956, u'orders': 4, u'quantity': 405}, {u'price': 1955, u'orders': 5, u'quantity': 130}, {u'price': 1954, u'orders': 7, u'quantity': 800}]}, u'instrument_token': 2953217, u'last_trade_time': datetime.datetime(2018, 8, 3, 9, 12, 49), u'sell_quantity': 46432, u'buy_quantity': 49554, u'last_quantity': 7, u'net_change': 8.099999999999909}}
+[2018-08-03 09:15:01,371] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:173] - Stock: {'prev_close': 1948, 'open': 1956.5, 'type': 'gainer', 'stock': TCS-2953217-NSE}, Price: 1956.7, Target: 9.78, Stop loss: 17.61
+[2018-08-03 09:15:01,568] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Order Place: 180803000034507
+[2018-08-03 09:15:01,569] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:190] - Order id: 180803000034507, Stock: {'prev_close': 1948, 'open': 1956.5, 'type': 'gainer', 'stock': TCS-2953217-NSE}
+[2018-08-03 09:15:01,569] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:02,049] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Getting quote. {u'738561': {u'oi': 0, u'timestamp': datetime.datetime(2018, 8, 3, 9, 15, 1), u'average_price': 1175, u'last_price': 1175, u'oi_day_low': 0, u'ohlc': {u'high': 1175, u'close': 1168.35, u'open': 1175, u'low': 1175}, u'oi_day_high': 0, u'volume': 21741, u'depth': {u'sell': [{u'price': 1175, u'orders': 18, u'quantity': 4857}, {u'price': 1176, u'orders': 5, u'quantity': 104}, {u'price': 1176.2, u'orders': 1, u'quantity': 20}, {u'price': 1176.4, u'orders': 2, u'quantity': 1500}, {u'price': 1176.5, u'orders': 1, u'quantity': 100}], u'buy': [{u'price': 1174, u'orders': 2, u'quantity': 1020}, {u'price': 1173.15, u'orders': 1, u'quantity': 100}, {u'price': 1173.1, u'orders': 1, u'quantity': 100}, {u'price': 1173.05, u'orders': 1, u'quantity': 10}, {u'price': 1173, u'orders': 10, u'quantity': 2081}]}, u'instrument_token': 738561, u'last_trade_time': datetime.datetime(2018, 8, 3, 9, 15, 1), u'sell_quantity': 57862, u'buy_quantity': 135740, u'last_quantity': 10, u'net_change': 6.650000000000091}}
+[2018-08-03 09:15:02,050] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:173] - Stock: {'prev_close': 1169.2, 'open': 1175, 'type': 'gainer', 'stock': RELIANCE-738561-NSE}, Price: 1175.0, Target: 5.88, Stop loss: 10.58
+[2018-08-03 09:15:02,157] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Order Place: 180803000034870
+[2018-08-03 09:15:02,157] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:190] - Order id: 180803000034870, Stock: {'prev_close': 1169.2, 'open': 1175, 'type': 'gainer', 'stock': RELIANCE-738561-NSE}
+[2018-08-03 09:15:03,426] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Getting quote. {u'177665': {u'oi': 0, u'timestamp': datetime.datetime(2018, 8, 3, 9, 15, 2), u'average_price': 640.93, u'last_price': 640.95, u'oi_day_low': 0, u'ohlc': {u'high': 640.95, u'close': 638.5, u'open': 640.95, u'low': 640.55}, u'oi_day_high': 0, u'volume': 1344, u'depth': {u'sell': [{u'price': 640.95, u'orders': 3, u'quantity': 53}, {u'price': 641, u'orders': 2, u'quantity': 829}, {u'price': 641.45, u'orders': 1, u'quantity': 20}, {u'price': 641.9, u'orders': 2, u'quantity': 247}, {u'price': 642.35, u'orders': 1, u'quantity': 63}], u'buy': [{u'price': 640.55, u'orders': 1, u'quantity': 15}, {u'price': 640.5, u'orders': 2, u'quantity': 20}, {u'price': 640.25, u'orders': 1, u'quantity': 32}, {u'price': 640.2, u'orders': 1, u'quantity': 250}, {u'price': 640.05, u'orders': 1, u'quantity': 5}]}, u'instrument_token': 177665, u'last_trade_time': datetime.datetime(2018, 8, 3, 9, 15, 2), u'sell_quantity': 50316, u'buy_quantity': 12925, u'last_quantity': 100, u'net_change': 2.4500000000000455}}
+[2018-08-03 09:15:03,427] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:173] - Stock: {'prev_close': 639, 'open': 640.95, 'type': 'gainer', 'stock': CIPLA-177665-NSE}, Price: 640.95, Target: 3.2, Stop loss: 5.77
+[2018-08-03 09:15:03,534] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Order Place: 180803000035766
+[2018-08-03 09:15:03,534] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:190] - Order id: 180803000035766, Stock: {'prev_close': 639, 'open': 640.95, 'type': 'gainer', 'stock': CIPLA-177665-NSE}
+[2018-08-03 09:15:03,619] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Getting quote. {u'1510401': {u'oi': 0, u'timestamp': datetime.datetime(2018, 8, 3, 9, 15, 2), u'average_price': 546.49, u'last_price': 546.35, u'oi_day_low': 0, u'ohlc': {u'high': 546.5, u'close': 547.25, u'open': 546.5, u'low': 546.1}, u'oi_day_high': 0, u'volume': 18734, u'depth': {u'sell': [{u'price': 546.35, u'orders': 1, u'quantity': 207}, {u'price': 546.4, u'orders': 2, u'quantity': 778}, {u'price': 546.5, u'orders': 20, u'quantity': 2022}, {u'price': 546.65, u'orders': 1, u'quantity': 90}, {u'price': 546.7, u'orders': 1, u'quantity': 328}], u'buy': [{u'price': 546.05, u'orders': 2, u'quantity': 1050}, {u'price': 546, u'orders': 6, u'quantity': 102}, {u'price': 545.85, u'orders': 1, u'quantity': 90}, {u'price': 545.8, u'orders': 1, u'quantity': 55}, {u'price': 545.75, u'orders': 1, u'quantity': 1000}]}, u'instrument_token': 1510401, u'last_trade_time': datetime.datetime(2018, 8, 3, 9, 15, 2), u'sell_quantity': 96082, u'buy_quantity': 45109, u'last_quantity': 10, u'net_change': -0.8999999999999773}}
+[2018-08-03 09:15:03,620] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:173] - Stock: {'prev_close': 545, 'open': 546.5, 'type': 'gainer', 'stock': AXISBANK-1510401-NSE}, Price: 546.35, Target: 2.73, Stop loss: 4.92
+[2018-08-03 09:15:03,720] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Order Place: 180803000035887
+[2018-08-03 09:15:03,721] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:190] - Order id: 180803000035887, Stock: {'prev_close': 545, 'open': 546.5, 'type': 'gainer', 'stock': AXISBANK-1510401-NSE}
+[2018-08-03 09:15:04,991] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Getting quote. {u'2939649': {u'oi': 0, u'timestamp': datetime.datetime(2018, 8, 3, 9, 15, 4), u'average_price': 1285.34, u'last_price': 1285.1, u'oi_day_low': 0, u'ohlc': {u'high': 1286, u'close': 1282.4, u'open': 1285.2, u'low': 1285.1}, u'oi_day_high': 0, u'volume': 4993, u'depth': {u'sell': [{u'price': 1285.95, u'orders': 2, u'quantity': 12}, {u'price': 1286, u'orders': 4, u'quantity': 134}, {u'price': 1286.6, u'orders': 1, u'quantity': 15}, {u'price': 1286.65, u'orders': 2, u'quantity': 43}, {u'price': 1286.75, u'orders': 1, u'quantity': 750}], u'buy': [{u'price': 1285.1, u'orders': 4, u'quantity': 433}, {u'price': 1285, u'orders': 11, u'quantity': 692}, {u'price': 1284.85, u'orders': 2, u'quantity': 4}, {u'price': 1284.5, u'orders': 1, u'quantity': 19}, {u'price': 1284.45, u'orders': 1, u'quantity': 21}]}, u'instrument_token': 2939649, u'last_trade_time': datetime.datetime(2018, 8, 3, 9, 15, 4), u'sell_quantity': 55975, u'buy_quantity': 45403, u'last_quantity': 9, u'net_change': 2.699999999999818}}
+[2018-08-03 09:15:04,992] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:173] - Stock: {'prev_close': 1280.5, 'open': 1285.2, 'type': 'gainer', 'stock': LT-2939649-NSE}, Price: 1285.95, Target: 6.43, Stop loss: 11.57
+[2018-08-03 09:15:05,160] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Order Place: 180803000036660
+[2018-08-03 09:15:05,161] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:190] - Order id: 180803000036660, Stock: {'prev_close': 1280.5, 'open': 1285.2, 'type': 'gainer', 'stock': LT-2939649-NSE}
+[2018-08-03 09:15:05,640] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Getting quote. {u'5215745': {u'oi': 0, u'timestamp': datetime.datetime(2018, 8, 3, 9, 15, 4), u'average_price': 274.02, u'last_price': 274.15, u'oi_day_low': 0, u'ohlc': {u'high': 274.2, u'close': 273.55, u'open': 274, u'low': 273.9}, u'oi_day_high': 0, u'volume': 7211, u'depth': {u'sell': [{u'price': 274.15, u'orders': 2, u'quantity': 364}, {u'price': 274.2, u'orders': 1, u'quantity': 10}, {u'price': 274.25, u'orders': 1, u'quantity': 12}, {u'price': 274.45, u'orders': 2, u'quantity': 2250}, {u'price': 274.5, u'orders': 5, u'quantity': 304}], u'buy': [{u'price': 274, u'orders': 1, u'quantity': 10}, {u'price': 273.8, u'orders': 3, u'quantity': 210}, {u'price': 273.75, u'orders': 1, u'quantity': 25}, {u'price': 273.7, u'orders': 2, u'quantity': 37}, {u'price': 273.6, u'orders': 3, u'quantity': 127}]}, u'instrument_token': 5215745, u'last_trade_time': datetime.datetime(2018, 8, 3, 9, 15, 4), u'sell_quantity': 73413, u'buy_quantity': 51459, u'last_quantity': 15, u'net_change': 0.5999999999999659}}
+[2018-08-03 09:15:05,641] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:173] - Stock: {'prev_close': 272.95, 'open': 274, 'type': 'gainer', 'stock': COALINDIA-5215745-NSE}, Price: 274.15, Target: 1.37, Stop loss: 2.47
+[2018-08-03 09:15:05,762] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Order Place: 180803000036992
+[2018-08-03 09:15:05,762] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:190] - Order id: 180803000036992, Stock: {'prev_close': 272.95, 'open': 274, 'type': 'gainer', 'stock': COALINDIA-5215745-NSE}
+[2018-08-03 09:15:05,763] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:06,630] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Getting quote. {u'1850625': {u'oi': 0, u'timestamp': datetime.datetime(2018, 8, 3, 9, 15, 5), u'average_price': 966.32, u'last_price': 966.1, u'oi_day_low': 0, u'ohlc': {u'high': 967, u'close': 960.5, u'open': 966.05, u'low': 966}, u'oi_day_high': 0, u'volume': 2633, u'depth': {u'sell': [{u'price': 966.1, u'orders': 2, u'quantity': 9}, {u'price': 966.6, u'orders': 1, u'quantity': 1}, {u'price': 966.65, u'orders': 2, u'quantity': 34}, {u'price': 966.7, u'orders': 2, u'quantity': 210}, {u'price': 967, u'orders': 4, u'quantity': 148}], u'buy': [{u'price': 966, u'orders': 6, u'quantity': 220}, {u'price': 965.75, u'orders': 2, u'quantity': 124}, {u'price': 965.55, u'orders': 1, u'quantity': 10}, {u'price': 965.5, u'orders': 1, u'quantity': 12}, {u'price': 965.45, u'orders': 1, u'quantity': 12}]}, u'instrument_token': 1850625, u'last_trade_time': datetime.datetime(2018, 8, 3, 9, 15, 5), u'sell_quantity': 54140, u'buy_quantity': 42778, u'last_quantity': 5, u'net_change': 5.600000000000023}}
+[2018-08-03 09:15:06,632] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:173] - Stock: {'prev_close': 963, 'open': 966.05, 'type': 'gainer', 'stock': HCLTECH-1850625-NSE}, Price: 966.1, Target: 4.83, Stop loss: 8.69
+[2018-08-03 09:15:06,783] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Order Place: 180803000037416
+[2018-08-03 09:15:06,783] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:190] - Order id: 180803000037416, Stock: {'prev_close': 963, 'open': 966.05, 'type': 'gainer', 'stock': HCLTECH-1850625-NSE}
+[2018-08-03 09:15:06,784] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:06,784] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:06,785] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:06,785] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:06,785] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:06,786] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:06,786] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:06,786] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:06,786] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:07,643] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Getting quote. {u'857857': {u'oi': 0, u'timestamp': datetime.datetime(2018, 8, 3, 9, 15, 7), u'average_price': 584.65, u'last_price': 585, u'oi_day_low': 0, u'ohlc': {u'high': 586, u'close': 580.4, u'open': 583.9, u'low': 583.85}, u'oi_day_high': 0, u'volume': 26045, u'depth': {u'sell': [{u'price': 585.35, u'orders': 1, u'quantity': 1085}, {u'price': 585.55, u'orders': 1, u'quantity': 12}, {u'price': 585.6, u'orders': 2, u'quantity': 392}, {u'price': 585.65, u'orders': 1, u'quantity': 238}, {u'price': 585.75, u'orders': 2, u'quantity': 513}], u'buy': [{u'price': 585, u'orders': 3, u'quantity': 395}, {u'price': 584.9, u'orders': 1, u'quantity': 10}, {u'price': 584.8, u'orders': 1, u'quantity': 22}, {u'price': 584.75, u'orders': 2, u'quantity': 43}, {u'price': 584.5, u'orders': 2, u'quantity': 538}]}, u'instrument_token': 857857, u'last_trade_time': datetime.datetime(2018, 8, 3, 9, 15, 7), u'sell_quantity': 117458, u'buy_quantity': 64618, u'last_quantity': 50, u'net_change': 4.600000000000023}}
+[2018-08-03 09:15:07,644] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:173] - Stock: {'prev_close': 581, 'open': 583.9, 'type': 'gainer', 'stock': SUNPHARMA-857857-NSE}, Price: 585.35, Target: 2.93, Stop loss: 5.27
+[2018-08-03 09:15:07,742] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Order Place: 180803000037840
+[2018-08-03 09:15:07,742] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:190] - Order id: 180803000037840, Stock: {'prev_close': 581, 'open': 583.9, 'type': 'gainer', 'stock': SUNPHARMA-857857-NSE}
+[2018-08-03 09:15:07,827] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Getting quote. {u'345089': {u'oi': 0, u'timestamp': datetime.datetime(2018, 8, 3, 9, 15, 6), u'average_price': 3268.89, u'last_price': 3268.65, u'oi_day_low': 0, u'ohlc': {u'high': 3270, u'close': 3263.7, u'open': 3270, u'low': 3265.05}, u'oi_day_high': 0, u'volume': 637, u'depth': {u'sell': [{u'price': 3268.65, u'orders': 4, u'quantity': 58}, {u'price': 3269, u'orders': 1, u'quantity': 5}, {u'price': 3270, u'orders': 9, u'quantity': 103}, {u'price': 3270.1, u'orders': 1, u'quantity': 1}, {u'price': 3278.95, u'orders': 2, u'quantity': 133}], u'buy': [{u'price': 3267.05, u'orders': 1, u'quantity': 45}, {u'price': 3267, u'orders': 1, u'quantity': 25}, {u'price': 3266.8, u'orders': 1, u'quantity': 40}, {u'price': 3266.5, u'orders': 1, u'quantity': 25}, {u'price': 3265.05, u'orders': 1, u'quantity': 19}]}, u'instrument_token': 345089, u'last_trade_time': datetime.datetime(2018, 8, 3, 9, 15, 6), u'sell_quantity': 7882, u'buy_quantity': 7738, u'last_quantity': 10, u'net_change': 4.950000000000273}}
+[2018-08-03 09:15:07,828] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:173] - Stock: {'prev_close': 3262.05, 'open': 3270, 'type': 'gainer', 'stock': HEROMOTOCO-345089-NSE}, Price: 3268.65, Target: 16.34, Stop loss: 29.42
+[2018-08-03 09:15:08,103] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Order Place: 180803000037947
+[2018-08-03 09:15:08,104] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:190] - Order id: 180803000037947, Stock: {'prev_close': 3262.05, 'open': 3270, 'type': 'gainer', 'stock': HEROMOTOCO-345089-NSE}
+[2018-08-03 09:15:08,105] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:08,105] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:08,105] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:08,982] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Getting quote. {u'348929': {u'oi': 0, u'timestamp': datetime.datetime(2018, 8, 3, 9, 15, 8), u'average_price': 208.32, u'last_price': 208.8, u'oi_day_low': 0, u'ohlc': {u'high': 208.8, u'close': 207.9, u'open': 208.05, u'low': 208.05}, u'oi_day_high': 0, u'volume': 10374, u'depth': {u'sell': [{u'price': 208.8, u'orders': 4, u'quantity': 445}, {u'price': 208.85, u'orders': 1, u'quantity': 5}, {u'price': 208.9, u'orders': 5, u'quantity': 330}, {u'price': 208.95, u'orders': 1, u'quantity': 150}, {u'price': 209, u'orders': 6, u'quantity': 466}], u'buy': [{u'price': 208.65, u'orders': 3, u'quantity': 1447}, {u'price': 208.6, u'orders': 1, u'quantity': 330}, {u'price': 208.5, u'orders': 2, u'quantity': 3528}, {u'price': 208.45, u'orders': 2, u'quantity': 861}, {u'price': 208.4, u'orders': 1, u'quantity': 48}]}, u'instrument_token': 348929, u'last_trade_time': datetime.datetime(2018, 8, 3, 9, 15, 8), u'sell_quantity': 295253, u'buy_quantity': 302222, u'last_quantity': 100, u'net_change': 0.9000000000000057}}
+[2018-08-03 09:15:08,983] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:173] - Stock: {'prev_close': 207.2, 'open': 208.05, 'type': 'gainer', 'stock': HINDALCO-348929-NSE}, Price: 208.8, Target: 1.04, Stop loss: 1.88
+[2018-08-03 09:15:09,131] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Order Place: 180803000038373
+[2018-08-03 09:15:09,132] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:190] - Order id: 180803000038373, Stock: {'prev_close': 207.2, 'open': 208.05, 'type': 'gainer', 'stock': HINDALCO-348929-NSE}
+[2018-08-03 09:15:09,132] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:09,133] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:153] - Failed filter: failure, stock: ('failure', None)
+[2018-08-03 09:15:09,221] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Getting quote. {u'424961': {u'oi': 0, u'timestamp': datetime.datetime(2018, 8, 3, 9, 15, 8), u'average_price': 299.99, u'last_price': 300, u'oi_day_low': 0, u'ohlc': {u'high': 300, u'close': 299.2, u'open': 300, u'low': 299.95}, u'oi_day_high': 0, u'volume': 15921, u'depth': {u'sell': [{u'price': 300, u'orders': 7, u'quantity': 512}, {u'price': 300.05, u'orders': 1, u'quantity': 50}, {u'price': 300.1, u'orders': 1, u'quantity': 80}, {u'price': 300.15, u'orders': 2, u'quantity': 154}, {u'price': 300.2, u'orders': 2, u'quantity': 16}], u'buy': [{u'price': 299.95, u'orders': 3, u'quantity': 171}, {u'price': 299.9, u'orders': 2, u'quantity': 33}, {u'price': 299.8, u'orders': 6, u'quantity': 95}, {u'price': 299.65, u'orders': 1, u'quantity': 50}, {u'price': 299.6, u'orders': 3, u'quantity': 144}]}, u'instrument_token': 424961, u'last_trade_time': datetime.datetime(2018, 8, 3, 9, 15, 8), u'sell_quantity': 614111, u'buy_quantity': 236676, u'last_quantity': 50, u'net_change': 0.8000000000000114}}
+[2018-08-03 09:15:09,222] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:173] - Stock: {'prev_close': 298.7, 'open': 300, 'type': 'gainer', 'stock': ITC-424961-NSE}, Price: 300.0, Target: 1.5, Stop loss: 2.7
+[2018-08-03 09:15:09,388] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Order Place: 180803000038528
+[2018-08-03 09:15:09,389] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:190] - Order id: 180803000038528, Stock: {'prev_close': 298.7, 'open': 300, 'type': 'gainer', 'stock': ITC-424961-NSE}
+[2018-08-03 09:15:10,278] INFO in zerodha [/home/ubuntu/stocks/zerodha.py:72] - Getting quote. {u'2815745': {u'oi': 0, u'timestamp': datetime.datetime(2018, 8, 3, 9, 15, 9), u'average_price': 9153, u'last_price': 9174.85, u'oi_day_low': 0, u'ohlc': {u'high': 9170, u'close': 9142.4, u'open': 9150, u'low': 9150}, u'oi_day_high': 0, u'volume': 2281, u'depth': {u'sell': [{u'price': 9170, u'orders': 3, u'quantity': 4}, {u'price': 9174.85, u'orders': 2, u'quantity': 20}, {u'price': 9175, u'orders': 1, u'quantity': 1}, {u'price': 9175.25, u'orders': 1, u'quantity': 48}, {u'price': 9175.3, u'orders': 1, u'quantity': 50}], u'buy': [{u'price': 9169.1, u'orders': 1, u'quantity': 7}, {u'price': 9169, u'orders': 1, u'quantity': 1}, {u'price': 9166.75, u'orders': 1, u'quantity': 1}, {u'price': 9166.3, u'orders': 1, u'quantity': 16}, {u'price': 9165.2, u'orders': 1, u'quantity': 4}]}, u'instrument_token': 2815745, u'last_trade_time': datetime.datetime(2018, 8, 3, 9, 15, 9), u'sell_quantity': 16023, u'buy_quantity': 16298, u'last_quantity': 5, u'net_change': 32.45000000000073}}
+[2018-08-03 09:15:10,279] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:173] - Stock: {'prev_close': 9129.4, 'open': 9150, 'type': 'gainer', 'stock': MARUTI-2815745-NSE}, Price: 9170.0, Target: 45.85, Stop loss: 82.53
+[2018-08-03 09:15:10,279] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:180] - Ending trade.!
+[2018-08-03 09:15:10,280] INFO in live_orders [/home/ubuntu/stocks/live_orders.py:195] - Ending run.
