@@ -146,6 +146,8 @@ class KiteHistory(object):
         for instrument, quote in data.iteritems():
             if 'ohlc' in quote and 'open' in quote['ohlc'] and quote['ohlc']['open'] != 0:
                 open_prices[str(instrument)] = quote['ohlc']['open']
+            else:
+                self.logger.error('Open price not found for instrument: {}'.format(instrument))
         return open_prices
 
     def get_daily_close_price(self, instrument, date):

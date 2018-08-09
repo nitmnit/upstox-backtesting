@@ -21,13 +21,13 @@ class OpenDoor(object):
 
     def __init__(self, logger,
                  configuration={'change': .2,
-                                'stop_loss': .6,
+                                'stop_loss': .8,
                                 'amount': 200000.00,
                                 'max_change': .50,
                                 'open_price': datetime.time(hour=9, minute=14, second=55),
                                 'start_trading': datetime.time(hour=9, minute=15, second=0),
                                 'end_trading': datetime.time(hour=9, minute=15, second=10),
-                                'target_change': .5}):
+                                'target_change': .4}):
         self.logger = logger
         self.logger.info('init OpenDoor')
         self.today_date = datetime.datetime.now().date()
@@ -70,7 +70,6 @@ class OpenDoor(object):
 
     def filter_stocks(self):
         self.logger.info('Start filter')
-        self.set_nifty50_open()
         for stock in self.nifty50:
             if stock.symbol not in self.nifty50_open or stock.symbol not in self.nifty50_close:
                 self.logger.error("Symbol not in either open or close: stock - {}".format(stock.symbol))
@@ -80,12 +79,12 @@ class OpenDoor(object):
                 stock.symbol]
             if self.c['change'] / 100.00 <= change <= self.c['max_change'] / 100.00:
                 self.filtered_stocks[stock.symbol] = (self.FILTER_STATUS_SC,
-                                                      {'stock': stock, 'type': self.EXP_TYPE_LS,
+                                                      {'stock': stock, 'type': self.EXP_TYPE_GN,
                                                        'open': self.nifty50_open[stock.symbol],
                                                        'prev_close': self.nifty50_close[stock.symbol]},)
             elif -self.c['max_change'] / 100.00 <= change <= -self.c['change'] / 100.00:
                 self.filtered_stocks[stock.symbol] = (self.FILTER_STATUS_SC,
-                                                      {'stock': stock, 'type': self.EXP_TYPE_GN,
+                                                      {'stock': stock, 'type': self.EXP_TYPE_LS,
                                                        'open': self.nifty50_open[stock.symbol],
                                                        'prev_close': self.nifty50_close[stock.symbol]},)
             else:
@@ -113,25 +112,6 @@ class OpenDoor(object):
             self.logger.error('Error getting previous close for {}, date: {}'.format(stock, previous_day))
             return
         return self.nifty50_close[stock.symbol]
-
-    def filter_one_stock(self, stock):
-        if stock.symbol in self.filtered_stocks:
-            return self.filtered_stocks[stock.symbol]
-        self.get_stock_open(stock)
-        if (stock.symbol not in self.nifty50_open) or (stock.symbol not in self.nifty50_close):
-            return self.FILTER_STATUS_PN, None
-        change = (self.nifty50_open[stock.symbol] - self.nifty50_close[stock.symbol]) / self.nifty50_close[stock.symbol]
-        if (self.c['change'] / 100.00) <= change <= (self.c['max_change'] / 100.00):
-            transaction_type = self.EXP_TYPE_GN
-        elif (-self.c['max_change'] / 100.00) <= change <= (-self.c['change'] / 100.00):
-            transaction_type = self.EXP_TYPE_LS
-        else:
-            self.filtered_stocks[stock.symbol] = (self.FILTER_STATUS_FL, None,)
-            return self.filtered_stocks[stock.symbol]
-        self.filtered_stocks[stock.symbol] = (self.FILTER_STATUS_SC, {'stock': stock, 'type': transaction_type,
-                                                                      'open': self.nifty50_open[stock.symbol],
-                                                                      'prev_close': self.nifty50_close[stock.symbol]},)
-        return self.filtered_stocks[stock.symbol]
 
     def run(self):
         self.logger.info('Starting run.')
@@ -165,8 +145,12 @@ class OpenDoor(object):
                 continue
             if stock_details['type'] == self.EXP_TYPE_GN:
                 price = round(quote[str(stock_details['stock'].instrument)]['depth']['sell'][0]['price'], 2)
+                if price < self.nifty50_open[stock.symbol]:
+                    stock_details['type'] = self.EXP_TYPE_LS
             else:
                 price = round(quote[str(stock_details['stock'].instrument)]['depth']['buy'][0]['price'], 2)
+                if price > self.nifty50_open[stock.symbol]:
+                    stock_details['type'] = self.EXP_TYPE_GN
             target_price = round((self.c['target_change'] / 100.00) * price, 2)
             stop_loss = round((self.c['stop_loss'] / 100.00) * price, 2)
             self.logger.info('Stock: {}, Price: {}, Target: {}, '
