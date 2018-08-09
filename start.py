@@ -51,3 +51,4 @@ logging.config.dictConfig({
 x = OpenDoor(logger=logger, )
 logger.info('Starting Open Door.')
 x.run()
+exit()

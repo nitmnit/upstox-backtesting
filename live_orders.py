@@ -22,12 +22,12 @@ class OpenDoor(object):
     def __init__(self, logger,
                  configuration={'change': .2,
                                 'stop_loss': .6,
-                                'amount': 250000.00,
+                                'amount': 200000.00,
                                 'max_change': .50,
-                                'open_price': datetime.time(hour=9, minute=12, second=10),
+                                'open_price': datetime.time(hour=9, minute=14, second=55),
                                 'start_trading': datetime.time(hour=9, minute=15, second=0),
                                 'end_trading': datetime.time(hour=9, minute=15, second=10),
-                                'target_change': .4}):
+                                'target_change': .5}):
         self.logger = logger
         self.logger.info('init OpenDoor')
         self.today_date = datetime.datetime.now().date()
@@ -80,12 +80,12 @@ class OpenDoor(object):
                 stock.symbol]
             if self.c['change'] / 100.00 <= change <= self.c['max_change'] / 100.00:
                 self.filtered_stocks[stock.symbol] = (self.FILTER_STATUS_SC,
-                                                      {'stock': stock, 'type': self.EXP_TYPE_GN,
+                                                      {'stock': stock, 'type': self.EXP_TYPE_LS,
                                                        'open': self.nifty50_open[stock.symbol],
                                                        'prev_close': self.nifty50_close[stock.symbol]},)
             elif -self.c['max_change'] / 100.00 <= change <= -self.c['change'] / 100.00:
                 self.filtered_stocks[stock.symbol] = (self.FILTER_STATUS_SC,
-                                                      {'stock': stock, 'type': self.EXP_TYPE_LS,
+                                                      {'stock': stock, 'type': self.EXP_TYPE_GN,
                                                        'open': self.nifty50_open[stock.symbol],
                                                        'prev_close': self.nifty50_close[stock.symbol]},)
             else:
