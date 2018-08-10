@@ -21,7 +21,7 @@ class OpenDoor(object):
 
     def __init__(self, logger,
                  configuration={'change': .2,
-                                'stop_loss': .8,
+                                'stop_loss': .4,
                                 'amount': 200000.00,
                                 'max_change': .50,
                                 'open_price': datetime.time(hour=9, minute=14, second=55),
@@ -145,11 +145,11 @@ class OpenDoor(object):
                 continue
             if stock_details['type'] == self.EXP_TYPE_GN:
                 price = round(quote[str(stock_details['stock'].instrument)]['depth']['sell'][0]['price'], 2)
-                if price < self.nifty50_open[stock.symbol]:
+                if price < self.nifty50_open[stock_details['stock'].symbol]:
                     stock_details['type'] = self.EXP_TYPE_LS
             else:
                 price = round(quote[str(stock_details['stock'].instrument)]['depth']['buy'][0]['price'], 2)
-                if price > self.nifty50_open[stock.symbol]:
+                if price > self.nifty50_open[stock_details['stock'].symbol]:
                     stock_details['type'] = self.EXP_TYPE_GN
             target_price = round((self.c['target_change'] / 100.00) * price, 2)
             stop_loss = round((self.c['stop_loss'] / 100.00) * price, 2)
