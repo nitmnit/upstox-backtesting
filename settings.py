@@ -1,11 +1,11 @@
-MANAGERS = ['nitmnit@gmail.com', 'arvind.manikcam@gmail.com']
+MANAGERS = ['nitmnit@gmail.com', ]
 
 EMAIL_SETTINGS = {
     'IS_ENABLED': False,
     'HOST': 'smtp.gmail.com',
     'PORT': 587,
-    'USER': ('Stock Service', 'finger5186@gmail.com'),
-    'PASSWORD': 'finger5neverstops'
+    'USER': ('Stock Service', 'nitmnit@gmail.com'),
+    'PASSWORD': 'Mygoal1!'
 }
 
 DEBUG = True
@@ -26,8 +26,8 @@ KITE = {
 DATABASE = {
     'HOST': 'localhost',
     'NAME': 'stocks',
-    'USERNAME': 'smartcity',
-    'PASSWORD': 'smartcity',
+    'USERNAME': 'stocks',
+    'PASSWORD': 'stocks@123',
     'HOST': 'localhost',
 }
 
