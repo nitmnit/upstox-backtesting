@@ -4,7 +4,7 @@ from helpers import ZerodhaHelper
 
 
 class Command(BaseCommand):
-    help = 'Start stock trading'
+    help = 'Sync instruments from Zerodha'
 
     def handle(self, *args, **kwargs):
         ZerodhaHelper.sync_instruments()

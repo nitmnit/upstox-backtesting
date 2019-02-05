@@ -107,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -121,3 +121,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 ZE_IS_HEADLESS = os.getenv('ZE_IS_HEADLESS', "true")
+
+INSTRUMENTS_URL = 'https://api.kite.trade/instruments'

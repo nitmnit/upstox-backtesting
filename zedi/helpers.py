@@ -1,6 +1,11 @@
+import csv
+import os
 import time
+from datetime import datetime
+import pytz
 from urllib import parse
 
+import requests
 from django.conf import settings
 from kiteconnect import KiteConnect
 from selenium import webdriver
@@ -10,7 +15,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from freaks.models import Credential, SecurityQuestion
+from freaks.models import Credential, SecurityQuestion, Instrument
 
 
 class ChromeBrowser:
@@ -29,7 +34,7 @@ class ChromeBrowser:
         self.wait_time = 3
 
 
-class ZerodhaWebHelper:
+class ZerodhaHelper:
     @staticmethod
     def generate_access_token():
         chrome = ChromeBrowser()
@@ -63,3 +68,31 @@ class ZerodhaWebHelper:
             raise Exception('Token not found.')
         zerodha_credentials.access_token = data['access_token']
         zerodha_credentials.save()
+
+    @staticmethod
+    def sync_instruments():
+        access_token = Credential.objects.filter(name='Zerodha').first().access_token
+        headers = {
+            'X-Kite-Version': '3',
+            'Authorization': 'token api_key:' + access_token
+        }
+        response = requests.get(settings.INSTRUMENTS_URL, headers=headers)
+        file_name = 'instruments.csv'
+        with open(file_name, 'w') as file:
+            file.write(response.text)
+        with open(file_name, 'r') as file:
+            instruments = csv.DictReader(file)
+            Instrument.objects.all().delete()
+            for instrument in instruments:
+                expiry_date = datetime.strptime(instrument['expiry'], '%Y-%m-%d') if instrument['expiry'] else None
+                expiry_date = expiry_date.replace(tzinfo=pytz.timezone(settings.TIME_ZONE)) if expiry_date else None
+                Instrument.objects.create(name=instrument['name'], instrument_token=int(instrument['instrument_token']),
+                                          exchange_token=int(instrument['exchange_token']),
+                                          trading_symbol=instrument['tradingsymbol'],
+                                          last_price=float(instrument['last_price']),
+                                          expiry=expiry_date, strike=float(instrument['strike']),
+                                          tick_size=float(instrument['tick_size']),
+                                          lot_size=int(instrument['lot_size']),
+                                          instrument_type=instrument['instrument_type'], segment=instrument['segment'],
+                                          exchange=instrument['exchange'], )
+        os.remove(file_name)
