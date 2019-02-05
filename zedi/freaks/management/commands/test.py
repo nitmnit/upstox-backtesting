@@ -7,4 +7,4 @@ class Command(BaseCommand):
     help = 'Start stock trading'
 
     def handle(self, *args, **kwargs):
-        ZerodhaHelper.generate_access_token()
+        ZerodhaHelper.sync_instruments()

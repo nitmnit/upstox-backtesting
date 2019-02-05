@@ -1,6 +1,7 @@
 from django.db import models
 
 from django_extensions.db.models import TimeStampedModel
+from model_utils import choices, Choices
 
 NAME_LENGTH = 60
 
@@ -28,7 +29,15 @@ class SecurityQuestion(TimeStampedModel):
 
 
 class Instrument(TimeStampedModel):
-    name = models.CharField(max_length=NAME_LENGTH)
+    EXCHANGES = Choices(
+        ('NSE', 'NSE'),
+        ('NFO', 'NFO'),
+        ('CDS', 'CDS'),
+        ('BSE', 'BSE'),
+        ('MCX', 'MCX'),
+    )
+
+    name = models.CharField(max_length=NAME_LENGTH, null=True, blank=True)
     instrument_token = models.IntegerField()
     exchange_token = models.IntegerField()
     trading_symbol = models.CharField(max_length=NAME_LENGTH)
@@ -39,7 +48,7 @@ class Instrument(TimeStampedModel):
     lot_size = models.IntegerField()
     instrument_type = models.CharField(max_length=NAME_LENGTH)
     segment = models.CharField(max_length=NAME_LENGTH)
-    exchange = models.CharField(max_length=NAME_LENGTH)
+    exchange = models.CharField(max_length=NAME_LENGTH, choices=EXCHANGES)
 
     def __str__(self):
         return '{}-{}'.format(self.name, self.instrument_token)
