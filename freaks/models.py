@@ -15,6 +15,7 @@ class Credential(TimeStampedModel):
     api_secret = models.CharField(max_length=NAME_LENGTH)
     api_key = models.CharField(max_length=NAME_LENGTH)
     access_token = models.CharField(max_length=NAME_LENGTH, null=True, blank=True)
+    pin = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.name

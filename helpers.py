@@ -16,6 +16,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 from freaks.models import Credential, SecurityQuestion, Instrument
+from zedi.tasks import save_quotes
 
 
 class ChromeBrowser:
@@ -49,25 +50,18 @@ class ZerodhaHelper:
         password_input.send_keys(zerodha_credentials.password)
         submit_button.click()
         WebDriverWait(chrome.driver, 10).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, '.twofa-form > div:nth-child(3) input')))
-        sq1_el = chrome.driver.find_element_by_css_selector('.twofa-form > div:nth-child(2) input')
-        sq2_el = chrome.driver.find_element_by_css_selector('.twofa-form > div:nth-child(3) input')
-        question1 = sq1_el.get_attribute('label')
-        question2 = sq2_el.get_attribute('label')
-        answer1 = SecurityQuestion.objects.filter(question__in=question1.replace('?', '').split(' ')).first().answer
-        answer2 = SecurityQuestion.objects.filter(question__in=question2.replace('?', '').split(' ')).first().answer
-        sq1_el.send_keys(answer1)
-        sq2_el.send_keys(answer2)
-        answer_submit_button = chrome.driver.find_element_by_css_selector('button[type="submit"]')
+            EC.presence_of_element_located((By.CSS_SELECTOR, ".twofa-form input")))
+        pin_el = chrome.driver.find_element_by_css_selector(".twofa-form input")
+        pin_el.send_keys(str(zerodha_credentials.pin))
+        answer_submit_button = chrome.driver.find_element_by_xpath("//button[@type='submit']")
         answer_submit_button.click()
-        time.sleep(3)
         request_token = parse.parse_qs(parse.urlparse(chrome.driver.current_url).query)['request_token'][0]
-        chrome.driver.close()
         data = kite.generate_session(request_token, api_secret=zerodha_credentials.api_secret)
         if 'access_token' not in data:
             raise Exception('Token not found.')
         zerodha_credentials.access_token = data['access_token']
         zerodha_credentials.save()
+        chrome.driver.close()
 
     @staticmethod
     def sync_instruments():
@@ -107,6 +101,7 @@ class ZerodhaWS:
         def on_ticks(ws, ticks):
             # Callback to receive ticks.
             print(ticks)
+            save_quotes.delay(ticks)
 
         def on_connect(ws, response):
             ws.subscribe([738561, 5633])

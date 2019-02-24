@@ -11,3 +11,5 @@ requests
 django_utils
 channels
 websocket-client
+Celery
+redis

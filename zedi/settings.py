@@ -125,4 +125,8 @@ ZE_IS_HEADLESS = os.getenv('ZE_IS_HEADLESS', "true")
 
 INSTRUMENTS_URL = 'https://api.kite.trade/instruments'
 
-ASGI_APPLICATION = "routing.application"
+ASGI_APPLICATION = "zedi.routing.application"
+
+CELERY_BROKER_URL = 'redis://localhost:6379'
+
+CELERY_IMPORTS = ("zedi.tasks", )
