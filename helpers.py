@@ -15,7 +15,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from freaks import Credential, SecurityQuestion, Instrument
+from freaks.models import Credential, SecurityQuestion, Instrument
 
 
 class ChromeBrowser:
@@ -114,7 +114,13 @@ class ZerodhaWS:
             # Set RELIANCE to tick in `full` mode.
             ws.set_mode(ws.MODE_FULL, [738561])
 
+        def on_close(ws, code, reason):
+            # On connection close stop the main loop
+            # Reconnection will not happen after executing `ws.stop()`
+            ws.stop()
+
         # Assign the callbacks.
         kws.on_ticks = on_ticks
         kws.on_connect = on_connect
+        kws.on_close = on_close
         kws.connect()

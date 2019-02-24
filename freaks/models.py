@@ -1,3 +1,4 @@
+from django.contrib.postgres.fields import JSONField
 from django.db import models
 
 from django_extensions.db.models import TimeStampedModel
@@ -52,3 +53,11 @@ class Instrument(TimeStampedModel):
 
     def __str__(self):
         return '{}-{}'.format(self.name, self.instrument_token)
+
+
+class QuotesData(TimeStampedModel):
+    data = JSONField()
+    timestamp = models.DateTimeField()
+
+    def __str__(self):
+        return 'QuotesData: {}'.format(self.id)
