@@ -55,6 +55,7 @@ class ZerodhaHelper:
         pin_el.send_keys(str(zerodha_credentials.pin))
         answer_submit_button = chrome.driver.find_element_by_xpath("//button[@type='submit']")
         answer_submit_button.click()
+        time.sleep(1)
         request_token = parse.parse_qs(parse.urlparse(chrome.driver.current_url).query)['request_token'][0]
         data = kite.generate_session(request_token, api_secret=zerodha_credentials.api_secret)
         if 'access_token' not in data:
@@ -92,7 +93,23 @@ class ZerodhaHelper:
         os.remove(file_name)
 
 
-class ZerodhaWS:
+class AbstractZerodhaTicker:
+    @staticmethod
+    def on_ticks(ws, ticks):
+        raise NotImplementedError
+
+    @staticmethod
+    def on_connect(ws, response):
+        raise NotImplementedError
+
+    @staticmethod
+    def on_close(ws, code, reason):
+        raise NotImplementedError
+
+    @staticmethod
+    def connect(ws, code, reason):
+        raise NotImplementedError
+
     @staticmethod
     def connect():
         zc = Credential.objects.filter(name='Zerodha').first()
@@ -100,22 +117,46 @@ class ZerodhaWS:
 
         def on_ticks(ws, ticks):
             # Callback to receive ticks.
-            print(ticks)
             save_quotes.delay(ticks)
 
         def on_connect(ws, response):
-            ws.subscribe([738561, 5633])
-
-            # Set RELIANCE to tick in `full` mode.
-            ws.set_mode(ws.MODE_FULL, [738561])
+            ws.subscribe([738561, 5633, 4963, 17388, 1333])
+            ws.set_mode(ws.MODE_FULL, [738561, 5633, 4963, 17388, 1333])
 
         def on_close(ws, code, reason):
-            # On connection close stop the main loop
-            # Reconnection will not happen after executing `ws.stop()`
+            print("Connection closed. {}-{}".format(code, reason))
             ws.stop()
 
-        # Assign the callbacks.
         kws.on_ticks = on_ticks
         kws.on_connect = on_connect
         kws.on_close = on_close
         kws.connect()
+
+
+class ZerodhaWS:
+    @staticmethod
+    def connect():
+        ZerodhaHelper.generate_access_token()
+        zc = Credential.objects.filter(name='Zerodha').first()
+        kws = KiteTicker(zc.api_key, zc.access_token)
+
+        def on_ticks(ws, ticks):
+            # Callback to receive ticks.
+            save_quotes.delay(ticks)
+
+        def on_connect(ws, response):
+            ws.subscribe([738561, 5633, 4963, 17388, 1333])
+            ws.set_mode(ws.MODE_FULL, [738561, 5633, 4963, 17388, 1333])
+
+        def on_close(ws, code, reason):
+            print("Connection closed. {}-{}".format(code, reason))
+            ws.stop()
+
+        kws.on_ticks = on_ticks
+        kws.on_connect = on_connect
+        kws.on_close = on_close
+        kws.connect()
+
+
+class ZerodhaWsSimulator():
+    pass
