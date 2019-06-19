@@ -14,4 +14,4 @@ class Command(BaseCommand):
                                    username=settings.BROKER_CREDENTIALS["UPSTOX"]["USERNAME"],
                                    password=settings.BROKER_CREDENTIALS["UPSTOX"]["PASSWORD"],
                                    birth_date=settings.BROKER_CREDENTIALS["UPSTOX"]["BIRTH_DATE"], )
-        upstox_login.login()
+        upstox_login.update_access_token()

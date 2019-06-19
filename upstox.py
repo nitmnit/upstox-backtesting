@@ -22,23 +22,23 @@ class UpstoxLogin:
             'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36'
         }
 
-    def login(self):
-        login_url = self.get_login_url()
-        access_token = self.get_access_token(login_url)
-        self.set_access_token(access_token)
+    def update_access_token(self):
+        login_url = self.__get_login_url()
+        access_token = self.__get_access_token(login_url)
+        self.__set_access_token(access_token)
 
-    def get_login_url(self):
+    def __get_login_url(self):
         session = Session(self.api_key)
         session.set_redirect_uri(self.redirect_uri)
         session.set_api_secret(self.api_secret)
         return session.get_login_url()
 
-    def get_transaction_id(self, content):
+    def __get_transaction_id(self, content):
         soup = BeautifulSoup(content, 'html.parser')
         transaction_id = soup.find('input', {'name': 'transaction_id'}).get('value')
         return transaction_id
 
-    def set_access_token(self, access_token):
+    def __set_access_token(self, access_token):
         existing_tokens = TempValues.objects.filter(name=settings.ACCESS_TOKEN_DB_IDENTIFIER).first()
         if existing_tokens:
             existing_tokens.value = access_token
@@ -46,7 +46,7 @@ class UpstoxLogin:
             return
         TempValues.objects.create(name=settings.ACCESS_TOKEN_DB_IDENTIFIER, value=access_token)
 
-    def get_access_token(self, login_url):
+    def __get_access_token(self, login_url):
         with requests.Session() as session:
             login_page = session.get(login_url, headers=self.headers, )
             login_page.raise_for_status()
@@ -58,7 +58,7 @@ class UpstoxLogin:
                 'password2fa': self.birth_date,
             })
             login_page1.raise_for_status()
-            transaction_id = self.get_transaction_id(login_page1.content)
+            transaction_id = self.__get_transaction_id(login_page1.content)
             decision_page = session.post(self.decision_page_url, headers=self.headers,
                                          data={"transaction_id": transaction_id})
             if decision_page.status_code != 404:
