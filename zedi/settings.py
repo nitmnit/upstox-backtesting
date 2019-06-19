@@ -129,4 +129,16 @@ ASGI_APPLICATION = "zedi.routing.application"
 
 CELERY_BROKER_URL = 'redis://localhost:6379'
 
-CELERY_IMPORTS = ("zedi.tasks", )
+CELERY_IMPORTS = ("zedi.tasks",)
+
+BROKER_CREDENTIALS = {
+    "UPSTOX": {
+        "KEY": "f08dWVMwbd47WcSN5fL9P6tSaWW2GUsd8FLPrzDr",
+        "SECRET": "vckj3ranbl",
+        "USERNAME": "",
+        "PASSWORD": "8Kw@%y28A0zJ",
+        "BIRTH_DATE": "1991",
+    }
+}
+
+ACCESS_TOKEN_DB_IDENTIFIER = "upstox_access_token"

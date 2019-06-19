@@ -13,3 +13,5 @@ channels
 websocket-client
 Celery
 redis
+upstox
+beautifulsoup4

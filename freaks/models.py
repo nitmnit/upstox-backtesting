@@ -2,7 +2,7 @@ from django.contrib.postgres.fields import JSONField
 from django.db import models
 
 from django_extensions.db.models import TimeStampedModel
-from model_utils import choices, Choices
+from model_utils import Choices
 
 NAME_LENGTH = 60
 
@@ -62,3 +62,11 @@ class QuotesData(TimeStampedModel):
 
     def __str__(self):
         return 'QuotesData: {}'.format(self.id)
+
+
+class TempValues(TimeStampedModel):
+    name = models.CharField(max_length=NAME_LENGTH, unique=True)
+    value = models.CharField(max_length=NAME_LENGTH)
+
+    def __str__(self):
+        return 'TempValue-{}:{}'.format(self.name, self.value)
