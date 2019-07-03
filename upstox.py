@@ -1,8 +1,12 @@
+import datetime
+
+import pytz
 import requests
 import urllib.parse as urlparse
 from bs4 import BeautifulSoup
 from django.conf import settings
-from upstox_api.api import Session
+from zedi import constants
+from upstox_api.api import Session, Upstox, OHLCInterval
 
 from freaks.models import TempValues
 
@@ -25,13 +29,14 @@ class UpstoxLogin:
     def update_access_token(self):
         login_url = self.__get_login_url()
         access_token = self.__get_access_token(login_url)
-        self.__set_access_token(access_token)
+        self.session.set_code(access_token)
+        self.__set_access_token(self.session.retrieve_access_token())
 
     def __get_login_url(self):
-        session = Session(self.api_key)
-        session.set_redirect_uri(self.redirect_uri)
-        session.set_api_secret(self.api_secret)
-        return session.get_login_url()
+        self.session = Session(self.api_key)
+        self.session.set_redirect_uri(self.redirect_uri)
+        self.session.set_api_secret(self.api_secret)
+        return self.session.get_login_url()
 
     def __get_transaction_id(self, content):
         soup = BeautifulSoup(content, 'html.parser')
@@ -66,3 +71,45 @@ class UpstoxLogin:
             parsed = urlparse.urlparse(decision_page.url)
             access_token = urlparse.parse_qs(parsed.query)['code'][0]
             return access_token
+
+
+class UpstoxStockHelper:
+    def __init__(self):
+        self.client = None
+        self.set_client()
+
+    def set_client(self):
+        token_data = TempValues.objects.filter(name=settings.ACCESS_TOKEN_DB_IDENTIFIER).first()
+        if (not token_data) or (
+                token_data.modified < (datetime.datetime.now(tz=pytz.utc) - datetime.timedelta(days=1))):
+            upstox_login_helper = UpstoxLogin(api_key=constants.BROKER_CREDENTIALS[constants.Brokers.UPSTOX]["KEY"],
+                                              api_secret=constants.BROKER_CREDENTIALS[constants.Brokers.UPSTOX][
+                                                  "SECRET"],
+                                              username=constants.BROKER_CREDENTIALS[constants.Brokers.UPSTOX][
+                                                  "USERNAME"],
+                                              password=constants.BROKER_CREDENTIALS[constants.Brokers.UPSTOX][
+                                                  "PASSWORD"],
+                                              birth_date=constants.BROKER_CREDENTIALS[constants.Brokers.UPSTOX][
+                                                  "BIRTH_DATE"], )
+            upstox_login_helper.update_access_token()
+        token_data = TempValues.objects.filter(name=settings.ACCESS_TOKEN_DB_IDENTIFIER).first()
+        self.client = Upstox(constants.BROKER_CREDENTIALS[constants.Brokers.UPSTOX]["KEY"], token_data.value)
+        self.set_master_contracts()
+
+    def set_master_contracts(self):
+        self.client.get_master_contract('NSE_EQ')  # get contracts for NSE EQ
+        # self.client.get_master_contract('NSE_FO')  # get contracts for NSE FO
+        self.client.get_master_contract('NSE_INDEX')  # get contracts for NSE INDEX
+        self.client.get_master_contract('BSE_EQ')  # get contracts for BSE EQ
+        # self.client.get_master_contract('BCD_FO')  # get contracts for BCD FO
+        self.client.get_master_contract('BSE_INDEX')  # get contracts for BSE INDEX
+        # self.client.get_master_contract('MCX_INDEX')  # get contracts for MCX INDEX
+        # self.client.get_master_contract('MCX_FO')  # get contracts for MCX FO
+
+    def get_data(self, exchange, symbol):
+        instrument = self.client.get_instrument_by_symbol(exchange, symbol)
+        if instrument is None:
+            raise Exception("instrument not found")
+        return self.client.get_ohlc(instrument, OHLCInterval.Minute_10,
+                                    datetime.datetime.strptime('01/06/2019', '%d/%m/%Y'),
+                                    datetime.datetime.strptime('07/06/2019', '%d/%m/%Y'))
