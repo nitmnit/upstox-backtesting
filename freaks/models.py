@@ -70,3 +70,5 @@ class TempValues(TimeStampedModel):
 
     def __str__(self):
         return 'TempValue-{}:{}'.format(self.name, self.value)
+
+# TODO Create a model to store all orders placed

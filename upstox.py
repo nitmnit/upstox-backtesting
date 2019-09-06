@@ -66,7 +66,7 @@ class UpstoxLogin:
             transaction_id = self.__get_transaction_id(login_page1.content)
             decision_page = session.post(self.decision_page_url, headers=self.headers,
                                          data={"transaction_id": transaction_id})
-            if decision_page.status_code != 404:
+            if decision_page.status_code != 404 and decision_page.status_code != 502:
                 raise Exception("Failed to authenticate")
             parsed = urlparse.urlparse(decision_page.url)
             access_token = urlparse.parse_qs(parsed.query)['code'][0]

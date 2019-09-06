@@ -3,10 +3,26 @@ class Brokers:
     ZERODHA = "zerodha"
 
 
+class OrderType:
+    BRACKET = "BRACKET_ORDER"
+
+
+class ProductType:
+    INTRADAY = "Intraday"
+    DELIVERY = "Delivery"
+    COVERORDER = "CoverOrder"
+    ONECANCELSOTHER = "OneCancelsOther"
+
+
+class TransactionType:
+    BUY = "Buy"
+    SELL = "Sell"
+
+
 BROKER_CREDENTIALS = {
     Brokers.UPSTOX: {
-        "KEY": "f08dWVMwbd47WcSN5fL9P6tSaWW2GUsd8FLPrzDr",
-        "SECRET": "vckj3ranbl",
+        "KEY": "",
+        "SECRET": "",
         "USERNAME": "",
         "PASSWORD": "8Kw@%y28A0zJ",
         "BIRTH_DATE": "1991",
