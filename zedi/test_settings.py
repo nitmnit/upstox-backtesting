@@ -13,19 +13,16 @@ class ZediSettingsTestCase(unittest.TestCase):
         """
         env_variable_name = 'ZZ_ALGORITHM_RUN_MODE'
         django_settings_name = 'ALGORITHM_RUN_MODE'
-        self.assertIsNotNone(os.getenv(env_variable_name),
-                             msg='Environment variable "{}" is not set'.format(env_variable_name))
-        self.assertIsNotNone(getattr(settings, django_settings_name, None),
-                             msg='Django settings "{}" is not set'.format(django_settings_name))
-        self.assertIn(os.getenv(env_variable_name), dir(AlgorithmRunMode),
-                      msg='Invalid value for "{}": {}'.format(env_variable_name, os.getenv(env_variable_name)))
-        self.assertIn(getattr(settings, django_settings_name, None), dir(AlgorithmRunMode),
-                      msg='Invalid value for "{}": {}'.format(django_settings_name,
-                                                              getattr(settings, django_settings_name, None)))
-        self.assertEqual(getattr(settings, django_settings_name, None), os.getenv(env_variable_name),
-                         msg='Settings misconfiguration "{}"!="{}"'.format(os.getenv(env_variable_name),
-                                                                           getattr(settings, django_settings_name,
-                                                                                   None)))
+        env_value = os.getenv(env_variable_name)
+        settings_value = getattr(settings, django_settings_name, None)
+        self.assertIsNotNone(env_value, msg='Environment variable "{}" is not set'.format(env_variable_name))
+        self.assertIsNotNone(settings_value, msg='Django settings "{}" is not set'.format(django_settings_name))
+        self.assertIn(env_value, dir(AlgorithmRunMode),
+                      msg='Invalid value for "{}": {}'.format(env_variable_name, env_value))
+        self.assertIn(settings_value, dir(AlgorithmRunMode),
+                      msg='Invalid value for "{}": {}'.format(django_settings_name, settings_value))
+        self.assertEqual(settings_value, env_value,
+                         msg='Settings misconfiguration "{}"!="{}"'.format(env_value, settings_value))
 
 
 if __name__ == '__main__':
