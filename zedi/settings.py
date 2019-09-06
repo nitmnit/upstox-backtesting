@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_nose',
     'django_extensions',
     'channels',
     'freaks',
@@ -132,3 +133,5 @@ CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_IMPORTS = ("zedi.tasks",)
 
 ACCESS_TOKEN_DB_IDENTIFIER = "upstox_access_token"
+
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
