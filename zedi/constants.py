@@ -53,3 +53,10 @@ EXCHANGES_CODE = {
         Exchanges.MCX_FO: "mcx_fo",
     }
 }
+
+
+class AlgorithmRunMode:
+    LIVE = 'LIVE'  # To run in live environment with real money
+    SEMI_LIVE = 'SEMI_LIVE'  # To run in live environment with virtual money
+    SIMULATED_SEMI_LIVE = 'SIMULATED_SEMI_LIVE'  # Virtual environment with historical quotes data with virtual money
+    HISTORICAL = 'HISTORICAL'  # Virtual environment with historical minutes data with virtual money
